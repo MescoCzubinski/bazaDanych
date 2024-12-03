@@ -554,17 +554,32 @@ video {
   display: none;
 }
 
-.bg-blue-950 {
+.table {
+  display: table;
+}
+
+.bg-slate-700 {
   --tw-bg-opacity: 1;
-  background-color: rgb(23 37 84 / var(--tw-bg-opacity, 1));
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
+/* tu dawać własne klasy */
 
-.text-cyan-200 {
+.element {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
   --tw-text-opacity: 1;
-  color: rgb(165 243 252 / var(--tw-text-opacity, 1));
+  color: rgb(69 10 10 / var(--tw-text-opacity, 1));
+}
+
+tr {
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+}
+
+td {
+  border-left-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
 }
