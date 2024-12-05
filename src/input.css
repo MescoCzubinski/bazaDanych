@@ -6,9 +6,6 @@
 .element {
   @apply bg-gray-800 text-red-950;
 }
-tr {
-  @apply border-b-2 border-black;
-}
-td {
-  @apply border-l-2 border-black;
+svg path:hover{
+    fill: #303030;
 }

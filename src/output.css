@@ -558,9 +558,8 @@ video {
   display: table;
 }
 
-.bg-slate-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
+.bg-top-agrar-green\/20 {
+  background-color: rgb(0 132 55 / 0.2);
 }
 
 /* tu dawać własne klasy */
@@ -572,14 +571,6 @@ video {
   color: rgb(69 10 10 / var(--tw-text-opacity, 1));
 }
 
-tr {
-  border-bottom-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
-}
-
-td {
-  border-left-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
+svg path:hover{
+  fill: #303030;
 }
