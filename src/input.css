@@ -6,6 +6,9 @@
 .element {
   @apply bg-gray-800 text-red-950;
 }
+svg path{
+  @apply fill-top-agrar-green
+}
 svg path:hover{
-    fill: #303030;
+  @apply fill-top-agrar-green/80
 }

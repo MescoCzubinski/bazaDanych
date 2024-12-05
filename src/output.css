@@ -554,8 +554,20 @@ video {
   display: none;
 }
 
+.flex {
+  display: flex;
+}
+
 .table {
   display: table;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .bg-top-agrar-green\/20 {
@@ -571,6 +583,10 @@ video {
   color: rgb(69 10 10 / var(--tw-text-opacity, 1));
 }
 
-svg path:hover{
-  fill: #303030;
+svg path {
+  fill: rgb(0, 132, 55);
+}
+
+svg path:hover {
+  fill: rgb(0 132 55 / 0.8);
 }
