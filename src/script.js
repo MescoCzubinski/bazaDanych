@@ -4,7 +4,7 @@ const table = new DataTable("#jeczmien_jary", {
     [10, -1],
     ["Tylko najlepsze", "Wszystkie"],
   ],
-  //by pkazać wszystko na raz
+  //by pokazać wszystko na raz
   // lengthChange: false,
   // pageLength: -1,
   language: {
@@ -27,8 +27,9 @@ const table = new DataTable("#jeczmien_jary", {
     {
       target: 30,
       render: function () {
-        return '<button class="flex justify-center w-full hover:text-top-agrar-green"><i class="demo-icon icon-balance-scale">&#xf24e</i></button>';
+        return '<button class="flex justify-center w-full hover:text-top-agrar-green"><i class="icon-balance-scale"></i></button>';
       },
+      sorting: false,
     },
   ],
 });
