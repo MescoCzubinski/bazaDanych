@@ -554,6 +554,60 @@ video {
   display: none;
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+.visible {
+  visibility: visible;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -562,16 +616,67 @@ video {
   display: table;
 }
 
-.w-11\/12 {
-  width: 91.666667%;
+.h-8 {
+  height: 2rem;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-10\/12 {
+  width: 83.333333%;
+}
+
+.w-16 {
+  width: 4rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-8\/12 {
+  width: 66.666667%;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .justify-center {
   justify-content: center;
 }
 
+.border {
+  border-width: 1px;
+}
+
 .bg-top-agrar-green\/20 {
   background-color: rgb(0 132 55 / 0.2);
+}
+
+.text-top-agrar-green {
+  --tw-text-opacity: 1;
+  color: rgb(0 132 55 / var(--tw-text-opacity, 1));
+}
+
+.underline {
+  text-decoration-line: underline;
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.outline {
+  outline-style: solid;
+}
+
+.grayscale {
+  --tw-grayscale: grayscale(100%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 /* tu dawać własne klasy */
@@ -589,4 +694,31 @@ svg path {
 
 svg path:hover {
   fill: rgb(0 132 55 / 0.8);
+}
+
+#yearFilter {
+  border: 1px solid #aaa;
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+/* jestem b. brutalny dla tej biblioteki */
+
+#dt-search-0 {
+  display: none;
+}
+
+.hover\:text-top-agrar-green:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 132 55 / var(--tw-text-opacity, 1));
+}
+
+.focus\:text-top-agrar-green:focus {
+  --tw-text-opacity: 1;
+  color: rgb(0 132 55 / var(--tw-text-opacity, 1));
+}
+
+.active\:text-top-agrar-green:active {
+  --tw-text-opacity: 1;
+  color: rgb(0 132 55 / var(--tw-text-opacity, 1));
 }

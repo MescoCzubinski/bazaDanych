@@ -2,8 +2,13 @@
 <html>
   <head>
     <title>Porównywarka jęczmienia jarego</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+
+    <link rel="stylesheet" href="fontello\fontello-codes.css" />
+    <link rel="stylesheet" href="fontello\fontello.css" />
   </head>
   <body class="bg-top-agrar-green/20 w-full h-full m-0">
     <div class="flex justify-center items-center">
@@ -32,14 +37,44 @@
         Wykorzystano z modyfikacjami.
         -->
     </div>
-    <div class="">
-      <div class="">
-        <div class="">
-          <button type="button" id="load_data">Załaduj</button>
-        </div>
-        <br />
-        <div id="employee_table"></div>
-      </div>
+    <div class="flex justify-center">
+      <table id="jeczmien_jary" class="display" class="w-10/12">
+        <thead>
+          <tr>
+            <th>Odmiany</th>
+            <th>Rok wyników</th>
+            <th>Typ</th>
+            <th>Rok rejestacji</th>
+            <th>Wartość browarna</th>
+            <th>Plon zairna a<sub>1</sub></th>
+            <th>Plon zairna a<sub>2</sub></th>
+            <th>MTZ</th>
+            <th>Wyrównanie ziarna</th>
+            <th>Wysokość roślin</th>
+            <th>Dojrzałość pełna</th>
+            <th>Wyleganie</th>
+            <th>Mączniak prawdziwy</th>
+            <th>Plamistość siatkowa</th>
+            <th>Rdza jęczmienia</th>
+            <th>Rynchosporioza</th>
+            <th>Czarna plamistość</th>
+            <th>Zawartość białka</th>
+            <th>Plon a<sub>1</sub> w rejonie I</th>
+            <th>Plon a<sub>1</sub> w rejonie II</th>
+            <th>Plon a<sub>1</sub> w rejonie III</th>
+            <th>Plon a<sub>1</sub> w rejonie VI</th>
+            <th>Plon a<sub>1</sub> w rejonie V</th>
+            <th>Plon a<sub>1</sub> w rejonie VI</th>
+            <th>Plon a<sub>2</sub> w rejonie I</th>
+            <th>Plon a<sub>2</sub> w rejonie II</th>
+            <th>Plon a<sub>2</sub> w rejonie III</th>
+            <th>Plon a<sub>2</sub> w rejonie VI</th>
+            <th>Plon a<sub>2</sub> w rejonie V</th>
+            <th>Plon a<sub>2</sub> w rejonie VI</th>
+            <th>Porównaj</th>
+          </tr>
+        </thead>
+      </table>
     </div>
   </body>
   <script src="script.js"></script>

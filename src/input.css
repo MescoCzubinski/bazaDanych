@@ -6,9 +6,18 @@
 .element {
   @apply bg-gray-800 text-red-950;
 }
-svg path{
-  @apply fill-top-agrar-green
+svg path {
+  @apply fill-top-agrar-green;
 }
-svg path:hover{
-  @apply fill-top-agrar-green/80
+svg path:hover {
+  @apply fill-top-agrar-green/80;
+}
+#yearFilter {
+  border: 1px solid #aaa;
+  background-color: transparent;
+  border-radius: 3px;
+}
+/* jestem b. brutalny dla tej biblioteki */
+#dt-search-0 {
+  display: none;
 }
