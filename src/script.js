@@ -1,5 +1,5 @@
 const table = new DataTable("#jeczmien_jary", {
-  ajax: "jeczmien_jary.json",
+  ajax: "data/jeczmien_jary.json",
   lengthMenu: [
     [10, -1],
     ["Tylko najlepsze", "Wszystkie"],
@@ -49,3 +49,16 @@ regions.forEach((element) => {
     console.log(element.id);
   });
 });
+
+const files = ["jeczmien_jary.json", "pszenica_ozima.json", "pszenica_jara.json", "jeczmien_ozimy.json"];
+const elementDisplayFilesName = document.querySelector("#displayFilesName");
+function displayFilesName() {
+  let result = "";
+  for (file of files) {
+    file = file.replace(".json", "").replace("-", " ");
+    result += file + ", ";
+  }
+  elementDisplayFilesName.innerHTML = result;
+}
+
+document.addEventListener("load", displayFilesName());
