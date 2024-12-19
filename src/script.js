@@ -42,23 +42,15 @@ function filtrYear() {
   table.columns(1).search(selectedYear).draw();
 }
 
-const regions = [document.querySelector("#podkarpackie"), document.querySelector("#malopolskie"), document.querySelector("#slaskie"), document.querySelector("#opolskie"), document.querySelector("#dolnoslaskie"), document.querySelector("#swietokrzyskie"), document.querySelector("#lubelskie"), document.querySelector("#lodzkie"), document.querySelector("#mazowieckie"), document.querySelector("#wielkopolskie"), document.querySelector("#lubuskie"), document.querySelector("#kujawsko-pomorskie"), document.querySelector("#podlaskie"), document.querySelector("#zachodnio-pomorskie"), document.querySelector("#warminsko-mazurskie"), document.querySelector("#pomorskie")];
-
-regions.forEach((element) => {
-  element.addEventListener("click", function () {
-    console.log(element.id);
-  });
-});
-
-const files = ["jeczmien_jary.json", "pszenica_ozima.json", "pszenica_jara.json", "jeczmien_ozimy.json"];
-const elementDisplayFilesName = document.querySelector("#displayFilesName");
-function displayFilesName() {
-  let result = "";
-  for (file of files) {
-    file = file.replace(".json", "").replace("-", " ");
-    result += file + ", ";
-  }
-  elementDisplayFilesName.innerHTML = result;
-}
-
-document.addEventListener("load", displayFilesName());
+// let files = ["jeczmien_jary.json", "pszenica_ozima.json", "pszenica_jara.json", "jeczmien_ozimy.json", "kukurydza.json", "proso.json", "owies.json", "soja.json"];
+// const elementDisplayFilesName = document.querySelector("#displayFilesName");
+// function displayFilesName() {
+//   let result = "";
+//   for (file of files) {
+//     file = file.replace(".json", "").replace("_", " ");
+//     let id = file.replace(" ", "-");
+//     result += '<input class="text-2xl mb-5 text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-1 hover:bg-top-agrar-green/20" type="button" id="' + id + '" value="' + file + ' ">';
+//   }
+//   elementDisplayFilesName.innerHTML = result;
+// }
+// document.addEventListener("load", displayFilesName());
