@@ -8,14 +8,11 @@ regions.forEach((element) => {
     elementLOZText.innerHTML = "Wybierz szukany gatunek";
     displayLOZSpecies();
 
-    document.querySelector(".specie-LOZ").addEventListener("click", function () {
-      console.log("asdasds");
-    });
-    console.log(element.id);
+    document.querySelector(".specie-LOZ").addEventListener("click", function () {});
   });
 });
 
-let speciesLOZ = ["Żyto ozime", "Żyto jare", "Ziemniak", "Soja", "Rzepak ozimy", "Rzepak jary", "Pszenżyto ozime", "Pszenżyto jare", "Pszenica zwyczajna ozima", "Kukurydza"];
+let speciesLOZ = [];
 const elementDisplayLOZSpecies = document.querySelector("#LOZ-species");
 function displayLOZSpecies() {
   let result = "";

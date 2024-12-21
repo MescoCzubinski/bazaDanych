@@ -2,13 +2,15 @@
 <html>
   <head>
     <title>Porównywarka jęczmienia jarego</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-
+    <!-- main CSS -->
     <link rel="stylesheet" href="output.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
-
     <link rel="stylesheet" href="fontello\css\fontello.css" />
+
+    <!-- DataTable CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.bootstrap5.css" /> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
   </head>
   <body class="bg-top-agrar-green/10 w-full h-full m-0">
     <div class="flex items-center h-screen justify-center">
@@ -51,8 +53,8 @@
         <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center">Wybierz odmienę</div>
       </div>
     </div>
-    <div class="flex justify-center hidden">
-      <table id="jeczmien_jary" class="display" class="w-10/12">
+    <div class="flex justify-center">
+      <table id="table" class="display" class="w-10/12">
         <thead>
           <tr>
             <th>Odmiany</th>
@@ -91,6 +93,18 @@
       </table>
     </div>
   </body>
+  <!-- main JS -->
   <script src="script.js"></script>
   <script src="LOZscript.js"></script>
+  <script src="sortowanieScript.js"></script>
+
+  <!-- DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+  <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
+  <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script> -->
 </html>
