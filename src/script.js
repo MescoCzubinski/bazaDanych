@@ -6,8 +6,8 @@ function displayFilesValues(file) {
   }
   if (table === null) {
     table = new DataTable("#table", {
-      // responsive: true,
       ajax: "data/" + file,
+      responsive: true,
       lengthMenu: [
         [-1, 10],
         ["wszystkie", "10"],
