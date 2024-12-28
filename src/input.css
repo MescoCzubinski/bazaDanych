@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* tu dawać własne klasy */
 .element {
   @apply bg-gray-800 text-red-950;
 }
@@ -12,14 +11,14 @@ svg path {
 svg path:hover {
   @apply fill-top-agrar-green/80;
 }
-#yearFilter {
+#yearFilter,
+#type {
   border: 1px solid #aaa;
   background-color: transparent;
   border-radius: 3px;
 }
-/* jestem b. brutalny dla tej biblioteki */
-#dt-search-0 {
-  display: none;
+.click {
+  @apply text-top-agrar-green;
 }
 .w-500 {
   width: 500px;

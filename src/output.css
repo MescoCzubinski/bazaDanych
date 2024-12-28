@@ -614,10 +614,6 @@ video {
   width: 100%;
 }
 
-.w-10\/12 {
-  width: 83.333333%;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -698,8 +694,6 @@ video {
   color: rgb(0 132 55 / 0.9);
 }
 
-/* tu dawać własne klasy */
-
 .element {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
@@ -715,16 +709,16 @@ svg path:hover {
   fill: rgb(0 132 55 / 0.8);
 }
 
-#yearFilter {
+#yearFilter,
+#type {
   border: 1px solid #aaa;
   background-color: transparent;
   border-radius: 3px;
 }
 
-/* jestem b. brutalny dla tej biblioteki */
-
-#dt-search-0 {
-  display: none;
+.click {
+  --tw-text-opacity: 1;
+  color: rgb(0 132 55 / var(--tw-text-opacity, 1));
 }
 
 .w-500 {
