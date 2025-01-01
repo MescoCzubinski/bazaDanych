@@ -8,7 +8,6 @@ function displayFilesName() {
   elementDisplayFilesName.innerHTML = result;
 }
 function displayOnLoad() {
-  document.querySelector("#table").classList.add("hidden");
   displayFilesName();
 }
 document.addEventListener("load", displayOnLoad());
@@ -17,26 +16,46 @@ document.addEventListener("load", displayOnLoad());
 files.forEach((file) => {
   document.getElementById(file).addEventListener("click", function () {
     //wyświetlanie tabeli, dodawanie nazw kolumn
-    document.querySelector("#table").classList.remove("hidden");
 
+    //TODO:
     let col_names = "";
-    for (col_name of arrays[file.replace(".json", "") + "_col_names"]) {
+    for (const col_name of arrays[file.replace(".json", "") + "_col_names"]) {
       col_names += `<th>${col_name}</th>`;
     }
     document.querySelector("#col_names").innerHTML = col_names;
 
     displayFilesValues(file);
 
+    //dodanie filtru 'typ'
     let types = "";
+    const elementType = document.querySelector("#type");
     for (type of arrays[file.replace(".json", "") + "_type"]) {
       types += `<option value="${type}">${type}</option>`;
     }
-    document.querySelector("#type").innerHTML = types;
+    elementType.innerHTML = types;
 
+    const selectedType = elementType.value;
+    table.columns(8).search(selectedType).draw();
+
+    elementType.addEventListener("change", () => {
+      const selectedType = elementType.value;
+      table.columns(8).search(selectedType).draw();
+    });
+
+    //dodanie filtru 'rok'
     let years = "";
+    const elementYearFilter = document.querySelector("#yearFilter");
     for (year of arrays[file.replace(".json", "") + "_year"]) {
       years += `<option value="${year}">${year}</option>`;
     }
-    document.querySelector("#yearFilter").innerHTML = years;
+    elementYearFilter.innerHTML = years;
+
+    const selectedYear = elementYearFilter.value;
+    table.columns(1).search(selectedYear).draw();
+
+    elementYearFilter.addEventListener("change", () => {
+      const selectedYear = elementYearFilter.value;
+      table.columns(1).search(selectedYear).draw();
+    });
   });
 });

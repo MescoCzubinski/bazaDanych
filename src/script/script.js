@@ -5,12 +5,10 @@ function displayFilesValues(file) {
     table = null;
   }
   if (table === null) {
-    let id = 0;
-    let name = file.replace(".json", "") + "_units";
-    console.log(file);
+    let name = file.replace(".json", "");
     table = new DataTable("#table", {
       ajax: "data/" + file,
-      columns: arrays[name.replace("_units", "_cols")],
+      columns: arrays[name + "_cols"],
       lengthMenu: [
         [-1, 10],
         ["wszystkie", "10"],
@@ -30,27 +28,25 @@ function displayFilesValues(file) {
         emptyTable: "Ładowanie...",
       },
       order: [[0, "asc"]],
-      rowId: function () {
-        id += 1;
-        return file.replace(".json", "").replace("_", "-") + "-row-" + (id - 1 - table.rows().count());
-      },
       columnDefs: [
         {
-          target: -1,
-          render: function () {
-            let buttonId = file.replace(".json", "").replace("_", "-") + "-row-" + (id - 1 - table.rows().count()) + "-button";
-            return `<button id="${buttonId}" type="button" class="compare flex justify-center w-full hover:text-top-agrar-green">
-            <i class="icon-balance-scale compare" id=${buttonId.replace("button", "span")}></i>
-            </button>`;
+          targets: -1, // Last column
+          render: function (row) {
+            // console.log(row);
+            let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wyników"] + "-" + row["Odmiany"].replace(/\s+/g, "-");
+
+            return `<button id="${buttonId + "-button"}" type="button" class="compare flex justify-center w-full hover:text-top-agrar-green">
+                      <i class="icon-balance-scale compare" id="${buttonId + "-span"}"></i>
+                    </button>`;
           },
           sorting: false,
           responsivePriority: 1,
         },
         {
           targets: "_all",
-          render: function (data, type, row, meta) {
+          render: function (data, meta) {
             const columnIndex = meta.col; // Get the current column index
-            const unit = arrays[name]?.[columnIndex] || ""; // Fetch the unit or use an empty string if undefined
+            const unit = arrays[name + "_units"]?.[columnIndex] || ""; // Fetch the unit or use an empty string if undefined
             return data + unit; // Append the unit to the data
           },
         },
@@ -64,27 +60,5 @@ function displayFilesValues(file) {
         },
       ],
     });
-
-    const elementYearFilter = document.querySelector("#yearFilter");
-    if (elementYearFilter) {
-      const selectedYear = elementYearFilter.value;
-      table.columns(1).search(selectedYear).draw();
-
-      elementYearFilter.addEventListener("change", () => {
-        const selectedYear = elementYearFilter.value;
-        table.columns(1).search(selectedYear).draw();
-      });
-    }
-
-    const elementType = document.querySelector("#type");
-    if (elementType) {
-      const selectedType = elementType.value;
-      table.columns(8).search(selectedType).draw();
-
-      elementType.addEventListener("change", () => {
-        const selectedType = elementType.value;
-        table.columns(8).search(selectedType).draw();
-      });
-    }
   }
 }
