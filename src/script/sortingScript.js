@@ -15,15 +15,7 @@ document.addEventListener("load", displayOnLoad());
 //po kliknięciu na gatunek
 files.forEach((file) => {
   document.getElementById(file).addEventListener("click", function () {
-    //wyświetlanie tabeli, dodawanie nazw kolumn
-
-    //TODO:
-    let col_names = "";
-    for (const col_name of arrays[file.replace(".json", "") + "_col_names"]) {
-      col_names += `<th>${col_name}</th>`;
-    }
-    document.querySelector("#col_names").innerHTML = col_names;
-
+    //wyświetlanie tabeli
     displayFilesValues(file);
 
     //dodanie filtru 'typ'
