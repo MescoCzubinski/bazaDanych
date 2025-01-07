@@ -11,8 +11,8 @@ function displayFilesValues(file) {
       title: colName,
     })),
     lengthMenu: [
-      [-1, 10],
-      ["wszystkie", "10"],
+      [10, -1],
+      ["10", "wszystkie"],
     ],
     sorting: true,
     language: {
@@ -33,11 +33,13 @@ function displayFilesValues(file) {
       {
         targets: -1,
         render: function (row) {
-          let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wyników"] + "-" + row["Odmiany"].replace(/\s+/g, "-");
-
-          return `<button id="${buttonId + "-button"}" type="button" class="compare flex justify-center w-full hover:text-top-agrar-green">
-                      <i class="icon-balance-scale compare" id="${buttonId + "-span"}"></i>
-                    </button>`;
+          let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wyników"] + "-" + row["Odmiany"].replace(/\s+/g, "-") + "-";
+          buttonId = buttonId.replace("--", "-");
+          return `<button id="${buttonId + "button"}" type="button" class="h-7 compare flex justify-center w-full hover:text-top-agrar-green">
+                    <div class="pr-1 compare" id="${buttonId + "border"}">
+                      <i class="icon-balance-scale compare" id="${buttonId + "span"}"></i>
+                    </div>
+                  </button>`;
         },
         sorting: false,
         responsivePriority: 1,

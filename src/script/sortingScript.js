@@ -49,5 +49,9 @@ files.forEach((file) => {
       const selectedYear = elementYearFilter.value;
       table.columns(1).search(selectedYear).draw();
     });
+
+    //wyświetlanie porównania
+    window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"]);
+    compareObj.displayCompare();
   });
 });

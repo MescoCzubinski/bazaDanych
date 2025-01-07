@@ -582,6 +582,18 @@ video {
   margin-left: 2.5rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-24 {
+  margin-top: 6rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -592,6 +604,10 @@ video {
 
 .hidden {
   display: none;
+}
+
+.h-7 {
+  height: 1.75rem;
 }
 
 .h-8 {
@@ -642,6 +658,10 @@ video {
   border-radius: 1.5rem;
 }
 
+.border {
+  border-width: 1px;
+}
+
 .border-2 {
   border-width: 2px;
 }
@@ -671,6 +691,10 @@ video {
   padding: 1.25rem;
 }
 
+.pr-1 {
+  padding-right: 0.25rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -692,6 +716,10 @@ video {
 
 .text-top-agrar-green\/90 {
   color: rgb(0 132 55 / 0.9);
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .element {
@@ -716,9 +744,16 @@ svg path:hover {
   border-radius: 3px;
 }
 
-.click {
+.to-compare {
   --tw-text-opacity: 1;
   color: rgb(0 132 55 / var(--tw-text-opacity, 1));
+}
+
+.compare-border {
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 132 55 / var(--tw-border-opacity, 1));
+  border-radius: 50%;
 }
 
 .w-500 {
