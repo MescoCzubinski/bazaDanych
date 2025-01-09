@@ -21,8 +21,15 @@ document.addEventListener("click", function (event) {
 });
 
 class Compare {
+  //konstruktor
   constructor(elementId, colNames) {
+    //nazwy kolumn bez ostatnich 13 i roku wyników
     this.colNames = colNames.slice(0, -13);
+    const index = this.colNames.findIndex((r) => JSON.stringify(r) === JSON.stringify("Rok wyników:"));
+    if (index !== -1) {
+      this.colNames.splice(index, 1);
+    }
+
     this.rowsToCompare = [];
     this.element = document.querySelector(`#${elementId}`);
   }
@@ -30,14 +37,15 @@ class Compare {
   //wyświetlanie porównywarki
   displayCompare() {
     if (this.rowsToCompare.length === 0) {
-      this.element.innerHTML = "Dodaj elementy do porównania";
+      this.element.innerHTML = `<p class="text-2xl text-top-agrar-green">Dodaj elementy do porównania</p>`;
     } else {
       let table = "";
       for (let i = 0; i < this.colNames.length; i += 1) {
-        table += "<br>" + this.colNames[i].replace(":", ":  ");
+        table += '<div class="compare-row"> <div class="compare-title">' + this.colNames[i] + '</div> <div class="compare-content">';
         for (let record of this.rowsToCompare) {
-          table += record[i] + ", ";
+          table += "<div class=compare-cell>" + record[i] + "</div>";
         }
+        table += "</div> </div>";
       }
 
       this.element.innerHTML = table;

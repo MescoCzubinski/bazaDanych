@@ -25,9 +25,50 @@ svg path:hover {
   @apply border-top-agrar-green;
   border-radius: 50%;
 }
-.w-500 {
-  width: 500px;
+.w-300 {
+  width: 300px;
 }
-.h-600 {
-  height: 600px;
+.h-400 {
+  height: 400px;
+}
+
+.compare-row {
+  border-top: 1px solid #c9cacb;
+  height: 44px;
+  font-size: 16px;
+  align-items: center;
+  display: flex;
+}
+.compare-row:nth-child(even) {
+  background-color: #e0ece4;
+}
+.compare-cell {
+  padding: 4px;
+  width: 150px;
+}
+.compare-title {
+  width: 220px;
+  font-weight: 600;
+  padding: 4px;
+  padding-left: 6px;
+}
+.compare-content {
+  display: flex;
+}
+@media screen and (max-width: 768px) {
+  .compare-row {
+    display: block;
+    height: 64px;
+  }
+  .compare-content {
+  }
+  .compare-cell {
+    display: flex;
+    justify-content: center;
+  }
+  .compare-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
