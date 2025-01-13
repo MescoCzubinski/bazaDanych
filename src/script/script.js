@@ -16,6 +16,7 @@ function displayFilesValues(file) {
     ],
     sorting: true,
     language: {
+      //TODO: po czym sortować
       search: `<div><span title="Typ">Typ: 
                   <select id="type" class="w-30 h-8"></select> 
                 </span></div>

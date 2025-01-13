@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Static Sections Table</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+      .table-container {
+        overflow-x: scroll;
+        width: 100%;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        justify-content: start;
+      }
+      .table-container::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollable-columns {
+        display: flex;
+      }
+      .row {
+        width: 45vw;
+        scroll-snap-align: start;
+        text-align: center;
+        padding: 10px;
+        border: 0.1vw solid #ddd;
+        background-color: #f9f9f9;
+      }
+      .row-name {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: large;
+      }
+      .conatainer {
+        width: 90%;
+        border: 0.1vw solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="conatainer">
+      <div class="table-container">
+        <div class="scrollable-columns">
+          <div class="row 1">
+            <div class="">Rekord1</div>
+            <div class="">Rekord2</div>
+            <div class="">Rekord3</div>
+            <div class="">Rekord4</div>
+          </div>
+          <div class="row 2">
+            <div class="">Rekord1</div>
+            <div class="">Rekord2</div>
+            <div class="">Rekord3</div>
+            <div class="">Rekord4</div>
+          </div>
+          <div class="row 3">
+            <div class="">Rekord1</div>
+            <div class="">Rekord2</div>
+            <div class="">Rekord3</div>
+            <div class="">Rekord4</div>
+          </div>
+          <div class="row 4">
+            <div class="">Rekord1</div>
+            <div class="">Rekord2</div>
+            <div class="">Rekord3</div>
+            <div class="">Rekord4</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

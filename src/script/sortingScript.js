@@ -7,10 +7,7 @@ function displayFilesName() {
   }
   elementDisplayFilesName.innerHTML = result;
 }
-function displayOnLoad() {
-  displayFilesName();
-}
-document.addEventListener("load", displayOnLoad());
+displayFilesName();
 
 //po kliknięciu na gatunek
 files.forEach((file) => {
@@ -19,19 +16,20 @@ files.forEach((file) => {
     displayFilesValues(file);
 
     //dodanie filtru 'typ'
-    let types = "";
     const elementType = document.querySelector("#type");
+    let types = '<option value="-">wszytstkie</option>';
     for (type of arrays[file.replace(".json", "") + "_type"]) {
       types += `<option value="${type}">${type}</option>`;
     }
     elementType.innerHTML = types;
 
-    const selectedType = elementType.value;
-    table.columns(8).search(selectedType).draw();
-
     elementType.addEventListener("change", () => {
       const selectedType = elementType.value;
-      table.columns(8).search(selectedType).draw();
+      if (selectedType !== "-") {
+        table.columns(8).search(selectedType).draw();
+      } else {
+        table.columns(8).search("").draw();
+      }
     });
 
     //dodanie filtru 'rok'

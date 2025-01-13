@@ -37,7 +37,7 @@ class Compare {
   //wyświetlanie porównywarki
   displayCompare() {
     if (this.rowsToCompare.length === 0) {
-      this.element.innerHTML = `<p class="text-2xl text-top-agrar-green">Dodaj elementy do porównania</p>`;
+      this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
       let table = "";
       for (let i = 0; i < this.colNames.length; i += 1) {
