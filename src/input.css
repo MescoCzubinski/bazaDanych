@@ -33,24 +33,27 @@ svg path:hover {
 }
 .scrolable-container {
   overflow-x: scroll;
-  width: fit-content;
   scroll-snap-type: x mandatory;
+  width: fit-content;
   display: flex;
   justify-content: start;
+  
   @apply border-r border-slate-400;
 }
 .scrolable-container::-webkit-scrollbar {
   display: none;
 }
 .compare-column {
-  @apply flex flex-col;
+  transition: transform 0.3s ease-in-out;
+  @apply flex flex-col min-w-40;
   scroll-snap-align: start;
+  flex-shrink: 0;
 }
 .compare-header {
-  @apply border-l border-slate-400;
+  @apply border-l border-slate-400 w-52 flex flex-col min-w-52;
 }
 .compare-cell {
-  @apply border-t border-slate-400 w-40 h-11 pl-2 flex items-center;
+  @apply border-t border-slate-400 h-11 pl-2 flex items-center;
 }
 .compare-cell:nth-child(odd) {
   background-color: #e0ede5;
@@ -59,5 +62,5 @@ svg path:hover {
   @apply border-b;
 }
 .compare-name {
-  @apply w-52 h-11 pl-2 border-r border-slate-500;
+  @apply  h-11 pl-2 border-r border-slate-500;
 }

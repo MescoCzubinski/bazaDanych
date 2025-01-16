@@ -554,8 +554,46 @@ video {
   display: none;
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
 .visible {
   visibility: visible;
+}
+
+.relative {
+  position: relative;
 }
 
 .m-0 {
@@ -582,8 +620,20 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
 .mt-24 {
   margin-top: 6rem;
+}
+
+.mt-40 {
+  margin-top: 10rem;
 }
 
 .mt-5 {
@@ -602,6 +652,10 @@ video {
   display: none;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
 .h-7 {
   height: 1.75rem;
 }
@@ -614,24 +668,20 @@ video {
   height: 100%;
 }
 
-.w-10\/12 {
-  width: 83.333333%;
-}
-
 .w-16 {
   width: 4rem;
+}
+
+.w-8\/12 {
+  width: 66.666667%;
 }
 
 .w-full {
   width: 100%;
 }
 
-.w-40 {
-  width: 10rem;
-}
-
-.w-8\/12 {
-  width: 66.666667%;
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .flex-col {
@@ -695,6 +745,10 @@ video {
   padding: 1.25rem;
 }
 
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
 .pl-1 {
   padding-left: 0.25rem;
 }
@@ -721,6 +775,11 @@ video {
   line-height: 2.25rem;
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-top-agrar-green {
   --tw-text-opacity: 1;
   color: rgb(0 132 55 / var(--tw-text-opacity, 1));
@@ -728,6 +787,14 @@ video {
 
 .text-top-agrar-green\/90 {
   color: rgb(0 132 55 / 0.9);
+}
+
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .element {
@@ -774,9 +841,9 @@ svg path:hover {
 
 .scrolable-container {
   overflow-x: scroll;
+  scroll-snap-type: x mandatory;
   width: -moz-fit-content;
   width: fit-content;
-  scroll-snap-type: x mandatory;
   display: flex;
   justify-content: start;
   border-right-width: 1px;
@@ -789,12 +856,19 @@ svg path:hover {
 }
 
 .compare-column {
+  transition: transform 0.3s ease-in-out;
   display: flex;
+  min-width: 10rem;
   flex-direction: column;
   scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 .compare-header {
+  display: flex;
+  width: 13rem;
+  min-width: 13rem;
+  flex-direction: column;
   border-left-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(148 163 184 / var(--tw-border-opacity, 1));
@@ -803,7 +877,6 @@ svg path:hover {
 .compare-cell {
   display: flex;
   height: 2.75rem;
-  width: 10rem;
   align-items: center;
   border-top-width: 1px;
   --tw-border-opacity: 1;
@@ -821,7 +894,6 @@ svg path:hover {
 
 .compare-name {
   height: 2.75rem;
-  width: 13rem;
   border-right-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity, 1));
