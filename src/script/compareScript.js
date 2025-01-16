@@ -39,15 +39,23 @@ class Compare {
     if (this.rowsToCompare.length === 0) {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
-      let table = "";
-      for (let i = 0; i < this.colNames.length; i += 1) {
-        table += '<div class="compare-row"> <div class="compare-title">' + this.colNames[i] + '</div> <div class="compare-content">';
-        for (let record of this.rowsToCompare) {
-          table += "<div class=compare-cell>" + record[i] + "</div>";
+      let table = '<div class=" flex compare-container justify-center ">';
+
+      table += '<div class="compare-header flex flex-col">';
+      for (let cell of this.colNames) {
+        table += `<div class="compare-name compare-cell">${cell}</div>`;
+      }
+      table += '</div><div class="scrolable-container">';
+
+      for (let i = 0; i < this.rowsToCompare.length; i += 1) {
+        table += '<div class="compare-column flex flex-col">';
+        for (let j = 0; j < this.rowsToCompare[i].length - 1; j += 1) {
+          table += `<div class="compare-cell">${this.rowsToCompare[i][j]}</div>`;
         }
-        table += "</div> </div>";
+        table += "</div>";
       }
 
+      table += "</div></div>";
       this.element.innerHTML = table;
       console.log(this.rowsToCompare);
     }

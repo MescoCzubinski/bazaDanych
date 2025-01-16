@@ -31,58 +31,33 @@ svg path:hover {
 .h-400 {
   height: 400px;
 }
-
-.compare-row {
-  border-top: 1px solid #c9cacb;
-  height: 44px;
-  font-size: 16px;
-  align-items: center;
+.scrolable-container {
+  overflow-x: scroll;
+  width: fit-content;
+  scroll-snap-type: x mandatory;
   display: flex;
+  justify-content: start;
+  @apply border-r border-slate-400;
 }
-.compare-row:nth-child(even) {
-  background-color: #e0ece4;
+.scrolable-container::-webkit-scrollbar {
+  display: none;
+}
+.compare-column {
+  @apply flex flex-col;
+  scroll-snap-align: start;
+}
+.compare-header {
+  @apply border-l border-slate-400;
 }
 .compare-cell {
-  padding: 4px;
-  width: 150px;
+  @apply border-t border-slate-400 w-40 h-11 pl-2 flex items-center;
 }
-.compare-title {
-  width: 200px;
-  font-weight: 600;
-  padding: 4px;
-  padding-left: 6px;
+.compare-cell:nth-child(odd) {
+  background-color: #e0ede5;
 }
-.compare-content {
-  display: flex;
+.compare-cell:last-child {
+  @apply border-b;
 }
-@media screen and (max-width: 768px) {
-  .compare-row {
-    display: block;
-    height: 64px;
-  }
-  .compare-content {
-  }
-  #compare {
-    width: 90vw;
-    border: 1px solid #c9cacb;
-  }
-  .compare-row {
-    border: none;
-  }
-  .compare-row:nth-child(even) {
-    background-color: transparent;
-  }
-  .compare-cell {
-    display: flex;
-    justify-content: center;
-    width: 45vw;
-    /* border-left: 1px solid #c9cacb;
-    border-right: 1px solid #c9cacb; */
-  }
-  .compare-title {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: #e0ece4;
-  }
+.compare-name {
+  @apply w-52 h-11 pl-2 border-r border-slate-500;
 }
