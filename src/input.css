@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+.table-container, .compare-container{
+  @apply w-8/12;
+}
+.menu-container{
+  @apply w-300 m-5 h-400 border-solid border-2 border-t-0 border-b-0 border-top-agrar-green p-5 flex flex-col justify-between;
+}
+#searching{
+  @apply mr-0.5 ml-2;
+}
+@media only screen and (max-width: 680px) {
+  .menu-container{
+    @apply w-11/12 h-400 border-2 border-l-0 border-r-0 rounded-none pb-4 m-0 p-2;
+  }
+  .menu-container:last-child{
+    @apply border-t-0 pb-0;
+  }
+  #settings{
+    @apply h-52
+  }
+}
+@media only screen and (max-width: 768px) {
+  .table-container, .compare-container{
+    @apply w-11/12;
+  }
+  #searching{
+    @apply mr-0 ml-0;
+  }
+}
+
 .element {
   @apply bg-gray-800 text-red-950;
 }
@@ -12,12 +41,14 @@ svg path:hover {
   @apply fill-top-agrar-green/80;
 }
 #yearFilter,
-#type {
+#type, #sorting {
+  @apply flex-1 ml-2;
   border: 1px solid #aaa;
   background-color: transparent;
   border-radius: 3px;
 }
-.to-compare {
+
+.to-compare{
   @apply text-top-agrar-green;
 }
 .compare-border {
@@ -31,36 +62,46 @@ svg path:hover {
 .h-400 {
   height: 400px;
 }
-.scrolable-container {
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  width: fit-content;
-  display: flex;
-  justify-content: start;
-  
-  @apply border-r border-slate-400;
-}
-.scrolable-container::-webkit-scrollbar {
+.hidden{
   display: none;
 }
-.compare-column {
-  transition: transform 0.3s ease-in-out;
-  @apply flex flex-col min-w-40;
+.compare-row{
+  @apply flex border-t border-slate-500;
+}
+.compare-row:last-child{
+  @apply border-b border-slate-500;
+}
+.compare-row:nth-child(odd) {
+  background-color: #e0ede5;
+}
+.compare-scrolling{
+  @apply flex w-fit justify-start;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+.compare-scrolling::-webkit-scrollbar {
+  display: none;
+}
+.compare-cell{
+  @apply flex pl-3 pr-3 pt-2 pb-2 h-11 align-middle min-w-40;
   scroll-snap-align: start;
   flex-shrink: 0;
 }
-.compare-header {
-  @apply border-l border-slate-400 w-52 flex flex-col min-w-52;
+.compare-name{
+  @apply w-52 min-w-52 flex ml-3 mr-3 pt-2 pb-2 h-11 align-middle;
 }
-.compare-cell {
-  @apply border-t border-slate-400 h-11 pl-2 flex items-center;
-}
-.compare-cell:nth-child(odd) {
-  background-color: #e0ede5;
-}
-.compare-cell:last-child {
-  @apply border-b;
-}
-.compare-name {
-  @apply  h-11 pl-2 border-r border-slate-500;
+@media only screen and (max-width: 768px) {
+  .compare-row{
+    @apply flex flex-wrap bg-transparent border-0;
+  }
+  .compare-row:nth-child(odd) {
+    @apply bg-transparent;
+  }
+  .compare-name{
+    @apply flex justify-center w-full border-b border-t border-slate-500;
+    background-color: #e0ede5;
+  }
+  .compare-cell{
+    @apply w-6/12;
+  }
 }

@@ -17,17 +17,12 @@ function displayFilesValues(file) {
     sorting: true,
     language: {
       //TODO: po czym sortować
-      search: `<div><span title="Typ">Typ: 
-                  <select id="type" class="w-30 h-8"></select> 
-                </span></div>
-                <div><span title="Rok - wyniki stanowią średnią z trzech lat, a wybierany rok jest ostatnim z trzylecia">Wyniki z roku: 
-                  <select id="yearFilter" class="w-16 h-8"></select> 
-                </span></div>
-                <div><span class="">Wyszukaj:</span></div>`,
-      lengthMenu: "Liczba wyników na stronie: _MENU_ ",
+      search: `<span id="searching">Wyszukaj odmianę:</span>`,
+      lengthMenu: '<div class="text-left p-2">Liczba odmian na stronie: _MENU_ </div>',
       info: "_START_-_END_ z _TOTAL_ wyników",
       infoFiltered: "",
       emptyTable: "Ładowanie...",
+      zeroRecords: "Brak wyników dla podanych ustawień",
     },
     order: [[0, "asc"]],
     columnDefs: [
@@ -37,7 +32,7 @@ function displayFilesValues(file) {
           let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wyników"] + "-" + row["Odmiany"].replace(/\s+/g, "-") + "-";
           buttonId = buttonId.replace("--", "-");
           return `<button id="${buttonId + "button"}" type="button" class="h-7 compare flex justify-center w-full hover:text-top-agrar-green">
-                    <div class="pr-1 compare" id="${buttonId + "border"}">
+                    <div class="pr-1 compare" title="Porównanie odmian u dołu strony. Przesuń w prawo w porównywarce umożiwia zobaczenie więcej odmian" id="${buttonId + "border"}">
                       <i class="icon-balance-scale compare" id="${buttonId + "span"}"></i>
                     </div>
                   </button>`;
@@ -49,8 +44,15 @@ function displayFilesValues(file) {
         targets: "_all",
         render: function (data, type, row, meta) {
           const columnIndex = meta.col;
-          const unit = arrays[name + "_units"]?.[columnIndex] || "";
-          return data + unit;
+          if(columnIndex === 9 && data === "0"){
+            return "nie dotyczy";
+          }
+          if(data !== "#"){
+            const unit = arrays[name + "_units"]?.[columnIndex] || "";
+            return data + unit;
+          } else {
+            return data;
+          }
         },
       },
       {

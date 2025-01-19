@@ -1,6 +1,3 @@
-document.querySelector('#prev').classList.add('hidden')
-document.querySelector('#next').classList.add('hidden')
-
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("compare")) {
     let id = event.target.id.replace("-button", "").replace("-span", "");
@@ -28,56 +25,56 @@ class Compare {
   constructor(elementId, colNames) {
     //nazwy kolumn bez ostatnich 13 i roku wyników
     this.colNames = colNames.slice(0, -13);
-    const index = this.colNames.findIndex((r) => JSON.stringify(r) === JSON.stringify("Rok wyników:"));
+    const index = this.colNames.indexOf("Rok wyników:");
     if (index !== -1) {
       this.colNames.splice(index, 1);
-    }
+    }    
 
     this.rowsToCompare = [];
     this.element = document.querySelector(`#${elementId}`);
-    this.scrollPosition = 0;
+    // this.scrollPosition = 0;
   }
   //wyświetlanie porównywarki
   displayCompare() {
     if (this.rowsToCompare.length < 2) {
-      document.querySelector('#prev').classList.add('hidden')
-      document.querySelector('#next').classList.add('hidden')
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {    
-      document.querySelector('#prev').classList.remove('hidden')
-      document.querySelector('#next').classList.remove('hidden')
-
-      let table = '<div class=" flex compare-container justify-center ">';
-      let colsCounter = 0;
-      table += '<div class="compare-header">';
-      for (let cell of this.colNames) {
-        table += `<div class="compare-name compare-cell">${cell}</div>`;
-      }
-      table += '</div><div class="scrolable-container">';
-
-      for (let i = 0; i < this.rowsToCompare.length; i += 1) {
-        table += '<div class="compare-column">';
-        colsCounter += 1;
-        for (let j = 0; j < this.rowsToCompare[i].length - 1; j += 1) {
-          table += `<div class="compare-cell">${this.rowsToCompare[i][j]}</div>`;
+      let table = '<div class="compare-table">';
+      for(let i=0; i<this.rowsToCompare[0].length-1; i++){
+        table += '<div class="compare-row">'
+        table += `<div class="compare-name">${this.colNames[i].replace(':', '')}</div><div class="compare-scrolling">`
+        for(let j=0; j<this.rowsToCompare.length; j++){
+          table += `<div class="compare-cell">${this.rowsToCompare[j][i]}</div>`
         }
-        table += '</div>'
+        table += '</div></div>'
       }
-      table += "</div></div>";
+      table += "</div>";
 
       this.element.innerHTML = table;
       
-      document.querySelectorAll('.compare-column').forEach((column) => {
-        column.style.width = (screen.width*8/12 - 204)/colsCounter + "px";
+      let screenWidth = screen.width;
+      screenWidth > 768 ? screenWidth *= 8/12 : screenWidth*=11/12;
+      document.querySelectorAll('.compare-cell').forEach((cell) => {
+        cell.style.width = (screenWidth - 232)/this.rowsToCompare.length + "px";
       });
-    }
-    document.querySelector('#prev').removeEventListener('click', this.scrollLeftHandler);
-    document.querySelector('#next').removeEventListener('click', this.scrollRightHandler);
 
-    this.scrollLeftHandler = () => this.scroll('left');
-    this.scrollRightHandler = () => this.scroll('right');
-    document.querySelector('#prev').addEventListener('click', this.scrollLeftHandler);
-    document.querySelector('#next').addEventListener('click', this.scrollRightHandler);
+      this.synchronizeScrolling();
+    }
+  }
+
+  //łączenie wierszy by się razem zmieniały
+  synchronizeScrolling() {
+    const scrollingElements = document.querySelectorAll('.compare-scrolling');
+    scrollingElements.forEach((scrollingElement) => {
+      scrollingElement.addEventListener('scroll', (event) => {
+        const scrollLeft = event.target.scrollLeft;
+        scrollingElements.forEach((el) => {
+          if (el !== event.target) {
+            el.scrollLeft = scrollLeft;
+          }
+        });
+      });
+    });
   }
 
   //dodawanie wiersza do porównywarki
@@ -95,24 +92,6 @@ class Compare {
       this.rowsToCompare.splice(index, 1);
     }
     this.displayCompare();
-  }
-
-  scroll(direction){
-    const items = document.querySelectorAll('.compare-column');
-
-    if(direction === "left"){
-      this.scrollPosition -= 160;
-    } else {
-      this.scrollPosition += 160;
-    }
-  
-    const maxScroll = (items.length * 160) - (screen.width * 8 / 12 - 204);
-    if (this.scrollPosition < 0) this.scrollPosition = 0;
-    if (this.scrollPosition > maxScroll) this.scrollPosition = maxScroll;
-
-    items.forEach((item) => {
-      item.style.transform = `translateX(-${this.scrollPosition}px)`;
-    });
   }
 }
 
