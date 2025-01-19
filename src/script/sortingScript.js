@@ -1,7 +1,6 @@
 const elementDisplayFilesName = document.querySelector("#displayFilesName");
 const elementDisplaySettings = document.querySelector("#settings");
 elementDisplaySettings.classList.add('hidden')
-
 function displayFilesName() {
   //wyświetlanie gatunków do sortowarek
   let result = "";
@@ -21,7 +20,7 @@ files.forEach((file) => {
 
     //dodanie filtru 'typ'
     const elementType = document.querySelector("#type");
-    let types = '<option value="-">wszytstkie</option>';
+    let types = '<option value="-">wszystkie</option>';
     for (type of arrays[file.replace(".json", "") + "_type"]) {
       types += `<option value="${type}">${type}</option>`;
     }
@@ -70,11 +69,6 @@ files.forEach((file) => {
         table.order([indexOf, 'dsc']).draw()
       }
     });
-      //title: porównanie: Porównanie odmian u dołu strony; 
-      // Rejony: I  –  zachodniopomorskie, pomorskie; II  –  warmińsko-mazurskie, podlaskie; III –  lubuskie, wielkopolskie, kujawsko-pomorskie; IV – łódzkie, mazowieckie, lubelskie; V  – dolnośląskie, opolskie, śląskie; VI – małopolskie, świętokrzyskie, podkarpackie;
-      // Co to jest a1, czyli „Na przeciętnym poziomie agrotechniki” co ot jest a2. Czyli „Na wyższym poziomie agrotechniki”
-      //"Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco, a trzeci raz wywoła powrót do sortowania alfabetycznego wg nazw odmian";
-
 
     document.querySelectorAll("#table thead th").forEach((th, index) => {
       let colsCount = arrays[file.replace(".json", "") + "_col_names"].length - 2

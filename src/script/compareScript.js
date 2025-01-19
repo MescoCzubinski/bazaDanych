@@ -25,6 +25,7 @@ class Compare {
   constructor(elementId, colNames) {
     //nazwy kolumn bez ostatnich 13 i roku wyników
     this.colNames = colNames.slice(0, -13);
+    this.firstTimeRender = false;
     const index = this.colNames.indexOf("Rok wyników:");
     if (index !== -1) {
       this.colNames.splice(index, 1);
@@ -38,7 +39,14 @@ class Compare {
   displayCompare() {
     if (this.rowsToCompare.length < 2) {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
-    } else {    
+    } else {
+      if(!this.firstTimeRender){
+        this.firstTimeRender = true;
+        document.querySelector('#compare').scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
       let table = '<div class="compare-table">';
       for(let i=0; i<this.rowsToCompare[0].length-1; i++){
         table += '<div class="compare-row">'

@@ -1,5 +1,15 @@
+window.addEventListener('load', () => {
+  document.querySelector('body').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+});
 function displayFilesValues(file) {
-  if ($.fn.DataTable.isDataTable("#table")) {
+  document.querySelector('#table').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+    if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
   }
@@ -18,7 +28,7 @@ function displayFilesValues(file) {
     language: {
       //TODO: po czym sortować
       search: `<span id="searching">Wyszukaj odmianę:</span>`,
-      lengthMenu: '<div class="text-left p-2">Liczba odmian na stronie: _MENU_ </div>',
+      lengthMenu: '<div class="text-left p-2 flex items-center"><p class="">Liczba odmian na stronie:</p> _MENU_',
       info: "_START_-_END_ z _TOTAL_ wyników",
       infoFiltered: "",
       emptyTable: "Ładowanie...",

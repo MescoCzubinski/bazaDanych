@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.dataTables.css" />
   </head>
-  <body class="bg-top-agrar-green/10 w-full h-full m-0">
+  <body class="bg-top-agrar-green/10 w-full" style="height: 3000px;">
     <div class="flex items-center mt-5 justify-center flex-wrap">
       <div class="menu-container">
         <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2">Lista Odmian Zalecanych</div>
@@ -55,23 +55,23 @@
       <div class="menu-container" id="settings">
         <div class="w-full flex justify-center">
           <div class="text-left">
-            <span class="p-2 pl-3"># - brak danych dla danej odmiany</span>
-
+            
             <span title="Typ" class="p-2 flex items-center">
               <span class="flex">Typ:</span> 
               <select id="type" class="h-9"></select> 
             </span>
-
+            
             <span title="Rok - wyniki stanowią średnią z trzech lat, a wybierany rok jest ostatnim z trzylecia" class="p-2 flex items-center">
               <span>Wyniki z roku:</span> 
               <select id="yearFilter" class="h-9"></select> 
             </span>
-
+            
             <span class="p-2 flex items-center">
               <span>Sortuj:</span> 
               <select id="sorting" class="h-9"></select> 
             </span>
-
+            
+            <span class="p-2 pl-3 mt-4 text-xl text-top-agrar-green"># - brak danych dla danej odmiany</span>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
     <div class="mt-24 mb-10 flex justify-center w-full">
       <div class="compare-container">
         <div class="w-full">
-          <div id="compare"></div>
+          <div id="compare" class="pt-20"></div>
         </div>
       </div>
     </div>

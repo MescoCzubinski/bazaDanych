@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  margin: 0;
+  padding: 0;
+  transition: transform 0.3s ease;
+  overflow: auto;
+}
 .table-container, .compare-container{
   @apply w-8/12;
 }
@@ -25,7 +31,7 @@
     @apply h-52
   }
   #LOZ-map svg{
-    width: 340px;
+    width: 300px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -46,9 +52,12 @@ svg path {
 svg path:hover {
   @apply fill-top-agrar-green/80;
 }
+.dt-search{
+  @apply flex;
+}
 #yearFilter,
-#type, #sorting {
-  @apply flex-1 ml-2;
+#type, #sorting, #dt-length-0, #dt-search-0 {
+  @apply flex-1 ml-2 h-8  ;
   border: 1px solid #aaa;
   background-color: transparent;
   border-radius: 3px;
