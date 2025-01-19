@@ -23,8 +23,7 @@ document.addEventListener("click", function (event) {
 class Compare {
   //konstruktor
   constructor(elementId, colNames) {
-    //nazwy kolumn bez ostatnich 13 i roku wyników
-    this.colNames = colNames.slice(0, -13);
+    this.colNames = colNames;
     this.firstTimeRender = false;
     const index = this.colNames.indexOf("Rok wyników:");
     if (index !== -1) {
@@ -50,6 +49,7 @@ class Compare {
       let table = '<div class="compare-table">';
       for(let i=0; i<this.rowsToCompare[0].length-1; i++){
         table += '<div class="compare-row">'
+        console.log(this.colNames[i])
         table += `<div class="compare-name">${this.colNames[i].replace(':', '')}</div><div class="compare-scrolling">`
         for(let j=0; j<this.rowsToCompare.length; j++){
           table += `<div class="compare-cell">${this.rowsToCompare[j][i]}</div>`

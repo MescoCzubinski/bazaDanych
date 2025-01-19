@@ -54,7 +54,7 @@ files.forEach((file) => {
     //dodanie sortowarki
     let sort  = "";
     const elementSorting = document.querySelector("#sorting");
-    for (element of arrays[file.replace(".json", "") + "_col_names"]) {
+    for (element of arrays[file.replace(".json", "") + "_col_names"].slice(0, -17)) {
       if(element !== "Rok wyników:"){
         sort += `<option value="${element.replace(':','')}">${element.replace(':','')}</option>`;
       }
@@ -62,7 +62,7 @@ files.forEach((file) => {
     elementSorting.innerHTML = sort;
 
     elementSorting.addEventListener("change", (event) => {
-      let indexOf = arrays[file.replace(".json", "") + "_col_names"].indexOf(event.target.value + ":")
+      let indexOf = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).indexOf(event.target.value + ":")
       if(indexOf === 0){
         table.order([indexOf, 'asc']).draw()
       } else {
@@ -71,7 +71,7 @@ files.forEach((file) => {
     });
 
     document.querySelectorAll("#table thead th").forEach((th, index) => {
-      let colsCount = arrays[file.replace(".json", "") + "_col_names"].length - 2
+      let colsCount = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).length - 2
       if(index === colsCount){
         th.setAttribute("title", "Porównanie odmian u dołu strony");
       } else if(index === 1){
@@ -84,7 +84,7 @@ files.forEach((file) => {
     });
 
     //wyświetlanie porównania
-    window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"]);
+    window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
     compareObj.displayCompare();
   });
 });
