@@ -1,6 +1,5 @@
 const elementDisplayFilesName = document.querySelector("#displayFilesName");
 const elementDisplaySettings = document.querySelector("#settings");
-console.log(elementDisplaySettings)
 elementDisplaySettings.classList.add('hidden')
 
 function displayFilesName() {
@@ -70,7 +69,6 @@ files.forEach((file) => {
       } else {
         table.order([indexOf, 'dsc']).draw()
       }
-      console.log(indexOf)
     });
       //title: porównanie: Porównanie odmian u dołu strony; 
       // Rejony: I  –  zachodniopomorskie, pomorskie; II  –  warmińsko-mazurskie, podlaskie; III –  lubuskie, wielkopolskie, kujawsko-pomorskie; IV – łódzkie, mazowieckie, lubelskie; V  – dolnośląskie, opolskie, śląskie; VI – małopolskie, świętokrzyskie, podkarpackie;

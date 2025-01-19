@@ -18,8 +18,14 @@
   .menu-container:last-child{
     @apply border-t-0 pb-0;
   }
+  .menu-container:nth-child(1){
+    @apply border-b-0;
+  }
   #settings{
     @apply h-52
+  }
+  #LOZ-map svg{
+    width: 340px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -77,7 +83,7 @@ svg path:hover {
 .compare-scrolling{
   @apply flex w-fit justify-start;
   overflow-x: scroll;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
 }
 .compare-scrolling::-webkit-scrollbar {
   display: none;
@@ -100,8 +106,5 @@ svg path:hover {
   .compare-name{
     @apply flex justify-center w-full border-b border-t border-slate-500;
     background-color: #e0ede5;
-  }
-  .compare-cell{
-    @apply w-6/12;
   }
 }

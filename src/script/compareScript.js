@@ -53,11 +53,12 @@ class Compare {
       this.element.innerHTML = table;
       
       let screenWidth = screen.width;
+
       screenWidth > 768 ? screenWidth *= 8/12 : screenWidth*=11/12;
       document.querySelectorAll('.compare-cell').forEach((cell) => {
         cell.style.width = (screenWidth - 232)/this.rowsToCompare.length + "px";
       });
-
+      
       this.synchronizeScrolling();
     }
   }
