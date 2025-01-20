@@ -39,15 +39,17 @@ class Compare {
     if (this.rowsToCompare.length < 2) {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
+      document.querySelector("#compare-text").innerHTML = 'Porównywanie odmian - pszenica jara (by porównać więcej odmian przewiń wyżej i kliknij:<i class="icon-balance-scale"></i>)';
+
       if (!this.firstTimeRender) {
         this.firstTimeRender = true;
-        document.querySelector("#compare").scrollIntoView({
+        document.querySelector("#compare-text").scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
       }
       let table = '<div class="compare-table">';
-      for (let i = 0; i < this.rowsToCompare[0].length - 1; i++) {
+      for (let i = 0; i < this.rowsToCompare[0].length; i++) {
         table += '<div class="compare-row">';
         table += `<div class="compare-name">${this.colNames[i]}</div><div class="compare-scrolling">`;
         for (let j = 0; j < this.rowsToCompare.length; j++) {

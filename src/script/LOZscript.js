@@ -26,7 +26,7 @@ function displayLOZSpecies(region) {
     result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + names[i] + ' ">';
   }
   elementDisplayLOZSpecies.innerHTML = result;
-  files.forEach((file) => {
+  files.forEach((file, index) => {
     document.getElementById(file).addEventListener("click", function () {
       let indexOf = arrays[file.replace(".json", "") + "_cols"].findIndex((item) => item.data === region);
 
@@ -35,20 +35,16 @@ function displayLOZSpecies(region) {
       displayFilters(file);
       table.columns(indexOf).search("^(?![-#]).*$", true, false).draw();
 
+      let text = region;
+      if (text === "Lodzkie") {
+        text = "Łódzkie";
+      } else if (text === "Slaskie") {
+        text = "Śląskie";
+      }
+      document.querySelector("#sorting-text").innerHTML = "Lista odmian zalecanych woj. " + text.toLowerCase() + " - " + names[index].toLowerCase() + " - lista pozostałych odmian dostępna wyżej w porównywarce";
+
       window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
       compareObj.displayCompare();
     });
   });
 }
-//TODO: DANE: owies + LOZ pszenicy 2024
-
-//TODO: MECHANIKA: odmiana po której sortujesz + responsive priority 1
-//TODO: MECHANIKA: klawisz resetuj/powrót do mapki
-//TODO: MECHANIKA: ew. ukryć kolumnę typ jak nie ma typu
-
-//TODO: WYGLĄD: po wejściu przez LOZ: "lista odmian zalecanych woj. pomorskie*" -> "lista pozostałych zarejestrowanych odmian dostępna w porównywarce (patrz wyżej)"
-//TODO: WYGLĄD: po wejściu przez porównanie: "lista odmian wg. PDO - jęczmień jary"
-//TODO: WYGLĄD: tytył porównywraki "porównywanie odmian - pszenica jara (by porównać więcej odmian przewiń wyżej i kliknij symbol [wagi])"
-//TODO: WYGLĄD: dodaj opis rejonów
-//TODO: WYGLĄD: nazwa kolumny sort -> na czerwono (dodatek)
-//TODO: WYGLĄD: komnetarz przy woj. "rok wpisu na listę dla danego województwa"

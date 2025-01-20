@@ -52,3 +52,9 @@ let arrays = {
   pszenzyto_jare_units,
   pszenzyto_jare_year,
 };
+//TODO: DANE: owies + LOZ pszenicy 2024
+
+//TODO: MECHANIKA: odmiana po której sortujesz + responsive priority 1
+//TODO: MECHANIKA: klawisz resetuj/powrót do mapki
+
+//TODO: WYGLĄD: dodaj opis rejonów

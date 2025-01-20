@@ -12,11 +12,13 @@ function displayFilesName() {
 displayFilesName();
 
 //po kliknięciu na gatunek
-files.forEach((file) => {
+files.forEach((file, index) => {
   document.getElementById(file).addEventListener("click", function () {
     //wyświetlanie tabeli
     displayFilesValues(file, -1, "Brak wyników dla podanych ustawień");
     displayFilters(file);
+
+    document.querySelector("#sorting-text").innerHTML = "Lista odmian wg. PDO - " + names[index].toLowerCase();
 
     //wyświetlanie porównania
     window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
@@ -91,7 +93,7 @@ function displayFilters(file) {
   //dodanie sortowarki
   let sort = "";
   const elementSorting = document.querySelector("#sorting");
-  for (element of arrays[file.replace(".json", "") + "_col_names"].slice(0, -17)) {
+  for (element of arrays[file.replace(".json", "") + "_col_names"].slice(0, -28)) {
     if (element !== "Rok wyników:") {
       sort += `<option value="${element.replace(":", "")}">${element.replace(":", "")}</option>`;
     }
@@ -99,12 +101,18 @@ function displayFilters(file) {
   elementSorting.innerHTML = sort;
 
   elementSorting.addEventListener("change", (event) => {
-    let indexOf = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).indexOf(event.target.value + ":");
+    let indexOf = arrays[file.replace(".json", "") + "_col_names"].slice(0, -28).indexOf(event.target.value + ":");
     if (indexOf === 0) {
       table.order([indexOf, "asc"]).draw();
     } else {
       table.order([indexOf, "dsc"]).draw();
     }
+    // table.settings()[0].aoColumns.forEach((column) => {
+    //   column.responsivePriority = undefined; // Lub ustaw domyślny priorytet
+    // });
+    // table.settings()[0].aoColumns[indexOf].responsivePriority = 1;
+    // table.responsive.rebuild();
+    // table.responsive.recalc();
   });
 
   document.querySelectorAll("#table thead th").forEach((th, index) => {
@@ -115,6 +123,8 @@ function displayFilters(file) {
       th.setAttribute("title", "Na przeciętnym poziomie agrotechniki");
     } else if (index === 2) {
       th.setAttribute("title", "Na wyższym poziomie agrotechniki");
+    } else if (index >= colsCount - 17 && index < colsCount) {
+      th.setAttribute("title", "rok wpisu na listę dla danego województwa");
     } else {
       th.setAttribute("title", "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco, a trzeci raz wywoła powrót do sortowania alfabetycznego wg nazw odmian");
     }
