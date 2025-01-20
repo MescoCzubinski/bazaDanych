@@ -395,6 +395,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 
 [type='search'] {
   -webkit-appearance: textfield;
+  appearance: textfield;
   /* 1 */
   outline-offset: -2px;
   /* 2 */
@@ -838,6 +839,7 @@ svg path:hover {
 .compare-row {
   display: flex;
   border-top-width: 1px;
+  scroll-behavior: smooth;
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity, 1));
 }
@@ -862,7 +864,7 @@ svg path:hover {
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity, 1));
   overflow-x: scroll;
-  scroll-snap-type: x proximity;
+  scroll-behavior: auto;
 }
 
 .compare-scrolling::-webkit-scrollbar {
@@ -878,7 +880,6 @@ svg path:hover {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   vertical-align: middle;
-  scroll-snap-align: start;
   flex-shrink: 0;
 }
 
