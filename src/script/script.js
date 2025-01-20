@@ -1,15 +1,11 @@
-window.addEventListener('load', () => {
-  document.querySelector('body').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
+window.addEventListener("load", () => {
+  document.querySelector("body").scrollIntoView({
+    behavior: "smooth",
+    block: "start",
   });
 });
-function displayFilesValues(file, indexOf) {
-  document.querySelector('#table').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  });
-    if ($.fn.DataTable.isDataTable("#table")) {
+function displayFilesValues(file, indexOf, noDataInfo) {
+  if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
   }
@@ -32,7 +28,7 @@ function displayFilesValues(file, indexOf) {
       info: "_START_-_END_ z _TOTAL_ wyników",
       infoFiltered: "",
       emptyTable: "Ładowanie...",
-      zeroRecords: "Brak wyników dla podanych ustawień",
+      zeroRecords: noDataInfo,
     },
     order: [[0, "asc"]],
     columnDefs: [
@@ -53,18 +49,18 @@ function displayFilesValues(file, indexOf) {
       {
         targets: indexOf,
         responsivePriority: 2,
-        visible: function(){
-          return (indexOf === -1) ? false : true;
+        visible: function () {
+          return indexOf === -1 ? false : true;
         },
       },
       {
         targets: "_all",
         render: function (data, type, row, meta) {
           const columnIndex = meta.col;
-          if(columnIndex === 9 && data === "0"){
+          if (columnIndex === 9 && data === "0") {
             return "nie dotyczy";
           }
-          if(data !== "#" && data !=="-"){
+          if (data !== "#" && data !== "-") {
             const unit = arrays[name + "_units"]?.[columnIndex] || "";
             return data + unit;
           } else {
@@ -81,10 +77,10 @@ function displayFilesValues(file, indexOf) {
         visible: false,
       },
       {
-        targets: function () {
-          const totalColumns = $('#example').DataTable().columns().count();
+        targets: (function () {
+          const totalColumns = $("#example").DataTable().columns().count();
           return Array.from({ length: 16 }, (_, i) => totalColumns - 17 + i);
-        }(),
+        })(),
         visible: false,
       },
     ],

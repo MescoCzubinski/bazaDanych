@@ -8,37 +8,39 @@ body {
   transition: transform 0.3s ease;
   overflow: auto;
 }
-.table-container, .compare-container{
+.table-container,
+.compare-container {
   @apply w-8/12;
 }
-.menu-container{
+.menu-container {
   @apply w-300 m-5 h-400 border-solid border-2 border-t-0 border-b-0 border-top-agrar-green p-5 flex flex-col justify-around;
 }
-#searching{
+#searching {
   @apply mr-0.5 ml-2;
 }
 @media only screen and (max-width: 680px) {
-  .menu-container{
+  .menu-container {
     @apply w-11/12 h-400 border-2 border-l-0 border-r-0 rounded-none pb-4 m-0 p-2;
   }
-  .menu-container:last-child{
+  .menu-container:last-child {
     @apply border-t-0 pb-0;
   }
-  .menu-container:nth-child(1){
+  .menu-container:nth-child(1) {
     @apply border-b-0;
   }
-  #settings{
+  #settings {
     @apply h-fit pb-2;
   }
-  #LOZ-map svg{
+  #LOZ-map svg {
     width: 300px;
   }
 }
 @media only screen and (max-width: 768px) {
-  .table-container, .compare-container{
+  .table-container,
+  .compare-container {
     @apply w-11/12;
   }
-  #searching{
+  #searching {
     @apply mr-0 ml-0;
   }
 }
@@ -52,18 +54,22 @@ svg path {
 svg path:hover {
   @apply fill-top-agrar-green/80;
 }
-.dt-search{
+.dt-search {
   @apply flex;
 }
 #yearFilter,
-#type1, #type2, #sorting, #dt-length-0, #dt-search-0 {
-  @apply flex-1 ml-2 h-8  ;
+#type1,
+#type2,
+#sorting,
+#dt-length-0,
+#dt-search-0 {
+  @apply flex-1 ml-2 h-8;
   border: 1px solid #aaa;
   background-color: transparent;
   border-radius: 3px;
 }
 
-.to-compare{
+.to-compare {
   @apply text-top-agrar-green;
 }
 .compare-border {
@@ -77,45 +83,49 @@ svg path:hover {
 .h-400 {
   height: 400px;
 }
-.hidden{
+.hidden {
   display: none;
 }
-.compare-row{
-  @apply flex border-t border-slate-500;
+/* scrolling animation made by my firend: https://github.com/FOXjustFOX thx 4 all bro */
+.compare-table {
+  @apply border-slate-500 border-l border-r;
 }
-.compare-row:last-child{
+.compare-row {
+  @apply flex border-t border-slate-500;
+  scroll-behavior: smooth;
+}
+.compare-row:last-child {
   @apply border-b border-slate-500;
 }
 .compare-row:nth-child(odd) {
   background-color: #e0ede5;
 }
-.compare-scrolling{
-  @apply flex w-fit justify-start border-slate-500 border-l border-r;
+.compare-scrolling {
+  @apply flex w-fit justify-start border-slate-500 border-l;
   overflow-x: scroll;
-  scroll-snap-type: x proximity;
+  scroll-behavior: auto;
 }
 .compare-scrolling::-webkit-scrollbar {
   display: none;
 }
-.compare-cell{
+.compare-cell {
   @apply flex pl-3 pr-3 pt-2 pb-2 h-11 align-middle min-w-40;
-  scroll-snap-align: start;
   flex-shrink: 0;
 }
-.compare-name{
-  @apply w-52 min-w-52 flex ml-3 mr-3 pt-2 pb-2 h-11 align-middle;
+.compare-name {
+  @apply w-52 min-w-52 flex pl-3 pr-3 pt-2 pb-2 h-11 align-middle font-bold;
 }
 @media only screen and (max-width: 768px) {
-  .compare-scrolling{
-    @apply border-0
+  .compare-scrolling {
+    @apply border-0;
   }
-  .compare-row{
+  .compare-row {
     @apply flex flex-wrap bg-transparent border-0;
   }
   .compare-row:nth-child(odd) {
     @apply bg-transparent;
   }
-  .compare-name{
+  .compare-name {
     @apply flex justify-center w-full border-b border-t border-slate-500;
     background-color: #e0ede5;
   }

@@ -713,7 +713,8 @@ body {
   overflow: auto;
 }
 
-.table-container, .compare-container {
+.table-container,
+.compare-container {
   width: 66.666667%;
 }
 
@@ -766,13 +767,14 @@ body {
     padding-bottom: 0.5rem;
   }
 
-  #LOZ-map svg{
+  #LOZ-map svg {
     width: 300px;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .table-container, .compare-container {
+  .table-container,
+  .compare-container {
     width: 91.666667%;
   }
 
@@ -802,7 +804,11 @@ svg path:hover {
 }
 
 #yearFilter,
-#type1, #type2, #sorting, #dt-length-0, #dt-search-0 {
+#type1,
+#type2,
+#sorting,
+#dt-length-0,
+#dt-search-0 {
   margin-left: 0.5rem;
   height: 2rem;
   flex: 1 1 0%;
@@ -831,8 +837,17 @@ svg path:hover {
   height: 400px;
 }
 
-.hidden{
+.hidden {
   display: none;
+}
+
+/* scrolling animation made by my firend: https://github.com/FOXjustFOX thx 4 all bro */
+
+.compare-table {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(100 116 139 / var(--tw-border-opacity, 1));
 }
 
 .compare-row {
@@ -840,6 +855,7 @@ svg path:hover {
   border-top-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity, 1));
+  scroll-behavior: smooth;
 }
 
 .compare-row:last-child {
@@ -858,11 +874,10 @@ svg path:hover {
   width: fit-content;
   justify-content: flex-start;
   border-left-width: 1px;
-  border-right-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity, 1));
   overflow-x: scroll;
-  scroll-snap-type: x proximity;
+  scroll-behavior: auto;
 }
 
 .compare-scrolling::-webkit-scrollbar {
@@ -878,20 +893,20 @@ svg path:hover {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   vertical-align: middle;
-  scroll-snap-align: start;
   flex-shrink: 0;
 }
 
 .compare-name {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
   display: flex;
   height: 2.75rem;
   width: 13rem;
   min-width: 13rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   vertical-align: middle;
+  font-weight: 700;
 }
 
 @media only screen and (max-width: 768px) {

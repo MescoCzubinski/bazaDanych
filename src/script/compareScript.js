@@ -28,7 +28,7 @@ class Compare {
     const index = this.colNames.indexOf("Rok wyników:");
     if (index !== -1) {
       this.colNames.splice(index, 1);
-    }    
+    }
 
     this.rowsToCompare = [];
     this.element = document.querySelector(`#${elementId}`);
@@ -39,42 +39,42 @@ class Compare {
     if (this.rowsToCompare.length < 2) {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
-      if(!this.firstTimeRender){
+      if (!this.firstTimeRender) {
         this.firstTimeRender = true;
-        document.querySelector('#compare').scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
+        document.querySelector("#compare").scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
       }
       let table = '<div class="compare-table">';
-      for(let i=0; i<this.rowsToCompare[0].length-1; i++){
-        table += '<div class="compare-row">'
-        table += `<div class="compare-name">${this.colNames[i].replace(':', '')}</div><div class="compare-scrolling">`
-        for(let j=0; j<this.rowsToCompare.length; j++){
-          table += `<div class="compare-cell">${this.rowsToCompare[j][i]}</div>`
+      for (let i = 0; i < this.rowsToCompare[0].length - 1; i++) {
+        table += '<div class="compare-row">';
+        table += `<div class="compare-name">${this.colNames[i]}</div><div class="compare-scrolling">`;
+        for (let j = 0; j < this.rowsToCompare.length; j++) {
+          table += `<div class="compare-cell">${this.rowsToCompare[j][i]}</div>`;
         }
-        table += '</div></div>'
+        table += "</div></div>";
       }
       table += "</div>";
 
       this.element.innerHTML = table;
-      
+
       let screenWidth = screen.width;
 
-      screenWidth > 768 ? screenWidth *= 8/12 : screenWidth*=11/12;
-      document.querySelectorAll('.compare-cell').forEach((cell) => {
-        cell.style.width = (screenWidth - 232)/this.rowsToCompare.length + "px";
+      screenWidth > 768 ? (screenWidth *= 8 / 12) : (screenWidth *= 11 / 12);
+      document.querySelectorAll(".compare-cell").forEach((cell) => {
+        cell.style.width = (screenWidth - 232) / this.rowsToCompare.length + "px";
       });
-      
+
       this.synchronizeScrolling();
     }
   }
 
   //łączenie wierszy by się razem zmieniały
   synchronizeScrolling() {
-    const scrollingElements = document.querySelectorAll('.compare-scrolling');
+    const scrollingElements = document.querySelectorAll(".compare-scrolling");
     scrollingElements.forEach((scrollingElement) => {
-      scrollingElement.addEventListener('scroll', (event) => {
+      scrollingElement.addEventListener("scroll", (event) => {
         const scrollLeft = event.target.scrollLeft;
         scrollingElements.forEach((el) => {
           if (el !== event.target) {
@@ -102,4 +102,3 @@ class Compare {
     this.displayCompare();
   }
 }
-
