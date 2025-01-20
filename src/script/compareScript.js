@@ -88,14 +88,14 @@ class Compare {
 
   //dodawanie wiersza do porównywarki
   addRow(row) {
-    const fragmentRow = row.slice(0, -12);
+    const fragmentRow = row.slice(0, -28);
     this.rowsToCompare.push(fragmentRow);
     this.displayCompare();
   }
 
   //usunięcie wiersza z porównywarki
   removeRow(row) {
-    const fragmentRow = row.slice(0, -12);
+    const fragmentRow = row.slice(0, -28);
     const index = this.rowsToCompare.findIndex((r) => JSON.stringify(r) === JSON.stringify(fragmentRow));
     if (index !== -1) {
       this.rowsToCompare.splice(index, 1);

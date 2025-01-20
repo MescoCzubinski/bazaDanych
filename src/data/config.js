@@ -157,7 +157,8 @@ let jeczmien_jary_units = [
   ""
 ];
 let jeczmien_jary_year = ["2025", "2024", "2023", "2022", "2021", "2020"];
-let jeczmien_jary_type = ["pastewny", "browarny"];
+let jeczmien_jary_type1_name = "Typ użytkowy";
+let jeczmien_jary_type1 = ["pastewny", "browarny"];
 
 let pszenica_jara_col_names = [
   "Nazwa odmiany:", 
@@ -316,7 +317,10 @@ let pszenica_jara_units = [
   ""
 ];
 let pszenica_jara_year = ["2025", "2024", "2023", "2022", "2021"];
-let pszenica_jara_type = ["E", "A", "B", "C", "K"];
+let  pszenica_jara_type1_name = "Typ jakościowy";
+let pszenica_jara_type1 = ["E", "A", "B", "C", "K"];
+let  pszenica_jara_type2_name = "Rodzaj kłosa";
+let pszenica_jara_type2 = ["ościsty", "bezostny"];
 
 let pszenzyto_jare_col_names = [
   "Nazwa odmiany:", 
@@ -423,27 +427,30 @@ let pszenzyto_jare_cols = [
   { data: null }
 ];
 let pszenzyto_jare_units = [
-  "", "", " dt/ha", " dt/ha", " g", " % s.m", " cm", " st. (1-9)", "", " r.", " dni", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", ""
+  "", "", " dt/ha", " dt/ha", " g", " %", " cm", " st. (1-9)", "", " r.", " dni", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", ""
 ];
 let pszenzyto_jare_year = ["2025", "2024", "2023", "2022", "2021"];
-let pszenzyto_jare_type = [];
 
 let arrays = {
   jeczmien_jary_col_names,
   jeczmien_jary_cols,
   jeczmien_jary_units,
   jeczmien_jary_year,
-  jeczmien_jary_type,
+  jeczmien_jary_type1,
+  jeczmien_jary_type1_name,
 
   pszenica_jara_col_names,
   pszenica_jara_cols,
   pszenica_jara_units,
   pszenica_jara_year,
-  pszenica_jara_type,
+  pszenica_jara_type1,
+  pszenica_jara_type1_name,
+  pszenica_jara_type2,
+  pszenica_jara_type2_name,
 
   pszenzyto_jare_col_names,
   pszenzyto_jare_cols,
   pszenzyto_jare_units,
   pszenzyto_jare_year,
-  pszenzyto_jare_type,
+
 };

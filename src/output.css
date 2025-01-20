@@ -616,20 +616,12 @@ video {
   margin-top: 6rem;
 }
 
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
-.mt-20 {
-  margin-top: 5rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .block {
@@ -862,7 +854,7 @@ svg path:hover {
 }
 
 #yearFilter,
-#type, #sorting, #dt-length-0, #dt-search-0 {
+#type1, #type2, #sorting, #dt-length-0, #dt-search-0 {
   margin-left: 0.5rem;
   height: 2rem;
   flex: 1 1 0%;

@@ -16,24 +16,54 @@ files.forEach((file) => {
   document.getElementById(file).addEventListener("click", function () {
     //wyświetlanie tabeli
     displayFilesValues(file);
+
+    const elementType1Container = document.querySelector("#type1-container");
+    elementType1Container.classList.add('hidden')
+    const elementType2Container = document.querySelector("#type2-container");
+    elementType2Container.classList.add('hidden')
     elementDisplaySettings.classList.remove('hidden')
 
-    //dodanie filtru 'typ'
-    const elementType = document.querySelector("#type");
-    let types = '<option value="-">wszystkie</option>';
-    for (type of arrays[file.replace(".json", "") + "_type"]) {
-      types += `<option value="${type}">${type}</option>`;
-    }
-    elementType.innerHTML = types;
 
-    elementType.addEventListener("change", () => {
-      const selectedType = elementType.value;
-      if (selectedType !== "-") {
-        table.columns(8).search(selectedType).draw();
-      } else {
-        table.columns(8).search("").draw();
+    //dodanie filtru 'typ1'
+    if(arrays[file.replace(".json", "") + "_type1"]){
+      const elementType1 = document.querySelector("#type1");
+      elementType1Container.classList.remove('hidden');
+      document.querySelector("#type1-name").innerHTML = arrays[file.replace(".json", "") + "_type1_name"];
+      let types1 = '<option value="-">wszystkie</option>';
+      for (type of arrays[file.replace(".json", "") + "_type1"]) {
+        types1 += `<option value="${type}">${type}</option>`;
       }
-    });
+      elementType1.innerHTML = types1;
+  
+      elementType1.addEventListener("change", () => {
+        const selectedType1 = elementType1.value;
+        if (selectedType1 !== "-") {
+          table.columns(8).search(selectedType1).draw();
+        } else {
+          table.columns(8).search("").draw();
+        }
+      });
+    }
+    //dodanie filtru 'typ2'
+    if(arrays[file.replace(".json", "") + "_type2"]){
+      const elementType2 = document.querySelector("#type2");
+      document.querySelector("#type2-name").innerHTML = arrays[file.replace(".json", "") + "_type2_name"];
+      elementType2Container.classList.remove('hidden')
+      let types2 = '<option value="-">wszystkie</option>';
+      for (type of arrays[file.replace(".json", "") + "_type2"]) {
+        types2 += `<option value="${type}">${type}</option>`;
+      }
+      elementType2.innerHTML = types2;
+  
+      elementType2.addEventListener("change", () => {
+        const selectedType2 = elementType2.value;
+        if (selectedType2 !== "-") {
+          table.columns(10).search(selectedType2).draw();
+        } else {
+          table.columns(10).search("").draw();
+        }
+      });
+    }
 
     //dodanie filtru 'rok'
     let years = "";
