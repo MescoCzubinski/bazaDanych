@@ -12,7 +12,7 @@ body {
   @apply w-8/12;
 }
 .menu-container{
-  @apply w-300 m-5 h-400 border-solid border-2 border-t-0 border-b-0 border-top-agrar-green p-5 flex flex-col justify-between;
+  @apply w-300 m-5 h-400 border-solid border-2 border-t-0 border-b-0 border-top-agrar-green p-5 flex flex-col justify-around;
 }
 #searching{
   @apply mr-0.5 ml-2;
@@ -28,7 +28,7 @@ body {
     @apply border-b-0;
   }
   #settings{
-    @apply h-52
+    @apply h-fit pb-2;
   }
   #LOZ-map svg{
     width: 300px;
@@ -90,7 +90,7 @@ svg path:hover {
   background-color: #e0ede5;
 }
 .compare-scrolling{
-  @apply flex w-fit justify-start;
+  @apply flex w-fit justify-start border-slate-500 border-l border-r;
   overflow-x: scroll;
   scroll-snap-type: x proximity;
 }
@@ -106,6 +106,9 @@ svg path:hover {
   @apply w-52 min-w-52 flex ml-3 mr-3 pt-2 pb-2 h-11 align-middle;
 }
 @media only screen and (max-width: 768px) {
+  .compare-scrolling{
+    @apply border-0
+  }
   .compare-row{
     @apply flex flex-wrap bg-transparent border-0;
   }

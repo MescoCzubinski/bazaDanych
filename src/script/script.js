@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
     block: 'start',
   });
 });
-function displayFilesValues(file) {
+function displayFilesValues(file, indexOf) {
   document.querySelector('#table').scrollIntoView({
     behavior: 'smooth',
     block: 'start',
@@ -51,13 +51,20 @@ function displayFilesValues(file) {
         responsivePriority: 1,
       },
       {
+        targets: indexOf,
+        responsivePriority: 2,
+        visible: function(){
+          return (indexOf === -1) ? false : true;
+        },
+      },
+      {
         targets: "_all",
         render: function (data, type, row, meta) {
           const columnIndex = meta.col;
           if(columnIndex === 9 && data === "0"){
             return "nie dotyczy";
           }
-          if(data !== "#"){
+          if(data !== "#" && data !=="-"){
             const unit = arrays[name + "_units"]?.[columnIndex] || "";
             return data + unit;
           } else {
@@ -71,6 +78,13 @@ function displayFilesValues(file) {
       },
       {
         target: 1,
+        visible: false,
+      },
+      {
+        targets: function () {
+          const totalColumns = $('#example').DataTable().columns().count();
+          return Array.from({ length: 16 }, (_, i) => totalColumns - 17 + i);
+        }(),
         visible: false,
       },
     ],

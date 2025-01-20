@@ -49,7 +49,6 @@ class Compare {
       let table = '<div class="compare-table">';
       for(let i=0; i<this.rowsToCompare[0].length-1; i++){
         table += '<div class="compare-row">'
-        console.log(this.colNames[i])
         table += `<div class="compare-name">${this.colNames[i].replace(':', '')}</div><div class="compare-scrolling">`
         for(let j=0; j<this.rowsToCompare.length; j++){
           table += `<div class="compare-cell">${this.rowsToCompare[j][i]}</div>`
@@ -88,14 +87,14 @@ class Compare {
 
   //dodawanie wiersza do porównywarki
   addRow(row) {
-    const fragmentRow = row.slice(0, -28);
+    const fragmentRow = row.slice(0, -13);
     this.rowsToCompare.push(fragmentRow);
     this.displayCompare();
   }
 
   //usunięcie wiersza z porównywarki
   removeRow(row) {
-    const fragmentRow = row.slice(0, -28);
+    const fragmentRow = row.slice(0, -13);
     const index = this.rowsToCompare.findIndex((r) => JSON.stringify(r) === JSON.stringify(fragmentRow));
     if (index !== -1) {
       this.rowsToCompare.splice(index, 1);

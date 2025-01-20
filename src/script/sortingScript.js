@@ -15,9 +15,17 @@ displayFilesName();
 files.forEach((file) => {
   document.getElementById(file).addEventListener("click", function () {
     //wyświetlanie tabeli
-    displayFilesValues(file);
+    displayFilesValues(file, -1);
+    displayFilters(file);
+  
+    //wyświetlanie porównania
+    window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
+    compareObj.displayCompare();
+  });
+});
 
-    const elementType1Container = document.querySelector("#type1-container");
+function displayFilters(file){
+  const elementType1Container = document.querySelector("#type1-container");
     elementType1Container.classList.add('hidden')
     const elementType2Container = document.querySelector("#type2-container");
     elementType2Container.classList.add('hidden')
@@ -112,9 +120,4 @@ files.forEach((file) => {
         th.setAttribute("title", "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco, a trzeci raz wywoła powrót do sortowania alfabetycznego wg nazw odmian");
       }
     });
-
-    //wyświetlanie porównania
-    window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
-    compareObj.displayCompare();
-  });
-});
+}
