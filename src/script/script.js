@@ -21,6 +21,7 @@ function displayFilesValues(file, indexOf, noDataInfo) {
       ["10", "wszystkie"],
     ],
     sorting: true,
+    responsive: true,
     language: {
       search: `<span id="searching">Wyszukaj odmianę:</span>`,
       lengthMenu: '<div class="text-left p-2 flex items-center"><p class="">Liczba odmian na stronie:</p> _MENU_',
@@ -51,6 +52,11 @@ function displayFilesValues(file, indexOf, noDataInfo) {
         visible: function () {
           return indexOf === -1 ? false : true;
         },
+      },
+      {
+        targets: sortingIndex,
+        ...(sortingIndex !== -1 && { responsivePriority: 1 }),
+        visible: true,
       },
       {
         targets: "_all",

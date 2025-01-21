@@ -1,5 +1,6 @@
 const elementDisplayFilesName = document.querySelector("#displayFilesName");
 const elementDisplaySettings = document.querySelector("#settings");
+let sortingIndex = -1;
 elementDisplaySettings.classList.add("hidden");
 function displayFilesName() {
   //wyświetlanie gatunków do sortowarek
@@ -101,18 +102,18 @@ function displayFilters(file) {
   elementSorting.innerHTML = sort;
 
   elementSorting.addEventListener("change", (event) => {
-    let indexOf = arrays[file.replace(".json", "") + "_col_names"].slice(0, -28).indexOf(event.target.value + ":");
-    if (indexOf === 0) {
-      table.order([indexOf, "asc"]).draw();
-    } else {
-      table.order([indexOf, "dsc"]).draw();
+    sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -28).indexOf(event.target.value + ":");
+
+    if (sortingIndex !== -1) {
+      console.log("Sorting Index:", sortingIndex);
+      table.column(sortingIndex).responsivePriority(1);
+
+      if (sortingIndex === 0) {
+        table.order([sortingIndex, "asc"]).draw();
+      } else {
+        table.order([sortingIndex, "desc"]).draw();
+      }
     }
-    // table.settings()[0].aoColumns.forEach((column) => {
-    //   column.responsivePriority = undefined; // Lub ustaw domyślny priorytet
-    // });
-    // table.settings()[0].aoColumns[indexOf].responsivePriority = 1;
-    // table.responsive.rebuild();
-    // table.responsive.recalc();
   });
 
   document.querySelectorAll("#table thead th").forEach((th, index) => {

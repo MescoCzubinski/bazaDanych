@@ -56,5 +56,3 @@ let arrays = {
 
 //TODO: MECHANIKA: odmiana po której sortujesz + responsive priority 1
 //TODO: MECHANIKA: klawisz resetuj/powrót do mapki
-
-//TODO: WYGLĄD: dodaj opis rejonów, źródło danych

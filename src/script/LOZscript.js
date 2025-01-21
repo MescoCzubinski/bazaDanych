@@ -1,8 +1,8 @@
 const elementDisplayLOZSpecies = document.querySelector("#LOZ-species");
+const elementLOZMap = document.querySelector("#LOZ-map");
+const elementLOZReset = document.querySelector("#LOZ-reset");
 document.addEventListener("DOMContentLoaded", function () {
   const regions = [document.querySelector("#Podkarpackie"), document.querySelector("#Malopolskie"), document.querySelector("#Slaskie"), document.querySelector("#Opolskie"), document.querySelector("#Dolnoslaskie"), document.querySelector("#Swietokrzyskie"), document.querySelector("#Lubelskie"), document.querySelector("#Lodzkie"), document.querySelector("#Mazowieckie"), document.querySelector("#Wielkopolskie"), document.querySelector("#Lubuskie"), document.querySelector("#Kujawsko-Pomorskie"), document.querySelector("#Podlaskie"), document.querySelector("#Zachodniopomorskie"), document.querySelector("#Warminsko-Mazurskie"), document.querySelector("#Pomorskie")].filter(Boolean);
-
-  const elementLOZMap = document.querySelector("#LOZ-map");
 
   regions.forEach((element) => {
     element.addEventListener("click", function () {
@@ -15,10 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
         text = "Łódzkie";
       } else if (text === "Slaskie") {
         text = "Śląskie";
+      } else if ((text = "Zachodniopomorskie")) {
+        text = "Zach.-Pom.";
       }
       document.querySelector("#LOZ-text").innerHTML = "LOZ woj. " + text.toLowerCase();
     });
   });
+});
+
+elementLOZReset.addEventListener("click", function () {
+  elementLOZMap.classList.remove("hidden");
+  elementDisplayLOZSpecies.classList.add("hidden");
 });
 
 function displayLOZSpecies(region) {
@@ -26,6 +33,7 @@ function displayLOZSpecies(region) {
   for (let i = 0; i < names.length; i++) {
     result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + names[i] + ' ">';
   }
+  elementDisplayLOZSpecies.classList.remove("hidden");
   elementDisplayLOZSpecies.innerHTML = result;
   files.forEach((file, index) => {
     document.getElementById(file).addEventListener("click", function () {
