@@ -15,6 +15,9 @@ body {
 .menu-container {
   @apply w-300 m-5 h-400 border-solid border-2 border-t-0 border-b-0 border-top-agrar-green p-5 flex flex-col justify-around;
 }
+#settings {
+  @apply w-10/12 h-fit;
+}
 #searching {
   @apply mr-0.5 ml-2;
 }
@@ -26,6 +29,12 @@ body {
     @apply border-t-0 pb-0;
   }
   .menu-container:nth-child(1) {
+    @apply border-b-0;
+  }
+  .menu-container:nth-child(2) {
+    @apply border-b-0;
+  }
+  .menu-container:nth-child(3) {
     @apply border-b-0;
   }
   #settings {
@@ -81,7 +90,7 @@ svg path:hover {
   width: 300px;
 }
 .h-400 {
-  height: 400px;
+  height: 406px;
 }
 .hidden {
   display: none;
@@ -98,16 +107,14 @@ svg path:hover {
   @apply border-b border-slate-500;
 }
 .compare-row:nth-child(odd) {
-  background-color: #e0ede5;
+  background-color: #ecf2ee;
 }
 .compare-scrolling {
   @apply flex w-fit justify-start border-slate-500 border-l;
   overflow-x: scroll;
   scroll-behavior: auto;
 }
-.compare-scrolling::-webkit-scrollbar {
-  display: none;
-}
+
 .compare-cell {
   @apply flex pl-3 pr-3 pt-2 pb-2 h-11 align-middle min-w-40;
   flex-shrink: 0;
@@ -127,6 +134,20 @@ svg path:hover {
   }
   .compare-name {
     @apply flex justify-center w-full border-b border-t border-slate-500;
-    background-color: #e0ede5;
+    background-color: #ecf2ee;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .compare-scrolling::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .first-row .compare-scrolling {
+    overflow-x: scroll;
+  }
+
+  .compare-row:not(.first-row) .compare-scrolling {
+    overflow-x: hidden;
   }
 }

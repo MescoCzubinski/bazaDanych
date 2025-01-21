@@ -37,9 +37,9 @@ class Compare {
   //wyświetlanie porównywarki
   displayCompare() {
     if (this.rowsToCompare.length < 2) {
-      this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
+      this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center text-wrap">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
-      document.querySelector("#compare-text").innerHTML = 'Porównywanie odmian - pszenica jara (by porównać więcej odmian przewiń wyżej i kliknij:<i class="icon-balance-scale"></i>)';
+      document.querySelector("#compare-text").innerHTML = '<span class="text-wrap">Porównywanie odmian - pszenica jara (by porównać więcej odmian przewiń wyżej i kliknij:<i class="icon-balance-scale"></i>) <span>';
 
       if (!this.firstTimeRender) {
         this.firstTimeRender = true;
@@ -51,6 +51,7 @@ class Compare {
       let table = '<div class="compare-table">';
       for (let i = 0; i < this.rowsToCompare[0].length; i++) {
         table += '<div class="compare-row">';
+        const rowClass = i === 0 ? "compare-row first-row" : "compare-row";
         table += `<div class="compare-name">${this.colNames[i]}</div><div class="compare-scrolling">`;
         for (let j = 0; j < this.rowsToCompare.length; j++) {
           table += `<div class="compare-cell">${this.rowsToCompare[j][i]}</div>`;
@@ -67,6 +68,13 @@ class Compare {
       document.querySelectorAll(".compare-cell").forEach((cell) => {
         cell.style.width = (screenWidth - 232) / this.rowsToCompare.length + "px";
       });
+
+      const scrollingElement = document.querySelector(".compare-row:first-child .compare-scrolling");
+      if (scrollingElement.scrollWidth > scrollingElement.clientWidth) {
+        scrollingElement.style.overflowX = "auto";
+      } else {
+        scrollingElement.style.overflowX = "hidden";
+      }
 
       this.synchronizeScrolling();
     }

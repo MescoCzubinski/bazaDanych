@@ -18,7 +18,7 @@ files.forEach((file, index) => {
     displayFilesValues(file, -1, "Brak wyników dla podanych ustawień");
     displayFilters(file);
 
-    document.querySelector("#sorting-text").innerHTML = "Lista odmian wg. PDO - " + names[index].toLowerCase();
+    document.querySelector("#sorting-text").innerHTML = 'Lista odmian wg PDO - <b class="ml-2">' + names[index].toLowerCase() + "</b>";
 
     //wyświetlanie porównania
     window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     element.addEventListener("click", function () {
       elementLOZMap.classList.add("hidden");
       displayLOZSpecies(element.id);
+      document.querySelector("#LOZ-bottom-text").classList.add("hidden");
 
       let text = element.id;
       if (text === "Lodzkie") {
@@ -41,7 +42,7 @@ function displayLOZSpecies(region) {
       } else if (text === "Slaskie") {
         text = "Śląskie";
       }
-      document.querySelector("#sorting-text").innerHTML = "Lista odmian zalecanych woj. " + text.toLowerCase() + " - " + names[index].toLowerCase() + " - lista pozostałych odmian dostępna wyżej w porównywarce";
+      document.querySelector("#sorting-text").innerHTML = '<span "class=text-wrap">Lista odmian zalecanych woj. <b>' + text.toLowerCase() + " - " + names[index].toLowerCase() + "</b> (lista pozostałych odmian dostępna wyżej w porównywarce)";
 
       window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
       compareObj.displayCompare();

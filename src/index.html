@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.dataTables.css" />
   </head>
-  <body class="bg-top-agrar-green/10 w-full" style="height: 3000px">
+  <body class="bg-top-agrar-green/5 w-full" style="height: 3000px">
     <div class="flex items-center mt-5 justify-center flex-wrap">
       <div class="menu-container">
         <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2" id="LOZ-text">Lista Odmian Zalecanych</div>
@@ -44,6 +44,7 @@
               -->
         </div>
         <div class="w-full flex flex-wrap justify-center" id="LOZ-species"></div>
+        <div class="text-xl text-top-agrar-green text-center w-full" id="LOZ-bottom-text">Kliknij na województwo</div>
         <!-- <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2" id="LOZ-text">zboża jare</div> -->
       </div>
       <div class="menu-container">
@@ -52,31 +53,43 @@
           <div class="w-full flex flex-wrap justify-center" id="displayFilesName"></div>
         </div>
       </div>
+      <div class="menu-container">
+        <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2">Źródło danych: COBORU</div>
+        <img src="img/coboru_logo.png" class="max-h-80" />
+      </div>
+      <div class="menu-container flex flex-col items-center justify-center min-h-fit" class="height-max: 400px">
+        <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2">Rejony oceny plonowania odmian</div>
+        <div class="w-11/12 max-w-lg aspect-square">
+          <img src="img/mapka_regiony.png" alt="Mapa regionów" class="w-full h-full object-contain" />
+        </div>
+      </div>
       <div class="menu-container" id="settings">
         <div class="w-full flex justify-center">
-          <div class="text-left">
-            <span title="Typ" class="p-2 flex items-center" id="type1-container">
+          <div class="flex flex-wrap justify-center">
+            <div title="Typ" class="p-2 flex items-center" id="type1-container">
               <span class="flex" id="type1-name">Typ:</span>
               <select id="type1" class="h-9"></select>
-            </span>
+            </div>
 
-            <span title="Typ" class="p-2 flex items-center" id="type2-container">
+            <div title="Typ" class="p-2 flex items-center" id="type2-container">
               <span class="flex" id="type2-name">Typ:</span>
               <select id="type2" class="h-9"></select>
-            </span>
+            </div>
 
-            <span title="Rok - wyniki stanowią średnią z trzech lat, a wybierany rok jest ostatnim z trzylecia" class="p-2 flex items-center">
+            <div title="Rok - wyniki stanowią średnią z trzech lat, a wybierany rok jest ostatnim z trzylecia" class="p-2 flex items-center">
               <span>Wyniki na rok:</span>
               <select id="yearFilter" class="h-9"></select>
-            </span>
+            </div>
 
-            <span class="p-2 flex items-center">
+            <div class="p-2 flex items-center">
               <span>Sortuj:</span>
               <select id="sorting" class="h-9"></select>
-            </span>
+            </div>
 
-            <span class="p-2 pl-3 mt-4 text-xl text-top-agrar-green"># - brak danych dla danej odmiany</span><br />
-            <span class="p-2 mt-4 text-xl text-top-agrar-green"><i class="icon-balance-scale pr-2 pl-1"></i> - dodaj odmianę do porównania</span>
+            <div class="flex flex-wrap">
+              <span class="p-2 mt-4 text-blue-500" style="font-size: 18px"><i class="icon-balance-scale pr-2 pl-1"></i> - dodaj odmianę do porównania</span>
+              <span class="p-2 pl-3 mt-4 text-blue-500" style="font-size: 18px"># - brak danych dla danej odmiany</span>
+            </div>
           </div>
         </div>
       </div>
