@@ -1,6 +1,5 @@
 const elementDisplayFilesName = document.querySelector("#displayFilesName");
 const elementDisplaySettings = document.querySelector("#settings");
-let sortingIndex = -1;
 elementDisplaySettings.classList.add("hidden");
 function displayFilesName() {
   //wyświetlanie gatunków do sortowarek
@@ -24,6 +23,11 @@ files.forEach((file, index) => {
     //wyświetlanie porównania
     window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
     compareObj.displayCompare();
+
+    document.querySelector("#settings").scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   });
 });
 
@@ -102,12 +106,10 @@ function displayFilters(file) {
   elementSorting.innerHTML = sort;
 
   elementSorting.addEventListener("change", (event) => {
-    sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -28).indexOf(event.target.value + ":");
+    let sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -28).indexOf(event.target.value + ":");
 
     if (sortingIndex !== -1) {
-      console.log("Sorting Index:", sortingIndex);
-      table.column(sortingIndex).responsivePriority(1);
-
+      displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex);
       if (sortingIndex === 0) {
         table.order([sortingIndex, "asc"]).draw();
       } else {

@@ -32,7 +32,6 @@ class Compare {
 
     this.rowsToCompare = [];
     this.element = document.querySelector(`#${elementId}`);
-    // this.scrollPosition = 0;
   }
   //wyświetlanie porównywarki
   displayCompare() {

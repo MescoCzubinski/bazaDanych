@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text = "Łódzkie";
       } else if (text === "Slaskie") {
         text = "Śląskie";
-      } else if ((text = "Zachodniopomorskie")) {
+      } else if (text === "Zachodniopomorskie") {
         text = "Zach.-Pom.";
       }
       document.querySelector("#LOZ-text").innerHTML = "LOZ woj. " + text.toLowerCase();
@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 elementLOZReset.addEventListener("click", function () {
   elementLOZMap.classList.remove("hidden");
   elementDisplayLOZSpecies.classList.add("hidden");
+  document.querySelector("#LOZ-text").innerHTML = "Lista Odmian Zalecanych";
 });
 
 function displayLOZSpecies(region) {
@@ -50,10 +51,15 @@ function displayLOZSpecies(region) {
       } else if (text === "Slaskie") {
         text = "Śląskie";
       }
-      document.querySelector("#sorting-text").innerHTML = '<span "class=text-wrap">Lista odmian zalecanych woj. <b>' + text.toLowerCase() + " - " + names[index].toLowerCase() + "</b> (lista pozostałych odmian dostępna wyżej w porównywarce)";
+      document.querySelector("#sorting-text").innerHTML = '<span "class=text-wrap">Lista odmian zalecanych <b> woj. ' + text.toLowerCase() + " " + names[index].toLowerCase() + "</b> (lista pozostałych odmian dostępna wyżej w porównywarce)</span>";
 
       window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
       compareObj.displayCompare();
+
+      document.querySelector("#settings").scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   });
 }

@@ -54,5 +54,4 @@ let arrays = {
 };
 //TODO: DANE: owies + LOZ pszenicy 2024
 
-//TODO: MECHANIKA: odmiana po której sortujesz + responsive priority 1
-//TODO: MECHANIKA: klawisz resetuj/powrót do mapki
+//TODO: kolory wartości suma kationów

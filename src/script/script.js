@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
     block: "start",
   });
 });
-function displayFilesValues(file, indexOf, noDataInfo) {
+function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
   if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
@@ -48,15 +48,10 @@ function displayFilesValues(file, indexOf, noDataInfo) {
       },
       {
         targets: indexOf,
-        responsivePriority: 1,
+        responsivePriority: 2,
         visible: function () {
           return indexOf === -1 ? false : true;
         },
-      },
-      {
-        targets: sortingIndex,
-        ...(sortingIndex !== -1 && { responsivePriority: 1 }),
-        visible: true,
       },
       {
         targets: "_all",
@@ -75,6 +70,10 @@ function displayFilesValues(file, indexOf, noDataInfo) {
       },
       {
         target: 0,
+        responsivePriority: 1,
+      },
+      {
+        target: sortingDataIndex,
         responsivePriority: 1,
       },
       {
