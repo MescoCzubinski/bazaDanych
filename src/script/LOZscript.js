@@ -1,6 +1,7 @@
 const elementDisplayLOZSpecies = document.querySelector("#LOZ-species");
 const elementLOZMap = document.querySelector("#LOZ-map");
 const elementLOZReset = document.querySelector("#LOZ-reset");
+let globalCompareScalar = 0;
 document.addEventListener("DOMContentLoaded", function () {
   const regions = [document.querySelector("#Podkarpackie"), document.querySelector("#Malopolskie"), document.querySelector("#Slaskie"), document.querySelector("#Opolskie"), document.querySelector("#Dolnoslaskie"), document.querySelector("#Swietokrzyskie"), document.querySelector("#Lubelskie"), document.querySelector("#Lodzkie"), document.querySelector("#Mazowieckie"), document.querySelector("#Wielkopolskie"), document.querySelector("#Lubuskie"), document.querySelector("#Kujawsko-Pomorskie"), document.querySelector("#Podlaskie"), document.querySelector("#Zachodniopomorskie"), document.querySelector("#Warminsko-Mazurskie"), document.querySelector("#Pomorskie")].filter(Boolean);
 
@@ -60,6 +61,8 @@ function displayLOZSpecies(region) {
         behavior: "smooth",
         block: "start",
       });
+
+      globalCompareScalar = 1;
     });
   });
 }

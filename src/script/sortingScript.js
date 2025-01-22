@@ -28,6 +28,8 @@ files.forEach((file, index) => {
       behavior: "smooth",
       block: "start",
     });
+
+    globalCompareScalar = 0;
   });
 });
 

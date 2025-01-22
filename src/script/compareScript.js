@@ -48,7 +48,7 @@ class Compare {
         });
       }
       let table = '<div class="compare-table">';
-      for (let i = 0; i < this.rowsToCompare[0].length; i++) {
+      for (let i = 0; i < this.rowsToCompare[0].length - globalCompareScalar; i++) {
         table += '<div class="compare-row">';
         const rowClass = i === 0 ? "compare-row first-row" : "compare-row";
         table += `<div class="compare-name">${this.colNames[i]}</div><div class="compare-scrolling">`;
@@ -65,7 +65,7 @@ class Compare {
 
       screenWidth > 768 ? (screenWidth *= 8 / 12) : (screenWidth *= 11 / 12);
       document.querySelectorAll(".compare-cell").forEach((cell) => {
-        cell.style.width = (screenWidth - 232) / this.rowsToCompare.length + "px";
+        cell.style.width = (screenWidth - 224) / this.rowsToCompare.length + "px";
       });
 
       const scrollingElement = document.querySelector(".compare-row:first-child .compare-scrolling");

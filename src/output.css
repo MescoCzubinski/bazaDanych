@@ -635,6 +635,10 @@ video {
   min-height: fit-content;
 }
 
+.w-10\/12 {
+  width: 83.333333%;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -650,14 +654,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-10\/12 {
-  width: 83.333333%;
-}
-
-.w-10 {
-  width: 2.5rem;
 }
 
 .max-w-lg {
@@ -991,8 +987,8 @@ svg path:hover {
 .compare-name {
   display: flex;
   height: 2.75rem;
-  width: 13rem;
-  min-width: 13rem;
+  width: 14rem;
+  min-width: 14rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   padding-top: 0.5rem;
