@@ -1,4 +1,6 @@
 const elementDisplayFilesName = document.querySelector("#displayFilesName");
+elementDisplayFilesName.classList.add('hidden');
+const elementDisplaySectionsName = document.querySelector("#displaySectionsName");
 const elementDisplaySettings = document.querySelector("#settings");
 elementDisplaySettings.classList.add("hidden");
 const elementType1Container = document.querySelector("#type1-container");
@@ -19,28 +21,54 @@ function displayFilesName() {
   }
   elementDisplayFilesName.innerHTML = result;
 }
-displayFilesName();
 
-files.forEach((file, index) => {
-  document.getElementById(file).addEventListener("click", function () {
-    //wyświetlanie tabeli
-    displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", -1, false);
-    displayFilters(file, false);
-
-    document.querySelector("#sorting-text").innerHTML = 'Lista odmian wg PDO <b class="ml-2">' + names[index].toLowerCase() + "</b>";
-
-    //wyświetlanie porównania
-    window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
-    compareObj.displayCompare();
-
-    document.querySelector("#settings").scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    globalCompareScalar = 0;
-  });
+let listOfSections = "";
+names_section.forEach((section, index) => {
+  listOfSections += `
+    <input 
+      class="text-2xl text-top-agrar-green/90 border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2 hover:bg-top-agrar-green/20" 
+      type="button" 
+      id="section-${index}" 
+      value="${section}">
+  `;
 });
+elementDisplaySectionsName.innerHTML = listOfSections;
+
+names_section.forEach((section, sectionIndex) => {
+  document.getElementById(`section-${sectionIndex}`).addEventListener("click", function () {
+      if (section !== "reszta wkrótce") {
+        displayFilesName();
+        elementDisplayFilesName.classList.remove('hidden');
+        elementDisplaySectionsName.classList.add('hidden');
+        files.forEach((file, fileIndex) => {
+          const fileButton = document.getElementById(file);
+
+          if (fileButton) {
+            fileButton.addEventListener("click", function () {
+              displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", -1, false);
+              displayFilters(file, false);
+
+              document.querySelector("#sorting-text").innerHTML =
+                'Lista odmian wg PDO <b class="ml-2">' + names[fileIndex].toLowerCase() + "</b>";
+
+              window.compareObj = new Compare(
+                "compare",
+                arrays[file.replace(".json", "") + "_col_names"].slice(0, -29),
+                file
+              );
+              compareObj.displayCompare();
+
+              document.querySelector("#settings").scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            });
+          }
+        });
+      }
+    });
+});
+
 
 function displayFilters(file) {
   elementDisplaySettings.classList.remove("hidden");
@@ -118,7 +146,6 @@ function displayFilters(file) {
   elementSorting.addEventListener("change", (event) => {
     let sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).indexOf(event.target.value + ":");
 
-    console.log(sortingIndex)
     if (sortingIndex !== -1) {
       displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex, false, false);
       displayColTitles(file);
