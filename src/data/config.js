@@ -3,6 +3,7 @@
 //jeśli w kolumnie 10, jest zero mogą się pojawić problemy z renderowaniem danych  script.js około 66
 //konwerter: https://tableconvert.com/excel-to-json lub https://tableconvert.com/csv-to-json
 
+const names_section = ["zboża jare", "pozostałe wkrótce"]
 let names = ["Pszenica jara", "Jęczmień jary", "Pszenżyto jare", "Owies jary"];
 let files = ["pszenica_jara.json", "jeczmien_jary.json", "pszenzyto_jare.json", "owies_jary.json"];
 
@@ -70,4 +71,4 @@ let arrays = {
   owies_jary_type1_name,
 };
 //TODO: wygląd: widok poziomy: 2 szare, 2 białe
-//TODO: wygląd: scroler na telefonie
+//zniknij j. jary jak nie masz porównania

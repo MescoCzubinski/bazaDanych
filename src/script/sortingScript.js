@@ -167,12 +167,11 @@ function displayFilters(file) {
 }
 
 function displayColTitles(file) {
+  console.log("colsCount")
   document.querySelectorAll("#table thead th").forEach((th, index) => {
-    colsCount = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).length;
+    colsCount = arrays[file.replace(".json", "") + "_col_names"].length;
 
-    if (index === colsCount) {
-      th.setAttribute("title", "Porównanie odmian u dołu strony");
-    } else if (index === 1 && file !== "owies_jary.json") {
+     if (index === 1 && file !== "owies_jary.json") {
       th.setAttribute("title", "Na przeciętnym poziomie agrotechniki");
     } else if (index === 2 && file !== "owies_jary.json") {
       th.setAttribute("title", "Na wyższym poziomie agrotechniki");
@@ -180,6 +179,8 @@ function displayColTitles(file) {
       th.setAttribute("title", "rok wpisu na listę dla danego województwa");
     } else {
       th.setAttribute("title", "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco");
+    } if (index === colsCount) {
+      th.setAttribute("title", "Porównanie odmian u dołu strony");
     }
   });
 }
