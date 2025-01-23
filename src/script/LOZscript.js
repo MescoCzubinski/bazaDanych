@@ -41,6 +41,7 @@ function displayLOZSpecies(region) {
       let indexOf = arrays[file.replace(".json", "") + "_cols"].findIndex((item) => item.data === region);
 
       displayFilesValues(file, indexOf, "brak odmiany na LOZ dla tego województwa", -1, true);
+      displayFilters(file, true);
 
       displayFilters(file);
       table.columns(indexOf).search("^(?![-#]).*$", true, false).draw();

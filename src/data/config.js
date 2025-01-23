@@ -69,9 +69,7 @@ let arrays = {
   owies_jary_type1,
   owies_jary_type1_name,
 };
-//TODO: ukłąd: widok poziomy: 2 szare, 2 białe
 //TODO: mechanika: mapka, porównywarka -> zborza jare, pozostałe gatunki w krótce -> gatunki
-//TODO: wygląd: skróty województw
-//TODO: porównanie: 10, LOZ: wszystkie
-//TODO: komentarze przy owies
-//TODO: nagłówek przy powrównaniu bierze stary gatunek
+
+//TODO: wygląd: nagłówek przy powrównaniu bierze stary gatunek
+//TODO: wygląd: widok poziomy: 2 szare, 2 białe

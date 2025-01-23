@@ -25,6 +25,7 @@ files.forEach((file, index) => {
   document.getElementById(file).addEventListener("click", function () {
     //wyświetlanie tabeli
     displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", -1, false);
+    displayFilters(file, false);
 
     document.querySelector("#sorting-text").innerHTML = 'Lista odmian wg PDO <b class="ml-2">' + names[index].toLowerCase() + "</b>";
 
@@ -45,7 +46,6 @@ function displayFilters(file) {
   elementDisplaySettings.classList.remove("hidden");
 
   displayColTitles(file);
-
   //dodanie filtru 'typ1'
   if (arrays[file.replace(".json", "") + "_type1"]) {
     const elementType1 = document.querySelector("#type1");
@@ -58,7 +58,7 @@ function displayFilters(file) {
     elementType1.innerHTML = types1;
 
     elementType1.addEventListener("change", () => {
-      const selectedType1 = elementType1.value;
+      let selectedType1 = elementType1.value;
       if (selectedType1 !== "-") {
         table.columns(8).search(selectedType1).draw();
       } else {
@@ -78,7 +78,7 @@ function displayFilters(file) {
     elementType2.innerHTML = types2;
 
     elementType2.addEventListener("change", () => {
-      const selectedType2 = elementType2.value;
+      let selectedType2 = elementType2.value;
       if (selectedType2 !== "-") {
         table.columns(10).search(selectedType2).draw();
       } else {
@@ -101,12 +101,14 @@ function displayFilters(file) {
   elementYearFilter.addEventListener("change", () => {
     const selectedYear = elementYearFilter.value;
     table.columns(1).search(selectedYear).draw();
+    table.columns(8).search(selectedType1).draw();
+    table.columns(10).search(selectedType2).draw();
   });
 
   //dodanie sortowarki
   let sort = "";
   const elementSorting = document.querySelector("#sorting");
-  for (element of arrays[file.replace(".json", "") + "_col_names"].slice(0, -28)) {
+  for (element of arrays[file.replace(".json", "") + "_col_names"].slice(0, -17)) {
     if (element !== "Rok wyników:") {
       sort += `<option value="${element.replace(":", "")}">${element.replace(":", "")}</option>`;
     }
@@ -114,20 +116,20 @@ function displayFilters(file) {
   elementSorting.innerHTML = sort;
 
   elementSorting.addEventListener("change", (event) => {
-    let sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -28).indexOf(event.target.value + ":");
+    let sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).indexOf(event.target.value + ":");
 
+    console.log(sortingIndex)
     if (sortingIndex !== -1) {
-      displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex, false);
+      displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex, false, false);
+      displayColTitles(file);
+      table.columns(1).search(elementYearFilter.value).draw();
+
+
       if (sortingIndex === 0) {
         table.order([sortingIndex, "asc"]).draw();
       } else {
         table.order([sortingIndex, "desc"]).draw();
       }
-
-      table.columns(8).search("").draw();
-      table.columns(1).search(elementYearFilter.value).draw();
-
-      displayColTitles(file, false);
     }
 
     document.querySelector("#settings").scrollIntoView({
@@ -137,15 +139,9 @@ function displayFilters(file) {
   });
 }
 
-function displayColTitles(file, isLOZ) {
+function displayColTitles(file) {
   document.querySelectorAll("#table thead th").forEach((th, index) => {
     colsCount = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).length;
-    if (isLOZ == true) {
-      console.log("adasd");
-    } else {
-      console.log(colsCount);
-      colsCount -= 2;
-    }
 
     if (index === colsCount) {
       th.setAttribute("title", "Porównanie odmian u dołu strony");
@@ -153,7 +149,7 @@ function displayColTitles(file, isLOZ) {
       th.setAttribute("title", "Na przeciętnym poziomie agrotechniki");
     } else if (index === 2 && file !== "owies_jary.json") {
       th.setAttribute("title", "Na wyższym poziomie agrotechniki");
-    } else if (index >= colsCount - 17 && index < colsCount && file !== "owies_jary.json" && isLOZ === true) {
+    } else if (index >= colsCount - 17 && index < colsCount && file !== "owies_jary.json") {
       th.setAttribute("title", "rok wpisu na listę dla danego województwa");
     } else {
       th.setAttribute("title", "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco");
