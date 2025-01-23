@@ -47,11 +47,11 @@ class Compare {
         }
       }
 
-      document.querySelector("#compare-text").innerHTML = `<span class="text-wrap">Porównywanie odmian: ${name} (by porównać więcej odmian przewiń wyżej i kliknij:<i class="icon-balance-scale"></i>) <span>`;
+      document.querySelector("#compare-text").innerHTML = `<span class="text-wrap">Porównywanie odmian: ${name} (by porównać więcej odmian przewiń wyżej i<p class="text-nowrap"> kliknij:<i class="icon-balance-scale"></i>)</p> <span>`;
 
       if (!this.firstTimeRender) {
         this.firstTimeRender = true;
-        document.querySelector("#compare").scrollIntoView({
+        document.querySelector("#compare-text").scrollIntoView({
           behavior: "smooth",
           block: "start",
         });

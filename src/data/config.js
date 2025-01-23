@@ -69,8 +69,5 @@ let arrays = {
   owies_jary_type1,
   owies_jary_type1_name,
 };
-//TODO: mechanika: mapka, porównywarka -> zborza jare, pozostałe gatunki w krótce -> gatunki
-//TODO: na tel. przesuwa na nazwe porównywarki
-//TODO: nazwa wszukiwarki na telefonie - do krawędzi
 //TODO: wygląd: widok poziomy: 2 szare, 2 białe
 //TODO: wygląd: scroler na telefonie

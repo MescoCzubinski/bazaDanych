@@ -40,6 +40,9 @@ body {
   #settings {
     @apply h-fit pb-2;
   }
+  #compare-text{
+    @apply w-10/12
+  }
 }
 @media only screen and (max-width: 768px) {
   .table-container,

@@ -2,7 +2,7 @@ const elementDisplayLOZSpecies = document.querySelector("#LOZ-species");
 const elementDisplayLOZSections = document.querySelector("#LOZ-sections");
 const elementLOZMap = document.querySelector("#LOZ-map");
 const elementLOZReset = document.querySelector("#LOZ-reset");
-const names_section = ["zborza jare", "reszta wkrótce"]
+const names_section = ["zboża jare", "reszta wkrótce"]
 
 const regions = [document.querySelector("#Podkarpackie"), document.querySelector("#Malopolskie"), document.querySelector("#Slaskie"), document.querySelector("#Opolskie"), document.querySelector("#Dolnoslaskie"), document.querySelector("#Swietokrzyskie"), document.querySelector("#Lubelskie"), document.querySelector("#Lodzkie"), document.querySelector("#Mazowieckie"), document.querySelector("#Wielkopolskie"), document.querySelector("#Lubuskie"), document.querySelector("#Kujawsko-Pomorskie"), document.querySelector("#Podlaskie"), document.querySelector("#Zachodniopomorskie"), document.querySelector("#Warminsko-Mazurskie"), document.querySelector("#Pomorskie")].filter(Boolean);
 let globalCompareScalar = 0;
