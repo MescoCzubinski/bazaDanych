@@ -38,11 +38,11 @@ class Compare {
     if (this.rowsToCompare.length < 2) {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center text-wrap">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
-      document.querySelector("#compare-text").innerHTML = '<span class="text-wrap">Porównywanie odmian - pszenica jara (by porównać więcej odmian przewiń wyżej i kliknij:<i class="icon-balance-scale"></i>) <span>';
+      document.querySelector("#compare-text").innerHTML = '<span class="text-wrap">Porównywanie odmian pszenica jara (by porównać więcej odmian przewiń wyżej i kliknij:<i class="icon-balance-scale"></i>) <span>';
 
       if (!this.firstTimeRender) {
         this.firstTimeRender = true;
-        document.querySelector("#compare-text").scrollIntoView({
+        document.querySelector("#compare").scrollIntoView({
           behavior: "smooth",
           block: "start",
         });

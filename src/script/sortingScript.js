@@ -1,8 +1,18 @@
 const elementDisplayFilesName = document.querySelector("#displayFilesName");
 const elementDisplaySettings = document.querySelector("#settings");
 elementDisplaySettings.classList.add("hidden");
+const elementType1Container = document.querySelector("#type1-container");
+elementType1Container.classList.add("hidden");
+const elementType2Container = document.querySelector("#type2-container");
+elementType2Container.classList.add("hidden");
+
+document.querySelector("body").scrollIntoView({
+  behavior: "smooth",
+  block: "start",
+});
+
+//wyświetlanie gatunków do sortowarek
 function displayFilesName() {
-  //wyświetlanie gatunków do sortowarek
   let result = "";
   for (let i = 0; i < names.length; i++) {
     result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + names[i] + ' ">';
@@ -11,14 +21,12 @@ function displayFilesName() {
 }
 displayFilesName();
 
-//po kliknięciu na gatunek
 files.forEach((file, index) => {
   document.getElementById(file).addEventListener("click", function () {
     //wyświetlanie tabeli
-    displayFilesValues(file, -1, "Brak wyników dla podanych ustawień");
-    displayFilters(file);
+    displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", -1, false);
 
-    document.querySelector("#sorting-text").innerHTML = 'Lista odmian wg PDO - <b class="ml-2">' + names[index].toLowerCase() + "</b>";
+    document.querySelector("#sorting-text").innerHTML = 'Lista odmian wg PDO <b class="ml-2">' + names[index].toLowerCase() + "</b>";
 
     //wyświetlanie porównania
     window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29));
@@ -34,11 +42,9 @@ files.forEach((file, index) => {
 });
 
 function displayFilters(file) {
-  const elementType1Container = document.querySelector("#type1-container");
-  elementType1Container.classList.add("hidden");
-  const elementType2Container = document.querySelector("#type2-container");
-  elementType2Container.classList.add("hidden");
   elementDisplaySettings.classList.remove("hidden");
+
+  displayColTitles(file);
 
   //dodanie filtru 'typ1'
   if (arrays[file.replace(".json", "") + "_type1"]) {
@@ -111,27 +117,46 @@ function displayFilters(file) {
     let sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -28).indexOf(event.target.value + ":");
 
     if (sortingIndex !== -1) {
-      displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex);
+      displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex, false);
       if (sortingIndex === 0) {
         table.order([sortingIndex, "asc"]).draw();
       } else {
         table.order([sortingIndex, "desc"]).draw();
       }
-    }
-  });
 
+      table.columns(8).search("").draw();
+      table.columns(1).search(elementYearFilter.value).draw();
+
+      displayColTitles(file, false);
+    }
+
+    document.querySelector("#settings").scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+}
+
+function displayColTitles(file, isLOZ) {
   document.querySelectorAll("#table thead th").forEach((th, index) => {
-    let colsCount = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).length - 2;
+    colsCount = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).length;
+    if (isLOZ == true) {
+      console.log("adasd");
+    } else {
+      console.log(colsCount);
+      colsCount -= 2;
+    }
+
     if (index === colsCount) {
       th.setAttribute("title", "Porównanie odmian u dołu strony");
-    } else if (index === 1) {
+    } else if (index === 1 && file !== "owies_jary.json") {
       th.setAttribute("title", "Na przeciętnym poziomie agrotechniki");
-    } else if (index === 2) {
+    } else if (index === 2 && file !== "owies_jary.json") {
       th.setAttribute("title", "Na wyższym poziomie agrotechniki");
-    } else if (index >= colsCount - 17 && index < colsCount) {
+    } else if (index >= colsCount - 17 && index < colsCount && file !== "owies_jary.json" && isLOZ === true) {
       th.setAttribute("title", "rok wpisu na listę dla danego województwa");
     } else {
-      th.setAttribute("title", "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco, a trzeci raz wywoła powrót do sortowania alfabetycznego wg nazw odmian");
+      th.setAttribute("title", "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco");
     }
   });
 }

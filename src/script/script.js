@@ -1,10 +1,4 @@
-window.addEventListener("load", () => {
-  document.querySelector("body").scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-});
-function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
+function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, isLOZ) {
   if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
@@ -89,4 +83,7 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
       },
     ],
   });
+  console.log(isLOZ);
+
+  displayFilters(file, isLOZ);
 }

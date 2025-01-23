@@ -40,9 +40,6 @@ body {
   #settings {
     @apply h-fit pb-2;
   }
-  #LOZ-map svg {
-    width: 300px;
-  }
 }
 @media only screen and (max-width: 768px) {
   .table-container,
@@ -90,7 +87,7 @@ svg path:hover {
   width: 300px;
 }
 .h-400 {
-  height: 406px;
+  height: 420px;
 }
 .hidden {
   display: none;
