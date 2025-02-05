@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Porównywarka jęczmienia jarego</title>
     <!-- main CSS -->
     <link rel="stylesheet" href="output.css" />
@@ -13,8 +12,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.dataTables.css" />
   </head>
-  <body class="bg-top-agrar-green/5 w-full" style="height: 3000px">
-    <div class="flex items-center mt-5 justify-center flex-wrap">
+  <body class="bg-top-agrar-green/5 w-full" style="height: 3200px">
+    <div class="w-full flex justify-center flex-wrap">
       <div class="menu-container">
         <div class="flex">
           <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2 text-wrap" id="LOZ-text">Lista Odmian Zalecanych</div>
@@ -49,6 +48,7 @@
               Wykorzystano z modyfikacjami.
               -->
         </div>
+        <div class="w-full flex flex-wrap justify-center" id="LOZ-sections"></div>
         <div class="w-full flex flex-wrap justify-center" id="LOZ-species"></div>
         <div class="text-xl text-top-agrar-green text-center w-full" id="LOZ-bottom-text">Kliknij na województwo</div>
         <!-- <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2" id="LOZ-text">zboża jare</div> -->
@@ -56,6 +56,7 @@
       <div class="menu-container">
         <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2">Porównywarka odmian</div>
         <div class="w-full">
+          <div class="w-full flex flex-wrap justify-center" id="displaySectionsName"></div>
           <div class="w-full flex flex-wrap justify-center" id="displayFilesName"></div>
         </div>
       </div>
@@ -113,10 +114,10 @@
       </div>
     </div>
     <div class="mt-24 w-full flex justify-center flex-wrap">
-      <div class="w-8/12 mt-16 flex justify-center text-center text-2xl text-top-agrar-green" id="compare-text"></div>
+      <div class="w-8/12 flex justify-center text-center text-2xl text-top-agrar-green" id="compare-text"></div>
       <div class="compare-container">
         <div class="w-full">
-          <div id="compare" class="pt-20"></div>
+          <div id="compare" class="pt-6"></div>
         </div>
       </div>
     </div>

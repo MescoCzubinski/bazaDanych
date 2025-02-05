@@ -22,9 +22,10 @@ document.addEventListener("click", function (event) {
 
 class Compare {
   //konstruktor
-  constructor(elementId, colNames) {
+  constructor(elementId, colNames, file) {
     this.colNames = colNames;
     this.firstTimeRender = false;
+    this.file = file;
     const index = this.colNames.indexOf("Rok wyników:");
     if (index !== -1) {
       this.colNames.splice(index, 1);
@@ -38,11 +39,19 @@ class Compare {
     if (this.rowsToCompare.length < 2) {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center text-wrap">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
-      document.querySelector("#compare-text").innerHTML = '<span class="text-wrap">Porównywanie odmian pszenica jara (by porównać więcej odmian przewiń wyżej i kliknij:<i class="icon-balance-scale"></i>) <span>';
+      let name = ""
+      for(let i = 0; i<files.length; i++){
+        if(files[i] == this.file){
+          name = names[i].toLowerCase();
+          break;
+        }
+      }
+
+      document.querySelector("#compare-text").innerHTML = `<span class="text-wrap">Porównywanie odmian: ${name} (by porównać więcej odmian przewiń wyżej i<p class="text-nowrap"> kliknij:<i class="icon-balance-scale"></i>)</p> <span>`;
 
       if (!this.firstTimeRender) {
         this.firstTimeRender = true;
-        document.querySelector("#compare").scrollIntoView({
+        document.querySelector("#compare-text").scrollIntoView({
           behavior: "smooth",
           block: "start",
         });

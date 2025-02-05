@@ -16,7 +16,7 @@ body {
   @apply w-300 m-5 h-400 border-solid border-2 border-t-0 border-b-0 border-top-agrar-green p-5 flex flex-col justify-around;
 }
 #settings {
-  @apply w-10/12 h-fit;
+  @apply w-7/12 h-fit;
 }
 #searching {
   @apply mr-0.5 ml-2;
@@ -39,6 +39,9 @@ body {
   }
   #settings {
     @apply h-fit pb-2;
+  }
+  #compare-text{
+    @apply w-10/12
   }
 }
 @media only screen and (max-width: 768px) {

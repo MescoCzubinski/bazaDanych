@@ -1,4 +1,4 @@
-function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, isLOZ) {
+function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
   if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
@@ -52,7 +52,7 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
         render: function (data, type, row, meta) {
           const columnIndex = meta.col;
           if (columnIndex === 9 && data === "0") {
-            return "nie dotyczy";
+            return "#";
           }
           if (data !== "#" && data !== "-") {
             const unit = arrays[name + "_units"]?.[columnIndex] || "";
@@ -83,7 +83,4 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
       },
     ],
   });
-  console.log(isLOZ);
-
-  displayFilters(file, isLOZ);
 }
