@@ -1,4 +1,4 @@
-function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
+function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, isLOZ) {
   if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
@@ -10,10 +10,15 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
       data: arrays[name + "_cols"][index]?.data || null,
       title: colName,
     })),
-    lengthMenu: [
-      [10, -1],
-      ["10", "wszystkie"],
-    ],
+    lengthMenu: isLOZ
+      ? [
+          [-1, 10],
+          ["wszystkie", "10"],
+        ]
+      : [
+          [10, -1],
+          ["10", "wszystkie"],
+        ],
     sorting: true,
     responsive: true,
     language: {
@@ -32,7 +37,7 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
           let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wyników"] + "-" + row["Odmiany"].replace(/\s+/g, "-") + "-";
           buttonId = buttonId.replace("--", "-");
           return `<button id="${buttonId + "button"}" type="button" class="h-7 compare flex justify-center w-full hover:text-top-agrar-green">
-                    <div class="pr-1 compare" title="Porównanie odmian u dołu strony. Przesuń w prawo w porównywarce umożiwia zobaczenie więcej odmian" id="${buttonId + "border"}">
+                    <div class="pr-1 compare" id="${buttonId + "border"}">
                       <i class="icon-balance-scale compare" id="${buttonId + "span"}"></i>
                     </div>
                   </button>`;
@@ -82,5 +87,8 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1) {
         visible: false,
       },
     ],
+    headerCallback: (thead) => {
+      thead.querySelectorAll("th").forEach((th) => (th.title = "th.textContent"));
+    },
   });
 }

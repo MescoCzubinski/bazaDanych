@@ -39,9 +39,9 @@ class Compare {
     if (this.rowsToCompare.length < 2) {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center text-wrap">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
-      let name = ""
-      for(let i = 0; i<files.length; i++){
-        if(files[i] == this.file){
+      let name = "";
+      for (let i = 0; i < files.length; i++) {
+        if (files[i] == this.file) {
           name = names[i].toLowerCase();
           break;
         }
@@ -70,12 +70,11 @@ class Compare {
 
       this.element.innerHTML = table;
 
-      let screenWidth = screen.width;
-
-      screenWidth > 768 ? (screenWidth *= 8 / 12) : (screenWidth *= 11 / 12);
-      document.querySelectorAll(".compare-cell").forEach((cell) => {
-        cell.style.width = (screenWidth - 224) / this.rowsToCompare.length + "px";
-      });
+      // let screenWidth = screen.width;
+      // screenWidth > 768 ? (screenWidth *= 8 / 12) : (screenWidth *= 11 / 12);
+      // document.querySelectorAll(".compare-cell").forEach((cell) => {
+      //   cell.style.width = (screenWidth - 224) / this.rowsToCompare.length + "px";
+      // });
 
       const scrollingElement = document.querySelector(".compare-row:first-child .compare-scrolling");
       if (scrollingElement.scrollWidth > scrollingElement.clientWidth) {
