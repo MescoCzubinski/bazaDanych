@@ -87,7 +87,7 @@ class Compare {
     }
   }
 
-  //łączenie wierszy by się razem zmieniały
+  //łączenie wierszy by się razem przesuwały
   synchronizeScrolling() {
     const scrollingElements = document.querySelectorAll(".compare-scrolling");
     scrollingElements.forEach((scrollingElement) => {

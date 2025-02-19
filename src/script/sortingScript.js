@@ -8,58 +8,22 @@ elementType1Container.classList.add("hidden");
 const elementType2Container = document.querySelector("#type2-container");
 elementType2Container.classList.add("hidden");
 
+//przesunięcie przy odświerzeniu
 document.querySelector("body").scrollIntoView({
   behavior: "smooth",
   block: "start",
 });
 
-//wyświetlanie gatunków do sortowarek
-function displayFilesName() {
-  let result = "";
-  for (let i = 0; i < names.length; i++) {
-    result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + names[i] + ' ">';
-  }
-  elementDisplayFilesName.innerHTML = result;
-}
+//grupy odmian
+displaySpeciesGroup(elementDisplaySectionsName);
 
-let listOfSections = "";
 names_section.forEach((section, index) => {
-  listOfSections += `
-    <input 
-      class="text-2xl text-top-agrar-green/90 border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2 hover:bg-top-agrar-green/20" 
-      type="button" 
-      id="section-${index}" 
-      value="${section}">
-  `;
-});
-elementDisplaySectionsName.innerHTML = listOfSections;
-
-names_section.forEach((section, sectionIndex) => {
-  document.getElementById(`section-${sectionIndex}`).addEventListener("click", function () {
+  //gdy klikniesz na grupę:
+  document.getElementById(`section-${index}`).addEventListener("click", function () {
     if (section !== "reszta wkrótce") {
-      displayFilesName();
-      elementDisplayFilesName.classList.remove("hidden");
-      elementDisplaySectionsName.classList.add("hidden");
-      files.forEach((file, fileIndex) => {
-        const fileButton = document.getElementById(file);
+      displaySpecies(elementDisplayFilesName, false);
 
-        if (fileButton) {
-          fileButton.addEventListener("click", function () {
-            displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", -1, false);
-            displayFilters(file, false);
-
-            document.querySelector("#sorting-text").innerHTML = 'Lista odmian wg PDO <b class="ml-2">' + names[fileIndex].toLowerCase() + "</b>";
-
-            window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29), file);
-            compareObj.displayCompare();
-
-            document.querySelector("#settings").scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          });
-        }
-      });
+      functioningSpecies();
     }
   });
 });
@@ -150,6 +114,7 @@ function displayFilters(file) {
       }
     }
 
+    //przesunięcie
     document.querySelector("#settings").scrollIntoView({
       behavior: "smooth",
       block: "start",

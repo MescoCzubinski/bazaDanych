@@ -4,8 +4,8 @@
 //konwerter: https://tableconvert.com/excel-to-json lub https://tableconvert.com/csv-to-json
 
 const names_section = ["zboża jare", "pozostałe wkrótce"];
-let names = ["Pszenica jara", "Jęczmień jary", "Pszenżyto jare", "Owies jary"];
-let files = ["pszenica_jara.json", "jeczmien_jary.json", "pszenzyto_jare.json", "owies_jary.json"];
+let names = ["Pszenica jara", "Jęczmień jary", "Pszenżyto jare", "Owies jary", "Ziemniak"];
+let files = ["pszenica_jara.json", "jeczmien_jary.json", "pszenzyto_jare.json", "owies_jary.json", "ziemniak.json"];
 
 //konfiguracja: jednostki, nazw kolumn, lata, sortowaie, typy
 // _cols <- bez kropek, polskich znaków

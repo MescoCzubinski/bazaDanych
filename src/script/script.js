@@ -4,6 +4,7 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
     $("#table").empty();
   }
   let name = file.replace(".json", "");
+
   table = new DataTable("#table", {
     ajax: "data/" + file,
     columns: arrays[name + "_col_names"].map((colName, index) => ({
@@ -87,8 +88,116 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
         visible: false,
       },
     ],
+    //atrybut "title"
     headerCallback: (thead) => {
-      thead.querySelectorAll("th").forEach((th) => (th.title = "th.textContent"));
+      let colsCount = thead.querySelectorAll("th").length;
+      thead.querySelectorAll("th").forEach((th, index) => {
+        let colTitle = "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco";
+        if (index === 1) colTitle = "Na przeciętnym poziomie agrotechniki";
+        if (index === 2) colTitle = "Na wyższym poziomie agrotechniki";
+        if (isLOZ && index === colsCount - 2) colTitle = "Rok wpisu na listę dla danego województwa";
+        if (index === colsCount - 1) colTitle = "Porównanie odmian u dołu strony";
+        th.title = colTitle;
+      });
     },
   });
+}
+
+function functioningSpecies(region = -1) {
+  //files, names <- tablice z config.js
+  files.forEach((file, index) => {
+    document.getElementById(file).addEventListener("click", function () {
+      let indexOf = -1;
+      let textWhenNoData = "Brak wyników dla podanych ustawień";
+      let isLOZ = false;
+      if (region !== -1) {
+        indexOf = arrays[file.replace(".json", "") + "_cols"].findIndex((item) => item.data === region);
+        textWhenNoData = "brak odmiany na LOZ dla tego województwa";
+        isLOZ = true;
+      }
+
+      //wyświetlanie danych
+      displayFilesValues(file, indexOf, textWhenNoData, -1, isLOZ);
+
+      //mechanika filtrów
+      displayFilters(file);
+
+      if (region !== -1) {
+        table.columns(indexOf).search("^(?![-#]).*$", true, false).draw();
+      }
+
+      //wyświetlanie tytułu
+      displayNameText(region, index);
+
+      //przesunięcie przy wyświetlaniu danych
+      document.querySelector("#settings").scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      //tworzenie porównania
+      window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29), file);
+      compareObj.displayCompare();
+
+      globalCompareScalar = 1;
+    });
+  });
+}
+
+//tekst z nazwą woj. w sekcji LOZ
+function displayLOZText(text) {
+  if (text === "Lodzkie") {
+    text = "Łódzkie";
+  } else if (text === "Slaskie") {
+    text = "Śląskie";
+  } else if (text === "Zachodniopomorskie") {
+    text = "Zach.-Pom.";
+  }
+  document.querySelector("#LOZ-text").innerHTML = "LOZ woj. " + text.toLowerCase();
+}
+
+//tekst z nazwą odmiany i województwem w tytule
+function displayNameText(text, index) {
+  if (text === -1) {
+    document.querySelector("#sorting-text").innerHTML = `<span> Lista odmian wg PDO <b> ${names[index].toLowerCase()}</b></span>`;
+  } else {
+    if (text === "Lodzkie") {
+      text = "Łódzkie";
+    } else if (text === "Slaskie") {
+      text = "Śląskie";
+    }
+    document.querySelector("#sorting-text").innerHTML = `<span "class=text-wrap">Lista odmian zalecanych <b> woj. ${text.toLowerCase() + " " + names[index].toLowerCase()}</b> (lista pozostałych odmian dostępna wyżej w porównywarce)</span>`;
+  }
+}
+
+//wyświetlanie grup gatunków
+function displaySpeciesGroup(element) {
+  let listOfSections = "";
+  names_section.forEach((section, index) => {
+    listOfSections += `
+      <input 
+        class="text-2xl text-top-agrar-green/90 border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2 hover:bg-top-agrar-green/20" 
+        type="button" 
+        id="section-${index}" 
+        value="${section}">
+    `;
+  });
+  element.innerHTML = listOfSections;
+}
+
+//wyświetlanie nazw gatunków
+function displaySpecies(element, isLOZ) {
+  let result = "";
+  for (let i = 0; i < names.length; i++) {
+    result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + names[i] + ' ">';
+  }
+
+  if (isLOZ) {
+    elementDisplayLOZSpecies.classList.remove("hidden");
+    elementDisplayLOZSections.classList.add("hidden");
+  } else {
+    elementDisplayFilesName.classList.remove("hidden");
+    elementDisplaySectionsName.classList.add("hidden");
+  }
+  element.innerHTML = result;
 }
