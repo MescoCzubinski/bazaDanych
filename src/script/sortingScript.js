@@ -6,8 +6,10 @@ elementDisplaySettings.classList.add("hidden");
 
 const elementType1Container = document.querySelector("#type1-container");
 const elementType2Container = document.querySelector("#type2-container");
+const elementType3Container = document.querySelector("#type2-container");
 elementType1Container.classList.add("hidden");
 elementType2Container.classList.add("hidden");
+elementType3Container.classList.add("hidden");
 
 //przesunięcie przy odświerzeniu
 document.querySelector("body").scrollIntoView({
@@ -21,7 +23,6 @@ displaySpeciesGroup(elementDisplaySectionsName);
 sectionsArr.forEach((section, index) => {
   //gdy klikniesz na grupę:
   document.getElementById(`section-${index}`).addEventListener("click", function () {
-    console.log(index);
     let section = sectionsArr[index];
     let files = filesArr[index];
 
@@ -85,6 +86,27 @@ function displayFilters(file) {
     });
   }
 
+  //dodanie filtru 'typ3'
+  if (arrays[file.replace(".json", "") + "_type3"]) {
+    const elementType3 = document.querySelector("#type3");
+    document.querySelector("#type3-name").innerHTML = arrays[file.replace(".json", "") + "_type3_name"];
+    elementType3Container.classList.remove("hidden");
+    let types3 = '<option value="-">wszystkie</option>';
+    for (type of arrays[file.replace(".json", "") + "_type3"]) {
+      types3 += `<option value="${type}">${type}</option>`;
+    }
+    elementType3.innerHTML = types3;
+
+    elementType3.addEventListener("change", () => {
+      let selectedType3 = elementType3.value;
+      if (selectedType3 !== "-") {
+        table.columns(10).search(selectedType3).draw();
+      } else {
+        table.columns(10).search("").draw();
+      }
+    });
+  }
+
   //dodanie filtru 'rok'
   let years = "";
   const elementYearFilter = document.querySelector("#yearFilter");
@@ -101,6 +123,7 @@ function displayFilters(file) {
     table.columns(1).search(selectedYear).draw();
     table.columns(8).search(selectedType1).draw();
     table.columns(9).search(selectedType2).draw();
+    table.columns(10).search(selectedType3).draw();
   });
 
   //dodanie sortowarki

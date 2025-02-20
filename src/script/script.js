@@ -1,3 +1,4 @@
+console.log("Cześć! Jestem Mieszko, żyję sobie w konsoli. Fajnie, że do mnie zajrzałeś. Smacznej kawusi życzę");
 function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, isLOZ) {
   if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
@@ -136,7 +137,7 @@ function functioningSpecies(groupOfSpecies, files, region = -1) {
       });
 
       //tworzenie porównania
-      window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29), file, groupOfSpecies);
+      window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29), file, groupOfSpecies, files);
       compareObj.displayCompare();
 
       globalCompareScalar = 1;
