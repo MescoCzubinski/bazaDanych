@@ -22,10 +22,11 @@ document.addEventListener("click", function (event) {
 
 class Compare {
   //konstruktor
-  constructor(elementId, colNames, file) {
+  constructor(elementId, colNames, file, groupOfSpecies) {
     this.colNames = colNames;
     this.firstTimeRender = false;
     this.file = file;
+    this.groupOfSpecies = groupOfSpecies;
     const index = this.colNames.indexOf("Rok wyników:");
     if (index !== -1) {
       this.colNames.splice(index, 1);
@@ -40,9 +41,9 @@ class Compare {
       this.element.innerHTML = `<p class="text-2xl text-top-agrar-green text-center text-wrap">Dodaj odmianę do porównania - kliknij ikonę<i class="icon-balance-scale pr-2 pl-1"></i>przy odmianie</p>`;
     } else {
       let name = "";
-      for (let i = 0; i < files.length; i++) {
-        if (files[i] == this.file) {
-          name = names[i].toLowerCase();
+      for (let i = 0; i < zboza_jare_files.length; i++) {
+        if (zboza_jare_files[i] == this.file) {
+          name = this.groupOfSpecies[i].toLowerCase();
           break;
         }
       }

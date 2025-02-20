@@ -1,11 +1,12 @@
 const elementDisplayFilesName = document.querySelector("#displayFilesName");
-elementDisplayFilesName.classList.add("hidden");
 const elementDisplaySectionsName = document.querySelector("#displaySectionsName");
 const elementDisplaySettings = document.querySelector("#settings");
+elementDisplayFilesName.classList.add("hidden");
 elementDisplaySettings.classList.add("hidden");
+
 const elementType1Container = document.querySelector("#type1-container");
-elementType1Container.classList.add("hidden");
 const elementType2Container = document.querySelector("#type2-container");
+elementType1Container.classList.add("hidden");
 elementType2Container.classList.add("hidden");
 
 //przesunięcie przy odświerzeniu
@@ -17,15 +18,27 @@ document.querySelector("body").scrollIntoView({
 //grupy odmian
 displaySpeciesGroup(elementDisplaySectionsName);
 
-names_section.forEach((section, index) => {
+sectionsArr.forEach((section, index) => {
   //gdy klikniesz na grupę:
   document.getElementById(`section-${index}`).addEventListener("click", function () {
-    if (section !== "reszta wkrótce") {
-      displaySpecies(elementDisplayFilesName, false);
+    console.log(index);
+    let section = sectionsArr[index];
+    let files = filesArr[index];
 
-      functioningSpecies();
+    if (section !== "pozostale_wkrotce") {
+      displaySpecies(elementDisplayFilesName, false, section, files);
+
+      functioningSpecies(section, files);
     }
   });
+});
+
+//mechanika przycisku resetuj
+const elementSortReset = document.querySelector("#sort-reset");
+elementSortReset.addEventListener("click", function () {
+  elementDisplayFilesName.classList.add("hidden");
+  elementDisplaySettings.classList.add("hidden");
+  elementDisplaySectionsName.classList.remove("hidden");
 });
 
 function displayFilters(file) {
@@ -65,9 +78,9 @@ function displayFilters(file) {
     elementType2.addEventListener("change", () => {
       let selectedType2 = elementType2.value;
       if (selectedType2 !== "-") {
-        table.columns(10).search(selectedType2).draw();
+        table.columns(9).search(selectedType2).draw();
       } else {
-        table.columns(10).search("").draw();
+        table.columns(9).search("").draw();
       }
     });
   }
@@ -87,7 +100,7 @@ function displayFilters(file) {
     const selectedYear = elementYearFilter.value;
     table.columns(1).search(selectedYear).draw();
     table.columns(8).search(selectedType1).draw();
-    table.columns(10).search(selectedType2).draw();
+    table.columns(9).search(selectedType2).draw();
   });
 
   //dodanie sortowarki

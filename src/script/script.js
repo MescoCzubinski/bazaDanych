@@ -96,14 +96,14 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
         if (index === 1) colTitle = "Na przeciętnym poziomie agrotechniki";
         if (index === 2) colTitle = "Na wyższym poziomie agrotechniki";
         if (isLOZ && index === colsCount - 2) colTitle = "Rok wpisu na listę dla danego województwa";
-        if (index === colsCount - 1) colTitle = "Porównanie odmian u dołu strony";
+        if (index === colsCount - 1) colTitle = "Kliknij wagę - porównanie odmian u dołu strony";
         th.title = colTitle;
       });
     },
   });
 }
 
-function functioningSpecies(region = -1) {
+function functioningSpecies(groupOfSpecies, files, region = -1) {
   //files, names <- tablice z config.js
   files.forEach((file, index) => {
     document.getElementById(file).addEventListener("click", function () {
@@ -127,7 +127,7 @@ function functioningSpecies(region = -1) {
       }
 
       //wyświetlanie tytułu
-      displayNameText(region, index);
+      displayNameText(region, index, groupOfSpecies);
 
       //przesunięcie przy wyświetlaniu danych
       document.querySelector("#settings").scrollIntoView({
@@ -136,7 +136,7 @@ function functioningSpecies(region = -1) {
       });
 
       //tworzenie porównania
-      window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29), file);
+      window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29), file, groupOfSpecies);
       compareObj.displayCompare();
 
       globalCompareScalar = 1;
@@ -157,16 +157,16 @@ function displayLOZText(text) {
 }
 
 //tekst z nazwą odmiany i województwem w tytule
-function displayNameText(text, index) {
+function displayNameText(text, index, groupOfSpecies) {
   if (text === -1) {
-    document.querySelector("#sorting-text").innerHTML = `<span> Lista odmian wg PDO <b> ${names[index].toLowerCase()}</b></span>`;
+    document.querySelector("#sorting-text").innerHTML = `<span> Lista odmian wg PDO <b> ${groupOfSpecies[index].toLowerCase()}</b></span>`;
   } else {
     if (text === "Lodzkie") {
       text = "Łódzkie";
     } else if (text === "Slaskie") {
       text = "Śląskie";
     }
-    document.querySelector("#sorting-text").innerHTML = `<span "class=text-wrap">Lista odmian zalecanych <b> woj. ${text.toLowerCase() + " " + names[index].toLowerCase()}</b> (lista pozostałych odmian dostępna wyżej w porównywarce)</span>`;
+    document.querySelector("#sorting-text").innerHTML = `<span "class=text-wrap">Lista odmian zalecanych <b> woj. ${text.toLowerCase() + " " + groupOfSpecies[index].toLowerCase()}</b> (lista pozostałych odmian dostępna wyżej w porównywarce)</span>`;
   }
 }
 
@@ -174,6 +174,8 @@ function displayNameText(text, index) {
 function displaySpeciesGroup(element) {
   let listOfSections = "";
   names_section.forEach((section, index) => {
+    if (section === "pozostale_wkrotce") section = "pozostałe wkrótce";
+    if (section === "zboza_jare") section = "zboża jare";
     listOfSections += `
       <input 
         class="text-2xl text-top-agrar-green/90 border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2 hover:bg-top-agrar-green/20" 
@@ -186,10 +188,10 @@ function displaySpeciesGroup(element) {
 }
 
 //wyświetlanie nazw gatunków
-function displaySpecies(element, isLOZ) {
+function displaySpecies(element, isLOZ, groupOfSpecies, files) {
   let result = "";
-  for (let i = 0; i < names.length; i++) {
-    result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + names[i] + ' ">';
+  for (let i = 0; i < groupOfSpecies.length; i++) {
+    result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + groupOfSpecies[i] + ' ">';
   }
 
   if (isLOZ) {

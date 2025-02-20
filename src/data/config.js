@@ -3,10 +3,14 @@
 //jeśli w kolumnie 10, jest zero mogą się pojawić problemy z renderowaniem danych  script.js około 66
 //konwerter: https://tableconvert.com/excel-to-json lub https://tableconvert.com/csv-to-json
 
-const names_section = ["zboża jare", "pozostałe wkrótce"];
-let names = ["Pszenica jara", "Jęczmień jary", "Pszenżyto jare", "Owies jary", "Ziemniak"];
-let files = ["pszenica_jara.json", "jeczmien_jary.json", "pszenzyto_jare.json", "owies_jary.json", "ziemniak.json"];
+let zboza_jare = ["Pszenica jara", "Jęczmień jary", "Pszenżyto jare", "Owies jary"];
+let ziemniak = ["Ziemniak"];
+let zboza_jare_files = ["pszenica_jara.json", "jeczmien_jary.json", "pszenzyto_jare.json", "owies_jary.json"];
+let ziemniak_files = ["ziemniak.json"];
+let sectionsArr = [zboza_jare, ziemniak];
+let filesArr = [zboza_jare_files, ziemniak_files];
 
+const names_section = ["zboza_jare", "pyrowate", "pozostale_wkrotce"];
 //konfiguracja: jednostki, nazw kolumn, lata, sortowaie, typy
 // _cols <- bez kropek, polskich znaków
 
@@ -31,12 +35,14 @@ let pszenzyto_jare_cols = [{ data: "Odmiany" }, { data: "Rok wynikow" }, { data:
 let pszenzyto_jare_units = ["", "", " dt/ha", " dt/ha", " g", "%", " cm", " st. (1-9)", "", " r.", " dni", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", ""];
 let pszenzyto_jare_year = ["2025", "2024", "2023", "2022", "2021"];
 
+let ziemniak_col_names = ["Odmiana:", "Rok wyników:", "Plon ziarna a₁:", "Plon ziarna a₂:", "Masa 1000 ziaren:", "Zawartość białka:", "Wysokość roślin:", "Wyleganie:", "Typ:", "Rok rejestracji:", "Dojrzałość pełna:", "Mączniak prawdziwy:", "Rdza brunatna:", "Rdza żółta:", "Brunatna plamistość liści:", "Septorioza liści:", "Septorioza plew:", "Porastanie ziarna:", "Gęstość ziarna:", "Rynchosporioza:", "Fuzarioza kłosów:", "Plon w rejonie I a₁:", "Plon w rejonie II a₁:", "Plon w rejonie III a₁:", "Plon w rejonie IV a₁:", "Plon w rejonie V a₁:", "Plon w rejonie VI a₁:", "Plon w rejonie I a₂:", "Plon w rejonie II a₂:", "Plon w rejonie III a₂:", "Plon w rejonie IV a₂:", "Plon w rejonie V a₂:", "Plon w rejonie VI a₂:", "Dolnośląskie:", "Kujawsko-Pomorskie:", "Lubelskie:", "Lubuskie:", "Łódzkie:", "Małopolskie:", "Mazowieckie:", "Opolskie:", "Podkarpackie:", "Podlaskie:", "Pomorskie:", "Śląskie:", "Świętokrzyskie:", "Warmińsko-Mazurskie:", "Wielkopolskie:", "Zachodniopomorskie:", "Porównaj:"];
+let ziemniak_cols = [{ data: "Odmiany" }, { data: "Rok wynikow" }, { data: "Plon ziarna  a1" }, { data: "Plon ziarna a2" }, { data: "Masa 1000 ziaren" }, { data: "Zawartosc bialka" }, { data: "Wysokosc roslin" }, { data: "Wyleganie" }, { data: "Typ" }, { data: "Rok rejestracji" }, { data: "Dojrzalosc pelna" }, { data: "Maczniak prawdziwy" }, { data: "Rdza brunatna" }, { data: "Rdza zolta" }, { data: "Brunatna plamistosc lisci" }, { data: "Septorioza lisci" }, { data: "Septorioza plew" }, { data: "Porastanie ziarna" }, { data: "Gestosc ziarna" }, { data: "Rynchosporioza" }, { data: "Fuzarioza klosow" }, { data: "Plon w rejonie I a1" }, { data: "Plon w rejonie II a1" }, { data: "Plon w rejonie III a1" }, { data: "Plon w rejonie IV a1" }, { data: "Plon w rejonie V a1" }, { data: "Plon w rejonie VI a1" }, { data: "Plon w rejonie I a2" }, { data: "Plon w rejonie II a2" }, { data: "Plon w rejonie III a2" }, { data: "Plon w rejonie IV a2" }, { data: "Plon w rejonie V a2" }, { data: "Plon w rejonie VI a2" }, { data: "Dolnoslaskie" }, { data: "Kujawsko-Pomorskie" }, { data: "Lubelskie" }, { data: "Lubuskie" }, { data: "Lodzkie" }, { data: "Malopolskie" }, { data: "Mazowieckie" }, { data: "Opolskie" }, { data: "Podkarpackie" }, { data: "Podlaskie" }, { data: "Pomorskie" }, { data: "Slaskie" }, { data: "Swietokrzyskie" }, { data: "Warminsko-Mazurskie" }, { data: "Wielkopolskie" }, { data: "Zachodniopomorskie" }, { data: null }];
+let ziemniak_units = ["", "", " dt/ha", " dt/ha", " g", "%", " cm", " st. (1-9)", "", " r.", " dni", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", ""];
+let ziemniak_year = ["2025", "2024", "2023", "2022", "2021"];
+
 let owies_jary_col_names = ["Odmiana:", "Rok wyników:", "Plon ziarna:", "Udział łuski:", "Masa 1000 ziaren:", "Zawartość białka:", "Zawartość tłuszczu:", "Wysokość roślin:", "Typ:", "Rok rejestracji:", "Wyleganie roślin:", "Mączniak prawdziwy:", "Rdza owsa:", "Helmintosporioza:", "Septorioza liści:", "Dojrzałość pełna:", "Plon w rejonie I:", "Plon w rejonie II:", "Plon w rejonie III:", "Plon w rejonie IV:", "Plon w rejonie V:", "Plon w rejonie VI:", "Dolnośląskie:", "Kujawsko-Pomorskie:", "Lubelskie:", "Lubuskie:", "Łódzkie:", "Małopolskie:", "Mazowieckie:", "Opolskie:", "Podkarpackie:", "Podlaskie:", "Pomorskie:", "Śląskie:", "Świętokrzyskie:", "Warmińsko-Mazurskie:", "Wielkopolskie:", "Zachodniopomorskie:", "Porównaj"];
-
 let owies_jary_cols = [{ data: "Odmiany" }, { data: "Rok wynikow" }, { data: "Plon ziarna" }, { data: "Udzial luski" }, { data: "Masa 1000 ziaren" }, { data: "Zawartosc bialka" }, { data: "Zawartosc tluszczu" }, { data: "Wysokosc roslin" }, { data: "Typ" }, { data: "Rok rejestracji" }, { data: "Wyleganie roslin" }, { data: "Maczniak prawdziwy" }, { data: "Rdza owsa" }, { data: "Helmintosporioza" }, { data: "Septorioza lisci" }, { data: "Dojrzalosc pelna" }, { data: "Plon w rejonie I" }, { data: "Plon w rejonie II" }, { data: "Plon w rejonie III" }, { data: "Plon w rejonie IV" }, { data: "Plon w rejonie V" }, { data: "Plon w rejonie VI" }, { data: "Dolnoslaskie" }, { data: "Kujawsko-Pomorskie" }, { data: "Lubelskie" }, { data: "Lubuskie" }, { data: "Lodzkie" }, { data: "Malopolskie" }, { data: "Mazowieckie" }, { data: "Opolskie" }, { data: "Podkarpackie" }, { data: "Podlaskie" }, { data: "Pomorskie" }, { data: "Slaskie" }, { data: "Swietokrzyskie" }, { data: "Warminsko-Mazurskie" }, { data: "Wielkopolskie" }, { data: "Zachodniopomorskie" }, { data: null }];
-
 let owies_jary_units = ["", " r.", " dt/ha", "%", " g", "%", "%", " cm", "", " r.", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " dni", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " dt/ha", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", ""];
-
 let owies_jary_year = ["2025", "2024", "2023", "2022", "2021"];
 let owies_jary_type1_name = "Typ:";
 let owies_jary_type1 = ["zwyczajny", "nagi"];
@@ -62,6 +68,10 @@ let arrays = {
   pszenzyto_jare_cols,
   pszenzyto_jare_units,
   pszenzyto_jare_year,
+  ziemniak_col_names,
+  ziemniak_cols,
+  ziemniak_units,
+  ziemniak_year,
 
   owies_jary_col_names,
   owies_jary_cols,
@@ -70,5 +80,3 @@ let arrays = {
   owies_jary_type1,
   owies_jary_type1_name,
 };
-//TODO: wygląd: widok poziomy: 2 szare, 2 białe
-//zniknij j. jary jak nie masz porównania

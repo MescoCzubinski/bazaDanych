@@ -25,23 +25,23 @@ body {
   .menu-container {
     @apply w-11/12 h-fit border-2 border-l-0 border-r-0 rounded-none pb-4 m-0 p-2;
   }
-  .menu-container:last-child {
+  /* .menu-container:last-child {
     @apply border-t-0 pb-0;
-  }
+  } */
   .menu-container:nth-child(1) {
     @apply border-b-0;
   }
-  .menu-container:nth-child(2) {
+  /* .menu-container:nth-child(2) {
     @apply border-b-0;
-  }
-  .menu-container:nth-child(3) {
+  } */
+  /* .menu-container:nth-child(3) {
     @apply border-b-0;
-  }
+  } */
   #settings {
     @apply h-fit pb-2;
   }
-  #compare-text{
-    @apply w-10/12
+  #compare-text {
+    @apply w-10/12;
   }
 }
 @media only screen and (max-width: 768px) {

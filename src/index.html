@@ -51,24 +51,17 @@
         <div class="w-full flex flex-wrap justify-center" id="LOZ-sections"></div>
         <div class="w-full flex flex-wrap justify-center" id="LOZ-species"></div>
         <div class="text-xl text-top-agrar-green text-center w-full" id="LOZ-bottom-text">Kliknij na województwo</div>
-        <!-- <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2" id="LOZ-text">zboża jare</div> -->
       </div>
       <div class="menu-container">
-        <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2">Porównywarka odmian</div>
-        <div class="w-full">
+        <div class="flex">
+          <div class="text-3xl text-top-agrar-green text-center mb-5 w-full flex justify-center pt-2 text-wrap">Porównywarka odmian</div>
+          <div class="h-full w-fit flex items-center">
+            <button class="border-2 border-top-agrar-green rounded-2xl pl-1 pr-1 h-10 text-top-agrar-green text-xl hover:bg-top-agrar-green/20" id="sort-reset">Resetuj</button>
+          </div>
+        </div>
+        <div class="w-full mt-4">
           <div class="w-full flex flex-wrap justify-center" id="displaySectionsName"></div>
           <div class="w-full flex flex-wrap justify-center" id="displayFilesName"></div>
-        </div>
-      </div>
-      <div class="menu-container">
-        <div class="text-xl text-top-agrar-green text-center w-full flex justify-center pt-2">Źródło danych:</div>
-        <div class="ml-8 mr-8">
-          <img src="img/coboru_logo.png" class="max-h-80" />
-        </div>
-
-        <div class="text-xl text-top-agrar-green text-center w-full flex justify-center pt-2">Rejony oceny plonowania odmian:</div>
-        <div class="w-full pl-8 pr-8 max-w-lg aspect-square flex justify-center">
-          <img src="img/mapka_regiony.png" alt="Mapa regionów" class="h-fit object-contain" />
         </div>
       </div>
 
@@ -120,6 +113,22 @@
       <div class="compare-container">
         <div class="w-full">
           <div id="compare" class="pt-6"></div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full flex justify-center">
+      <div class="flex flex-wrap justify-center">
+        <div class="menu-container">
+          <div class="text-3xl text-top-agrar-green text-center w-full flex justify-center pt-2">Źródło danych:</div>
+          <div class="ml-8 mr-8 h-full flex items-center">
+            <img src="img/coboru_logo.png" class="max-h-80" />
+          </div>
+        </div>
+        <div class="menu-container">
+          <div class="text-3xl text-wrap text-top-agrar-green text-center w-full flex justify-center pt-2">Rejony oceny plonowania odmian:</div>
+          <div class="w-full pl-8 pr-8 max-w-lg aspect-square flex justify-center h-full flex items-center">
+            <img src="img/mapka_regiony.png" alt="Mapa regionów" class="h-fit object-contain" />
+          </div>
         </div>
       </div>
     </div>

@@ -16,19 +16,22 @@ regions.forEach((element) => {
     //wyświetlanie grup gatunków
     displaySpeciesGroup(elementDisplayLOZSections);
 
-    names_section.forEach((section, index) => {
+    sectionsArr.forEach((section, index) => {
       //gdy klikniesz na grupę:
       document.getElementById(`section-${index}`).addEventListener("click", function () {
-        if (section !== "reszta wkrótce") {
+        let section = sectionsArr[index];
+        let files = filesArr[index];
+
+        if (section !== "pozostale_wkrotce") {
           //tekst w sekcji LOZ
           document.querySelector("#LOZ-bottom-text").classList.add("hidden");
           displayLOZText(element.id);
 
           //wyświetlanie nazw gatunków
-          displaySpecies(elementDisplayLOZSpecies, true);
+          displaySpecies(elementDisplayLOZSpecies, true, section, files);
 
-          //mechanika działania klikn
-          functioningSpecies(element.id);
+          //mechanika działania kliknięcia
+          functioningSpecies(section, files, element.id);
         }
       });
     });
