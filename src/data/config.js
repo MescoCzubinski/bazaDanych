@@ -10,7 +10,7 @@ let ziemniak_files = ["ziemniak.json"];
 let sectionsArr = [zboza_jare, ziemniak];
 let filesArr = [zboza_jare_files, ziemniak_files];
 
-const names_section = ["zboza_jare", "pyrowate", "pozostale_wkrotce"];
+const names_section = ["zboza_jare", "okopowe", "pozostale_wkrotce"];
 //konfiguracja: jednostki, nazw kolumn, lata, sortowaie, typy
 // _cols <- bez kropek, polskich znaków
 
@@ -41,7 +41,7 @@ let ziemniak_units = ["", " r.", " dt/ha", " dt/ha", "%", "", "", "", "", "", ""
 let ziemniak_year = ["2025", "2024", "2023", "2022", "2021"];
 let ziemniak_type1_name = "Rodzaj:";
 let ziemniak_type1 = ["jadalne", "skrobiowe"];
-let ziemniak_type2_name = "Wczesnosc:";
+let ziemniak_type2_name = "Wczesność:";
 let ziemniak_type2 = ["b. wczesne", "wczesne", "średnio wczesne", "średnio późne", "późne"];
 let ziemniak_type3_name = "Przeznaczenie:";
 let ziemniak_type3 = ["Chipsy", "Frytki"];
