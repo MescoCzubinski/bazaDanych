@@ -98,6 +98,9 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
         if (index === 2) colTitle = "Na wyższym poziomie agrotechniki";
         if (isLOZ && index === colsCount - 2) colTitle = "Rok wpisu na listę dla danego województwa";
         if (index === colsCount - 1) colTitle = "Kliknij wagę - porównanie odmian u dołu strony";
+        if (file === "ziemniak.json" && index === 1) colTitle = "Plon bulwy o średnicy powyżej 30 mm";
+        if (file === "ziemniak.json" && index === 2) colTitle = "Plon bulwy o średnicy powyżej 35 mm";
+        if (file === "ziemniak.json" && index === 4) colTitle = "AB - sałatkowy, B - ogólnoużytkowy, BC - lekko mączysty, C - mączysty, CD - mączysty do bardzo mączystego";
         th.title = colTitle;
       });
     },
