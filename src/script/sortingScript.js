@@ -6,7 +6,7 @@ elementDisplaySettings.classList.add("hidden");
 
 const elementType1Container = document.querySelector("#type1-container");
 const elementType2Container = document.querySelector("#type2-container");
-const elementType3Container = document.querySelector("#type2-container");
+const elementType3Container = document.querySelector("#type3-container");
 elementType1Container.classList.add("hidden");
 elementType2Container.classList.add("hidden");
 elementType3Container.classList.add("hidden");
@@ -119,8 +119,7 @@ function displayFilters(file) {
   table.columns(1).search(selectedYear).draw();
 
   elementYearFilter.addEventListener("change", () => {
-    const selectedYear = elementYearFilter.value;
-    table.columns(1).search(selectedYear).draw();
+    table.columns(1).search(elementYearFilter.value).draw();
     table.columns(8).search(selectedType1).draw();
     table.columns(9).search(selectedType2).draw();
     table.columns(10).search(selectedType3).draw();
@@ -141,13 +140,27 @@ function displayFilters(file) {
 
     if (sortingIndex !== -1) {
       displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex, false);
-      table.columns(1).search(elementYearFilter.value).draw();
 
-      if (sortingIndex === 0) {
-        table.order([sortingIndex, "asc"]).draw();
-      } else {
-        table.order([sortingIndex, "desc"]).draw();
-      }
+      const selectedYear = elementYearFilter.value;
+      const selectedType1 = document.querySelector("#type1")?.value || "-";
+      const selectedType2 = document.querySelector("#type2")?.value || "-";
+      const selectedType3 = document.querySelector("#type3")?.value || "-";
+
+      table.columns(1).search(selectedYear).draw();
+      table
+        .columns(8)
+        .search(selectedType1 === "-" ? "" : selectedType1)
+        .draw();
+      table
+        .columns(9)
+        .search(selectedType2 === "-" ? "" : selectedType2)
+        .draw();
+      table
+        .columns(10)
+        .search(selectedType3 === "-" ? "" : selectedType3)
+        .draw();
+
+      table.order([sortingIndex, sortingIndex === 0 ? "asc" : "desc"]).draw();
     }
 
     //przesunięcie

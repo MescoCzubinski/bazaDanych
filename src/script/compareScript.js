@@ -106,7 +106,7 @@ class Compare {
 
   //dodawanie wiersza do porównywarki
   addRow(row) {
-    const fragmentRow = row.slice(0, -13);
+    const fragmentRow = row.slice(0, -12);
     this.rowsToCompare.push(fragmentRow);
     this.displayCompare();
   }

@@ -36,7 +36,7 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
       {
         targets: -1,
         render: function (row) {
-          let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wyników"] + "-" + row["Odmiany"].replace(/\s+/g, "-") + "-";
+          let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wynikow"] + "-" + row["Odmiany"].replace(/\s+/g, "-") + "-";
           buttonId = buttonId.replace("--", "-");
           return `<button id="${buttonId + "button"}" type="button" class="h-7 compare flex justify-center w-full hover:text-top-agrar-green">
                     <div class="pr-1 compare" id="${buttonId + "border"}">
@@ -108,16 +108,19 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
 }
 
 function functioningSpecies(groupOfSpecies, files, region = -1) {
+  let isLOZ = false;
+  if (region !== -1) {
+    isLOZ = true;
+  }
+  let IDifIsLOZ = isLOZ ? "is-LOZ" : "is-not-LOZ";
   //files, names <- tablice z config.js
   files.forEach((file, index) => {
-    document.getElementById(file).addEventListener("click", function () {
+    document.getElementById(file + "-" + IDifIsLOZ).addEventListener("click", function () {
       let indexOf = -1;
       let textWhenNoData = "Brak wyników dla podanych ustawień";
-      let isLOZ = false;
       if (region !== -1) {
         indexOf = arrays[file.replace(".json", "") + "_cols"].findIndex((item) => item.data === region);
         textWhenNoData = "brak odmiany na LOZ dla tego województwa";
-        isLOZ = true;
       }
 
       //wyświetlanie danych
@@ -194,8 +197,10 @@ function displaySpeciesGroup(element) {
 //wyświetlanie nazw gatunków
 function displaySpecies(element, isLOZ, groupOfSpecies, files) {
   let result = "";
+  // let IDifIsLOZ = "";
+  let IDifIsLOZ = isLOZ ? "is-LOZ" : "is-not-LOZ";
   for (let i = 0; i < groupOfSpecies.length; i++) {
-    result += '<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="' + files[i] + '" value="' + groupOfSpecies[i] + ' ">';
+    result += `<input class="text-2xl text-top-agrar-green/90 flex border-2 border-solid border-top-agrar-green/90 rounded-2xl p-2 m-2   hover:bg-top-agrar-green/20" type="button" id="${files[i] + "-" + IDifIsLOZ}" value="${groupOfSpecies[i]}">`;
   }
 
   if (isLOZ) {
