@@ -143,7 +143,7 @@ function functioningSpecies(groupOfSpecies, files, region = -1) {
       });
 
       //tworzenie porównania
-      window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"].slice(0, -29), file, groupOfSpecies, files);
+      window.compareObj = new Compare("compare", arrays[file.replace(".json", "") + "_col_names"], file, groupOfSpecies, files, isLOZ);
       compareObj.displayCompare();
 
       globalCompareScalar = 1;

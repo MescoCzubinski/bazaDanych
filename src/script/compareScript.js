@@ -22,16 +22,19 @@ document.addEventListener("click", function (event) {
 
 class Compare {
   //konstruktor
-  constructor(elementId, colNames, file, groupOfSpecies, files) {
+  constructor(elementId, colNames, file, groupOfSpecies, files, isLOZ) {
     this.colNames = colNames;
     this.firstTimeRender = false;
     this.file = file;
     this.groupOfSpecies = groupOfSpecies;
     this.files = files;
-    const index = this.colNames.indexOf("Rok wyników:");
-    if (index !== -1) {
-      this.colNames.splice(index, 1);
-    }
+    this.num = isLOZ ? 1 : 0;
+    this.num += file === "owies_jary.json" ? -6 : 0;
+    this.num += file === "ziemniak.json" ? -10 : 0;
+    // const index = this.colNames.indexOf("Rok wynikow:");
+    // if (index !== -1) {
+    //   this.colNames.splice(index, 1);
+    // }
 
     this.rowsToCompare = [];
     this.element = document.querySelector(`#${elementId}`);
@@ -61,7 +64,6 @@ class Compare {
       let table = '<div class="compare-table">';
       for (let i = 0; i < this.rowsToCompare[0].length - globalCompareScalar; i++) {
         table += '<div class="compare-row">';
-        const rowClass = i === 0 ? "compare-row first-row" : "compare-row";
         table += `<div class="compare-name">${this.colNames[i]}</div><div class="compare-scrolling">`;
         for (let j = 0; j < this.rowsToCompare.length; j++) {
           table += `<div class="compare-cell">${this.rowsToCompare[j][i]}</div>`;
@@ -106,14 +108,16 @@ class Compare {
 
   //dodawanie wiersza do porównywarki
   addRow(row) {
-    const fragmentRow = row.slice(0, -12);
+    const fragmentRow = row.slice(0, -11 - this.num);
+
     this.rowsToCompare.push(fragmentRow);
     this.displayCompare();
   }
 
   //usunięcie wiersza z porównywarki
   removeRow(row) {
-    const fragmentRow = row.slice(0, -13);
+    const fragmentRow = row.slice(0, -11 - this.num);
+
     const index = this.rowsToCompare.findIndex((r) => JSON.stringify(r) === JSON.stringify(fragmentRow));
     if (index !== -1) {
       this.rowsToCompare.splice(index, 1);
