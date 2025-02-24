@@ -12,6 +12,7 @@ regions.forEach((element) => {
   element.addEventListener("click", function () {
     elementLOZMap.classList.add("hidden");
     elementDisplayLOZSections.classList.remove("hidden");
+    document.querySelector("#LOZ-bottom-text").classList.add("hidden");
 
     //wyświetlanie grup gatunków
     displaySpeciesGroup(elementDisplayLOZSections);
@@ -24,7 +25,6 @@ regions.forEach((element) => {
 
         if (section !== "pozostale_wkrotce") {
           //tekst w sekcji LOZ
-          document.querySelector("#LOZ-bottom-text").classList.add("hidden");
           displayLOZText(element.id);
 
           //wyświetlanie nazw gatunków

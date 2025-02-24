@@ -13,7 +13,7 @@ body {
   @apply w-8/12;
 }
 .menu-container {
-  @apply w-300 m-5 h-400 border-solid border-2 border-t-0 border-b-0 border-top-agrar-green p-5 flex flex-col justify-around;
+  @apply w-11/12 h-fit border-2 border-l-0 border-r-0 rounded-none pb-4 m-0 p-2;
 }
 #settings {
   @apply w-7/12 h-fit;
@@ -21,22 +21,13 @@ body {
 #searching {
   @apply mr-0.5 ml-2;
 }
-@media only screen and (max-width: 680px) {
+.menu-container:nth-child(1) {
+  @apply border-b-0;
+}
+@media only screen and (min-width: 680px) {
   .menu-container {
-    @apply w-11/12 h-fit border-2 border-l-0 border-r-0 rounded-none pb-4 m-0 p-2;
+    @apply w-7/12;
   }
-  /* .menu-container:last-child {
-    @apply border-t-0 pb-0;
-  } */
-  .menu-container:nth-child(1) {
-    @apply border-b-0;
-  }
-  /* .menu-container:nth-child(2) {
-    @apply border-b-0;
-  } */
-  /* .menu-container:nth-child(3) {
-    @apply border-b-0;
-  } */
   #settings {
     @apply h-fit pb-2;
   }
@@ -78,7 +69,6 @@ svg path:hover {
   background-color: transparent;
   border-radius: 3px;
 }
-
 .to-compare {
   @apply text-top-agrar-green;
 }
