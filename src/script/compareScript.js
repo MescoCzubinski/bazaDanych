@@ -31,10 +31,12 @@ class Compare {
     this.num = isLOZ ? 1 : 0;
     this.num += file === "owies_jary.json" ? -6 : 0;
     this.num += file === "ziemniak.json" ? -10 : 0;
-    // const index = this.colNames.indexOf("Rok wynikow:");
-    // if (index !== -1) {
-    //   this.colNames.splice(index, 1);
-    // }
+    this.num += file === "groch.json" ? -10 : 0;
+    this.num += file === "bobik.json" ? -10 : 0;
+    this.num += file === "kukurydza_ziarno.json" ? -10 : 0;
+    this.num += file === "kukurydza_kiszonka.json" ? -10 : 0;
+    const index = this.colNames.indexOf("Rok wyników:");
+    if (index !== -1) this.colNames.splice(index, 1);
 
     this.rowsToCompare = [];
     this.element = document.querySelector(`#${elementId}`);

@@ -35,12 +35,11 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
     columnDefs: [
       {
         targets: -1,
-        render: function (row) {
-          let buttonId = file.replace(".json", "").replace("_", "-") + "-" + row["Rok wynikow"] + "-" + row["Odmiany"].replace(/\s+/g, "-") + "-";
-          buttonId = buttonId.replace("--", "-");
-          return `<button id="${buttonId + "button"}" type="button" class="h-7 compare flex justify-center w-full hover:text-top-agrar-green">
-                    <div class="pr-1 compare" id="${buttonId + "border"}">
-                      <i class="icon-balance-scale compare" id="${buttonId + "span"}"></i>
+        render: function (data, type, row, meta) {
+          let buttonId = file.replace(".json", "").replace(/_/g, "-") + "-" + meta.row;
+          return `<button id="${buttonId}-button" type="button" class="h-7 compare flex justify-center w-full hover:text-top-agrar-green">
+                    <div class="pr-1 compare" id="${buttonId}-border">
+                      <i class="icon-balance-scale compare" id="${buttonId}-span"></i>
                     </div>
                   </button>`;
         },
@@ -94,8 +93,8 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
       let colsCount = thead.querySelectorAll("th").length;
       thead.querySelectorAll("th").forEach((th, index) => {
         let colTitle = "Kliknięcie nazwy kolumny sortuje narastająco, ponownie kliknięcie malejąco";
-        if (index === 1) colTitle = "Na przeciętnym poziomie agrotechniki";
-        if (index === 2) colTitle = "Na wyższym poziomie agrotechniki";
+        if ((index === 1 && file === "jeczmien_jary.json") || file === "pszenzyto_jare.json" || file === "pszenica_jara.json" || file === "owies_jary.json") colTitle = "Na przeciętnym poziomie agrotechniki";
+        if ((index === 2 && file === "jeczmien_jary.json") || file === "pszenzyto_jare.json" || file === "pszenica_jara.json" || file === "owies_jary.json") colTitle = "Na wyższym poziomie agrotechniki";
         if (isLOZ && index === colsCount - 2) colTitle = "Rok wpisu na listę dla danego województwa";
         if (index === colsCount - 1) colTitle = "Kliknij wagę - porównanie odmian u dołu strony";
         if (file === "ziemniak.json" && index === 1) colTitle = "Plon bulwy o średnicy powyżej 30 mm";

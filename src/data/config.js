@@ -3,16 +3,50 @@
 //jeśli w kolumnie 10, jest zero mogą się pojawić problemy z renderowaniem danych  script.js około 66
 //konwerter: https://tableconvert.com/excel-to-json lub https://tableconvert.com/csv-to-json
 
+let zboza_jare_files = ["pszenica_jara.json", "jeczmien_jary.json", "pszenzyto_jare.json", "owies_jary.json"];
 let zboza_jare = ["Pszenica jara", "Jęczmień jary", "Pszenżyto jare", "Owies jary"];
 let ziemniak = ["Ziemniak", "Burak wkrótce"];
-let zboza_jare_files = ["pszenica_jara.json", "jeczmien_jary.json", "pszenzyto_jare.json", "owies_jary.json"];
 let ziemniak_files = ["ziemniak.json"];
-let sectionsArr = [zboza_jare, ziemniak];
-let filesArr = [zboza_jare_files, ziemniak_files];
+let bobowate = ["Groch", "Bobik"];
+let bobowate_files = ["groch.json", "bobik.json"];
+let kukurydza = ["kukurydza na ziarno", "kukurydza na kiszonkę"];
+let kukurydza_files = ["kukurydza_ziarno.json", "kukurydza_kiszonka.json"];
+let sectionsArr = [zboza_jare, ziemniak, bobowate, kukurydza];
+let filesArr = [zboza_jare_files, ziemniak_files, bobowate_files, kukurydza_files];
 
-const names_section = ["zboza_jare", "okopowe", "pozostale_wkrotce"];
+const names_section = ["zboza_jare", "okopowe", "bobowate", "kukurydza", "pozostale_wkrotce"];
 //konfiguracja: jednostki, nazw kolumn, lata, sortowaie, typy
 // _cols <- bez kropek, polskich znaków
+
+let kukurydza_kiszonka_col_names = ["Nazwa odmiany:", "Rok wyników:", "Plon ogolny swiezej masy:", "Plon suchej masy:", "Zawartosc suchej masy:", "Liczba FAO:", "Wysokosc roslin:", "Strawnosc:", "Wczesnosc:", "Głownia łodygi:", "Głownia kolby:", "Dolnoslaskie:", "Kujawsko-Pomorskie:", "Lubelskie:", "Lubuskie:", "Lodzkie:", "Malopolskie:", "Mazowieckie:", "Opolskie:", "Podkarpackie:", "Podlaskie:", "Pomorskie:", "Slaskie:", "Swietokrzyskie:", "Warminsko-Mazurskie:", "Wielkopolskie:", "Zachodniopomorskie:", "Porównaj"];
+let kukurydza_kiszonka_cols = [{ data: "Odmiany" }, { data: "Rok badan" }, { data: "Plon ogolny swiezej masy" }, { data: "Plon suchej masy" }, { data: "Zawartosc suchej masy" }, { data: "Liczba FAO" }, { data: "Wysokosc roslin" }, { data: "Strawnosc" }, { data: "Wczesnosc" }, { data: "Głownia łodygi" }, { data: "Głownia kolby" }, { data: "Dolnoslaskie" }, { data: "Kujawsko-Pomorskie" }, { data: "Lubelskie" }, { data: "Lubuskie" }, { data: "Lodzkie" }, { data: "Malopolskie" }, { data: "Mazowieckie" }, { data: "Opolskie" }, { data: "Podkarpackie" }, { data: "Podlaskie" }, { data: "Pomorskie" }, { data: "Slaskie" }, { data: "Swietokrzyskie" }, { data: "Warminsko-Mazurskie" }, { data: "Wielkopolskie" }, { data: "Zachodniopomorskie" }, { data: null }];
+let kukurydza_kiszonka_units = ["", "", "dt/ha", "dt/ha", "%", "", "", "", "", "", "", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", ""];
+let kukurydza_kiszonka_year = ["2025", "2024", "2023", "2022"];
+let kukurydza_kiszonka_type1_name = "Wczesność:";
+let kukurydza_kiszonka_type1 = ["średniopóźne", "wczesne", "średniowczesne"];
+
+let kukurydza_ziarno_col_names = ["Nazwa odmiany:", "Rok wyników:", "Plon ziarna przy 14% wilgotnosci:", "Wilgotnosc ziarna w czasie zbioru:", "Liczba FAO:", "Wysokosc roslin:", "Wyleganie:", "Typ ziarna:", "Wczesnosc:", "Typ mieszańca:", "Gęstosc ziarna w stanie zsypnym:", "Zawartosc cukrow ogolem:", "Fuzarioza łodygi:", "Fuzarioza kolby:", "Głownia łodygi:", "Głownia kolby:", "Omacnica prosowianka:", "Dolnoslaskie:", "Kujawsko-Pomorskie:", "Lubelskie:", "Lubuskie:", "Lodzkie:", "Malopolskie:", "Mazowieckie:", "Opolskie:", "Podkarpackie:", "Podlaskie:", "Pomorskie:", "Slaskie:", "Swietokrzyskie:", "Warminsko-Mazurskie:", "Wielkopolskie:", "Zachodniopomorskie:", "Porównaj"];
+let kukurydza_ziarno_cols = [{ data: "Odmiana" }, { data: "Rok wynikow" }, { data: "Plon ziarna przy 14% wilgotnosci" }, { data: "Wilgotnosc ziarna w czasie zbioru" }, { data: "Liczba FAO" }, { data: "Wysokosc roslin" }, { data: "Wyleganie" }, { data: "Typ ziarna" }, { data: "Wczesnosc" }, { data: "Typ mieszańca" }, { data: "Gęstosc ziarna w stanie zsypnym" }, { data: "Zawartosc cukrow ogolem" }, { data: "Fuzarioza łodygi" }, { data: "Fuzarioza kolby" }, { data: "Głownia łodygi" }, { data: "Głownia kolby" }, { data: "Omacnica prosowianka" }, { data: "Dolnoslaskie" }, { data: "Kujawsko-Pomorskie" }, { data: "Lubelskie" }, { data: "Lubuskie" }, { data: "Lodzkie" }, { data: "Malopolskie" }, { data: "Mazowieckie" }, { data: "Opolskie" }, { data: "Podkarpackie" }, { data: "Podlaskie" }, { data: "Pomorskie" }, { data: "Slaskie" }, { data: "Swietokrzyskie" }, { data: "Warminsko-Mazurskie" }, { data: "Wielkopolskie" }, { data: "Zachodniopomorskie" }, { data: null }];
+let kukurydza_ziarno_units = ["", "", "dt/ha", "%", "", "cm", " st. (1-9)", "sf/sd/d/f", "", "SC/TC/DC", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", " st. (1-9)", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", "r.", ""];
+let kukurydza_ziarno_year = ["2025", "2024", "2023", "2022"];
+let kukurydza_ziarno_type1_name = "Wczesność:";
+let kukurydza_ziarno_type1 = ["średniopóźne", "wczesne", "średniowczesne"];
+
+let bobik_col_names = ["Nazwa odmiany:", "Rok wyników:", "Plon nasion:", "Plon białka ogólnego:", "Zawartość białka ogólnego:", "Masa 1000 nasion:", "Wysokość roślin:", "Wyleganie:", "Typ:", "Rok wpisu do KR:", "Zawartość włókna surowego:", "Zawartość tanin:", "Od siewu do dojrzałości technicznej:", "Równomierność dojrzewania:", "Okres od siewu do początku kwitnienia:", "Pękanie strąków:", "Łamliwość łodyg:", "Wyleganie po kwitnieniu:", "Barwa nasion:", "Długość fazy kwitnienia:", "Czekoladowa plamistość bobiku:", "Szara pleśń:", "Rdza bobiku:", "Zgorzelowa plamistość - askochytoza:", "Uszkodzenia przez strąkowca:", "Dolnośląskie:", "Kujawsko-Pomorskie:", "Lubelskie:", "Lubuskie:", "Łódzkie:", "Małopolskie:", "Mazowieckie:", "Opolskie:", "Podkarpackie:", "Podlaskie:", "Pomorskie:", "Śląskie:", "Świętokrzyskie:", "Warmińsko-Mazurskie:", "Wielkopolskie:", "Zachodniopomorskie:", "Porównaj"];
+let bobik_cols = [{ data: "Odmiany" }, { data: "Rok wynikow" }, { data: "Plon nasion" }, { data: "Plon bialka" }, { data: "Zawartosc bialka ogolnego" }, { data: "Masa 1000 nasion" }, { data: "Wysokosc roslin" }, { data: "Wyleganie" }, { data: "Typ" }, { data: "Rok wpisu do KR" }, { data: "Zawartosc wlokna surowego" }, { data: "Zawartosc tanin" }, { data: "Od siewu do dojrzalosci technicznej" }, { data: "Rownomiernosc dojrzewania" }, { data: "Okres od siewu do poczatku kwitnienia" }, { data: "Pekanie strakow" }, { data: "Lamliwosc lodyg" }, { data: "Wyleganie po kwitnieniu" }, { data: "Barwa nasion" }, { data: "Dlugosc fazy kwitnienia" }, { data: "Czekoladowa plamistosc bobiku" }, { data: "Szara plesn" }, { data: "Rdza bobiku" }, { data: "Zgorzelowa plamistosc - askochytoza" }, { data: "Uszkodzenia przez strakowca" }, { data: "Dolnoslaskie" }, { data: "Kujawsko-Pomorskie" }, { data: "Lubelskie" }, { data: "Lubuskie" }, { data: "Lodzkie" }, { data: "Malopolskie" }, { data: "Mazowieckie" }, { data: "Opolskie" }, { data: "Podkarpackie" }, { data: "Podlaskie" }, { data: "Pomorskie" }, { data: "Slaskie" }, { data: "Swietokrzyskie" }, { data: "Warminsko-Mazurskie" }, { data: "Wielkopolskie" }, { data: "Zachodniopomorskie" }, { data: null }];
+let bobik_units = ["", "", " dt/ha", " kg/ha", " %", " g", " cm", "  st. (1-9)", "", " r.", " %", " mg/g s.m.", " dni", "  st. (1-9)", " dni", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", "", " dni", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", "", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", ""];
+let bobik_year = ["2025", "2024", "2022"];
+let bobik_type1_name = "Typ:";
+let bobik_type1 = ["niesamokończące niskotaninowe", "niesamokończące wysokotaninowe", "samokończąca"];
+
+let groch_col_names = ["Nazwa odmiany:", "Rok wyników:", "Plon nasion:", "Plon białka:", "Zawartość białka ogólnego:", "Masa 1000 nasion:", "Wysokość roślin:", "Wyleganie:", "Typ:", "Typ ulistnienia:", "Rok wpisania do KR:", "Wyleganie przed zbiorem:", "Barwa kwiatów/nasion:", "Zawartość włókna surowego:", "Udział nasion bardzo dużych (ø>7 mm):", "Udział nasion dużych (ø>6-7 mm):", "Okres od siewu do dojrzałości technicznej:", "Okres od siewu do początku kwitnienia:", "Długość fazy kwitnienia:", "Wyleganie po zakończeniu kwitnienia:", "Pękanie strąków:", "Równomierność dojrzewania:", "Fuzaryjne więdnięcie:", "Zgorzelowa plamistość - askochytoza:", "Mączniak prawdziwy:", "Mączniak rzekomy:", "Dolnośląskie:", "Kujawsko-Pomorskie:", "Lubelskie:", "Lubuskie:", "Łódzkie:", "Małopolskie:", "Mazowieckie:", "Opolskie:", "Podkarpackie:", "Podlaskie:", "Pomorskie:", "Śląskie:", "Świętokrzyskie:", "Warmińsko-Mazurskie:", "Wielkopolskie:", "Zachodniopomorskie:", "Porównaj"];
+let groch_cols = [{ data: "Odmiany" }, { data: "Rok wynikow" }, { data: "Plon nasion" }, { data: "Plon bialka" }, { data: "Zawartosc bialka ogolnego" }, { data: "Masa 1000 nasion" }, { data: "Wysokosc roslin" }, { data: "Wyleganie" }, { data: "Typ" }, { data: "Typ ulistnienia" }, { data: "Rok wpisania do KR" }, { data: "Wyleganie przed zbiorem" }, { data: "Barwa kwiatow/nasion" }, { data: "Zawartosc wlokna surowego" }, { data: "Udzial nasion bardzo duzych (ø>7 mm)" }, { data: "Udzial nasion duzych (ø>6-7 mm)" }, { data: "Okres od siewu do dojrzałosci technicznej" }, { data: "Okres od siewu do poczatku kwitnienia" }, { data: "Dlugosc fazy kwitnienia" }, { data: "Wyleganie po zakonczeniu kwitnienia" }, { data: "Pekanie strakow" }, { data: "Rownomiernosc dojrzewania" }, { data: "Fuzaryjne wiedniecie" }, { data: "Zgorzelowa plamistosc - askochytoza" }, { data: "Maczniak prawdziwy" }, { data: "Maczniak rzekomy" }, { data: "Dolnoslaskie" }, { data: "Kujawsko-Pomorskie" }, { data: "Lubelskie" }, { data: "Lubuskie" }, { data: "Lodzkie" }, { data: "Malopolskie" }, { data: "Mazowieckie" }, { data: "Opolskie" }, { data: "Podkarpackie" }, { data: "Podlaskie" }, { data: "Pomorskie" }, { data: "Slaskie" }, { data: "Swietokrzyskie" }, { data: "Warminsko-Mazurskie" }, { data: "Wielkopolskie" }, { data: "Zachodniopomorskie" }, { data: null }];
+let groch_units = ["", "", " dt/ha", " kg/ha", " %", " g", " cm", "  st. (1-9)", "", "", " r.", "  st. (1-9)", "", " %", " %", " %", " dni", " dni", " dni", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", "  st. (1-9)", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", " r.", ""];
+let groch_year = ["2025", "2024", "2022"];
+let groch_type1_name = "Typ:";
+let groch_type1 = ["ogólnoużytkowe", "pastewne"];
+let groch_type2_name = "Typ ulistnienia:";
+let groch_type2 = ["wąsy czepne", "liście parzysto-pierzaste"];
 
 let jeczmien_jary_col_names = ["Nazwa odmiany:", "Rok wyników:", "Plon ziarna a₁:", "Plon ziarna a₂:", "Masa 1000 ziaren:", "Zawartość białka:", "Wysokość roślin:", "Wyleganie:", "Typ:", "Wartość browarna:", "Rok rejestracji:", "Wyrównanie ziarna:", "Dojrzałość pełna:", "Mączniak prawdziwy:", "Plamistość siatkowa:", "Rdza jęczmienia:", "Rynchosporioza:", "Czarna plamistość:", "Plon w rejonie I a₁:", "Plon w rejonie II a₁:", "Plon w rejonie III a₁:", "Plon w rejonie IV a₁:", "Plon w rejonie V a₁:", "Plon w rejonie VI a₁:", "Plon w rejonie I a₂:", "Plon w rejonie II a₂:", "Plon w rejonie III a₂:", "Plon w rejonie IV a₂:", "Plon w rejonie V a₂:", "Plon w rejonie VI a₂:", "Dolnośląskie:", "Kujawsko-Pomorskie:", "Lubelskie:", "Lubuskie:", "Łódzkie:", "Małopolskie:", "Mazowieckie:", "Opolskie:", "Podkarpackie:", "Podlaskie:", "Pomorskie:", "Śląskie:", "Świętokrzyskie:", "Warmińsko-Mazurskie:", "Wielkopolskie:", "Zachodniopomorskie:", "Porównaj"];
 let jeczmien_jary_cols = [{ data: "Odmiany" }, { data: "Rok wynikow" }, { data: "Plon ziarna a1" }, { data: "Plon ziarna a2" }, { data: "Masa 1000 ziaren" }, { data: "Zawartosc bialka" }, { data: "Wysokosc roslin" }, { data: "Wyleganie" }, { data: "Typ" }, { data: "Wartosc browarna" }, { data: "Rok rejestracji" }, { data: "Wyrownanie ziarna" }, { data: "Dojrzalosc pelna" }, { data: "Maczniak prawdziwy" }, { data: "Plamistosc siatkowa" }, { data: "Rdza jeczmienia" }, { data: "Rynchosporioza" }, { data: "Czarna plamistosc" }, { data: "Plon w rejonie I a1" }, { data: "Plon w rejonie II a1" }, { data: "Plon w rejonie III a1" }, { data: "Plon w rejonie IV a1" }, { data: "Plon w rejonie V a1" }, { data: "Plon w rejonie VI a1" }, { data: "Plon w rejonie I a2" }, { data: "Plon w rejonie II a2" }, { data: "Plon w rejonie III a2" }, { data: "Plon w rejonie IV a2" }, { data: "Plon w rejonie V a2" }, { data: "Plon w rejonie VI a2" }, { data: "Dolnoslaskie" }, { data: "Kujawsko-Pomorskie" }, { data: "Lubelskie" }, { data: "Lubuskie" }, { data: "Lodzkie" }, { data: "Malopolskie" }, { data: "Mazowieckie" }, { data: "Opolskie" }, { data: "Podkarpackie" }, { data: "Podlaskie" }, { data: "Pomorskie" }, { data: "Slaskie" }, { data: "Swietokrzyskie" }, { data: "Warminsko-Mazurskie" }, { data: "Wielkopolskie" }, { data: "Zachodniopomorskie" }, { data: null }];
@@ -54,6 +88,36 @@ let owies_jary_type1_name = "Typ:";
 let owies_jary_type1 = ["zwyczajny", "nagi"];
 
 let arrays = {
+  kukurydza_kiszonka_col_names,
+  kukurydza_kiszonka_cols,
+  kukurydza_kiszonka_units,
+  kukurydza_kiszonka_year,
+  kukurydza_kiszonka_type1,
+  kukurydza_kiszonka_type1_name,
+
+  kukurydza_ziarno_col_names,
+  kukurydza_ziarno_cols,
+  kukurydza_ziarno_units,
+  kukurydza_ziarno_year,
+  kukurydza_ziarno_type1,
+  kukurydza_ziarno_type1_name,
+
+  groch_col_names,
+  groch_cols,
+  groch_units,
+  groch_year,
+  groch_type1,
+  groch_type1_name,
+  groch_type2,
+  groch_type2_name,
+
+  bobik_col_names,
+  bobik_cols,
+  bobik_units,
+  bobik_year,
+  bobik_type1,
+  bobik_type1_name,
+
   jeczmien_jary_col_names,
   jeczmien_jary_cols,
   jeczmien_jary_units,
