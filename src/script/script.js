@@ -1,5 +1,6 @@
 console.log("Cześć! Jestem Mieszko, żyję sobie w konsoli. Fajnie, że do mnie zajrzałeś. Smacznej kawusi życzę");
 function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, isLOZ) {
+  console.log(file, indexOf, noDataInfo, (sortingDataIndex = -1), isLOZ);
   if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
