@@ -1,12 +1,11 @@
 console.log("Cześć! Jestem Mieszko, żyję sobie w konsoli. Fajnie, że do mnie zajrzałeś. Smacznej kawusi życzę");
 function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, isLOZ) {
-  console.log(file, indexOf, noDataInfo, (sortingDataIndex = -1), isLOZ);
   if ($.fn.DataTable.isDataTable("#table")) {
     $("#table").DataTable().destroy();
     $("#table").empty();
   }
   let name = file.replace(".json", "");
-
+  console.log(arrays[name + "_col_names"]);
   table = new DataTable("#table", {
     ajax: "data/" + file,
     columns: arrays[name + "_col_names"].map((colName, index) => ({
@@ -72,6 +71,7 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
       {
         target: 0,
         responsivePriority: 1,
+        orderSequence: ["asc", "desc"],
       },
       {
         target: sortingDataIndex,
@@ -87,6 +87,10 @@ function displayFilesValues(file, indexOf, noDataInfo, sortingDataIndex = -1, is
           return Array.from({ length: 16 }, (_, i) => totalColumns - 17 + i);
         })(),
         visible: false,
+      },
+      {
+        targets: "_all",
+        orderSequence: ["desc", "asc"],
       },
     ],
     //atrybut "title"

@@ -23,7 +23,7 @@ document.addEventListener("click", function (event) {
 class Compare {
   //konstruktor
   constructor(elementId, colNames, file, groupOfSpecies, files, isLOZ) {
-    this.colNames = colNames;
+    this.colNames = [...colNames];
     this.firstTimeRender = false;
     this.file = file;
     this.groupOfSpecies = groupOfSpecies;

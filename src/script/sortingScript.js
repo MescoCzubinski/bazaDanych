@@ -45,128 +45,124 @@ elementSortReset.addEventListener("click", function () {
 function displayFilters(file) {
   elementDisplaySettings.classList.remove("hidden");
 
-  //dodanie filtru 'typ1'
+  // Reset and hide previous filters
+  document.querySelector("#type1").innerHTML = "";
+  document.querySelector("#type2").innerHTML = "";
+  document.querySelector("#type3").innerHTML = "";
+  document.querySelector("#yearFilter").innerHTML = "";
+  document.querySelector("#sorting").innerHTML = "";
+
+  elementType1Container.classList.add("hidden");
+  elementType2Container.classList.add("hidden");
+  elementType3Container.classList.add("hidden");
+
+  table.search("").columns().search("").draw();
+
+  //filtr typ1
   if (arrays[file.replace(".json", "") + "_type1"]) {
     const elementType1 = document.querySelector("#type1");
     elementType1Container.classList.remove("hidden");
     document.querySelector("#type1-name").innerHTML = arrays[file.replace(".json", "") + "_type1_name"];
+
     let types1 = '<option value="-">wszystkie</option>';
-    for (type of arrays[file.replace(".json", "") + "_type1"]) {
+    for (const type of arrays[file.replace(".json", "") + "_type1"]) {
       types1 += `<option value="${type}">${type}</option>`;
     }
     elementType1.innerHTML = types1;
 
-    elementType1.addEventListener("change", () => {
+    elementType1.onchange = function () {
       let selectedType1 = elementType1.value;
-      if (selectedType1 !== "-") {
-        table.columns(8).search(selectedType1).draw();
-      } else {
-        table.columns(8).search("").draw();
-      }
-    });
-  }
-  //dodanie filtru 'typ2'
-  if (arrays[file.replace(".json", "") + "_type2"]) {
-    const elementType2 = document.querySelector("#type2");
-    document.querySelector("#type2-name").innerHTML = arrays[file.replace(".json", "") + "_type2_name"];
-    elementType2Container.classList.remove("hidden");
-    let types2 = '<option value="-">wszystkie</option>';
-    for (type of arrays[file.replace(".json", "") + "_type2"]) {
-      types2 += `<option value="${type}">${type}</option>`;
-    }
-    elementType2.innerHTML = types2;
-
-    elementType2.addEventListener("change", () => {
-      let selectedType2 = elementType2.value;
-      if (selectedType2 !== "-") {
-        table.columns(9).search(selectedType2).draw();
-      } else {
-        table.columns(9).search("").draw();
-      }
-    });
-  }
-
-  //dodanie filtru 'typ3'
-  if (arrays[file.replace(".json", "") + "_type3"]) {
-    const elementType3 = document.querySelector("#type3");
-    document.querySelector("#type3-name").innerHTML = arrays[file.replace(".json", "") + "_type3_name"];
-    elementType3Container.classList.remove("hidden");
-    let types3 = '<option value="-">wszystkie</option>';
-    for (type of arrays[file.replace(".json", "") + "_type3"]) {
-      types3 += `<option value="${type}">${type}</option>`;
-    }
-    elementType3.innerHTML = types3;
-
-    elementType3.addEventListener("change", () => {
-      let selectedType3 = elementType3.value;
-      if (selectedType3 !== "-") {
-        table.columns(10).search(selectedType3).draw();
-      } else {
-        table.columns(10).search("").draw();
-      }
-    });
-  }
-
-  //dodanie filtru 'rok'
-  let years = "";
-  const elementYearFilter = document.querySelector("#yearFilter");
-  for (year of arrays[file.replace(".json", "") + "_year"]) {
-    years += `<option value="${year}">${year}</option>`;
-  }
-  elementYearFilter.innerHTML = years;
-
-  const selectedYear = elementYearFilter.value;
-  table.columns(1).search(selectedYear).draw();
-
-  elementYearFilter.addEventListener("change", () => {
-    table.columns(1).search(elementYearFilter.value).draw();
-    table.columns(8).search(selectedType1).draw();
-    table.columns(9).search(selectedType2).draw();
-    table.columns(10).search(selectedType3).draw();
-  });
-
-  //dodanie sortowarki
-  let sort = "";
-  const elementSorting = document.querySelector("#sorting");
-  for (element of arrays[file.replace(".json", "") + "_col_names"].slice(0, -17)) {
-    if (element !== "Rok wyników:") {
-      sort += `<option value="${element.replace(":", "")}">${element.replace(":", "")}</option>`;
-    }
-  }
-  elementSorting.innerHTML = sort;
-
-  elementSorting.addEventListener("change", (event) => {
-    let sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).indexOf(event.target.value + ":");
-
-    if (sortingIndex !== -1) {
-      displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex, false);
-
-      const selectedYear = elementYearFilter.value;
-      const selectedType1 = document.querySelector("#type1")?.value || "-";
-      const selectedType2 = document.querySelector("#type2")?.value || "-";
-      const selectedType3 = document.querySelector("#type3")?.value || "-";
-
-      table.columns(1).search(selectedYear).draw();
       table
         .columns(8)
         .search(selectedType1 === "-" ? "" : selectedType1)
         .draw();
+    };
+  }
+
+  //filtr typ2
+  if (arrays[file.replace(".json", "") + "_type2"]) {
+    const elementType2 = document.querySelector("#type2");
+    elementType2Container.classList.remove("hidden");
+    document.querySelector("#type2-name").innerHTML = arrays[file.replace(".json", "") + "_type2_name"];
+
+    let types2 = '<option value="-">wszystkie</option>';
+    for (const type of arrays[file.replace(".json", "") + "_type2"]) {
+      types2 += `<option value="${type}">${type}</option>`;
+    }
+    elementType2.innerHTML = types2;
+
+    elementType2.onchange = function () {
+      let selectedType2 = elementType2.value;
       table
         .columns(9)
         .search(selectedType2 === "-" ? "" : selectedType2)
         .draw();
+    };
+  }
+
+  //filtr typ3
+  if (arrays[file.replace(".json", "") + "_type3"]) {
+    const elementType3 = document.querySelector("#type3");
+    elementType3Container.classList.remove("hidden");
+    document.querySelector("#type3-name").innerHTML = arrays[file.replace(".json", "") + "_type3_name"];
+
+    let types3 = '<option value="-">wszystkie</option>';
+    for (const type of arrays[file.replace(".json", "") + "_type3"]) {
+      types3 += `<option value="${type}">${type}</option>`;
+    }
+    elementType3.innerHTML = types3;
+
+    elementType3.onchange = function () {
+      let selectedType3 = elementType3.value;
       table
         .columns(10)
         .search(selectedType3 === "-" ? "" : selectedType3)
         .draw();
+    };
+  }
 
-      table.order([sortingIndex, sortingIndex === 0 ? "asc" : "desc"]).draw();
+  //filtr rok
+  if (arrays[file.replace(".json", "") + "_year"]) {
+    const elementYearFilter = document.querySelector("#yearFilter");
+    let years = "";
+    for (const year of arrays[file.replace(".json", "") + "_year"]) {
+      years += `<option value="${year}">${year}</option>`;
     }
+    elementYearFilter.innerHTML = years;
 
-    //przesunięcie
-    document.querySelector("#settings").scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  });
+    elementYearFilter.onchange = function () {
+      let selectedYear = elementYearFilter.value;
+      table.columns(1).search(selectedYear).draw();
+    };
+
+    let selectedYear = elementYearFilter.value;
+    table.columns(1).search(selectedYear).draw();
+  }
+
+  //sortowanie
+  if (arrays[file.replace(".json", "") + "_col_names"]) {
+    const elementSorting = document.querySelector("#sorting");
+    let sortOptions = "";
+
+    for (const element of arrays[file.replace(".json", "") + "_col_names"].slice(0, -17)) {
+      if (element !== "Rok wyników:") {
+        sortOptions += `<option value="${element.replace(":", "")}">${element.replace(":", "")}</option>`;
+      }
+    }
+    elementSorting.innerHTML = sortOptions;
+
+    elementSorting.onchange = function (event) {
+      let sortingIndex = arrays[file.replace(".json", "") + "_col_names"].slice(0, -17).indexOf(event.target.value + ":");
+
+      if (sortingIndex !== -1) {
+        displayFilesValues(file, -1, "Brak wyników dla podanych ustawień", sortingIndex, false);
+        table.order([sortingIndex, sortingIndex === 0 ? "asc" : "desc"]).draw();
+      }
+
+      document.querySelector("#settings").scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    };
+  }
 }
